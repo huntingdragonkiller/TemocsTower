@@ -15,4 +15,8 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField]
     float damage;
     public float Damage { get => damage; set => damage = value; }
+
+    [SerializeField]
+    bool isGroundEnemy;
+    public bool IsGroundEnemy { get => isGroundEnemy; set => isGroundEnemy = value; }
 }
