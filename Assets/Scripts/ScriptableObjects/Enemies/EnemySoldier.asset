@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: EnemySoldier
   m_EditorClassIdentifier: 
   moveSpeed: 1
+  attackSpeed: 2
   maxHealth: 10
   damage: 2
   isGroundEnemy: 1

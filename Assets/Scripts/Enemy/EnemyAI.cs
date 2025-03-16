@@ -1,18 +1,20 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EnemyAI : MonoBehaviour
 {
-    private EnemyStats enemyData;
+    protected EnemyStats enemyData;
     public Collider2D attackHitbox;
     LayerMask attackHitboxMask;
     Collider2D hitbox;
     LayerMask hitboxMask;
     public GameObject target;
     bool blocked = false;
-    bool canAttack = false;
-    GameObject attackTarget;
+    public bool canAttack = false;
+    public GameObject attackTarget;
     List<GameObject> potentialTargets  = new List<GameObject>();
+    private IEnumerator attackCoroutine;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +24,25 @@ public class EnemyAI : MonoBehaviour
         hitbox = GetComponent<Collider2D>();
         hitboxMask = hitbox.callbackLayers;
         attackHitboxMask = attackHitbox.callbackLayers;
+        attackCoroutine = AttackSubRoutine(enemyData.attackSpeed);
+        StartCoroutine(attackCoroutine);
 
+    }
+
+    // attacks at an interval given by the attack speed stat
+    protected virtual IEnumerator AttackSubRoutine(float waitTime)
+    {
+        while (true)
+        {
+            if (canAttack)
+                Attack();
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    void Attack()
+    {
+        attackTarget.SendMessage("TakeDamage", enemyData.currentDamage);
     }
 
     void RetargetTower()
@@ -38,8 +58,6 @@ public class EnemyAI : MonoBehaviour
         //if(attackHitbox.IsTouchingLayers())
         if(!blocked && target != null)
             MoveToTarget();
-        if (canAttack)
-            Attack();
         //transform.position.x;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -49,15 +67,15 @@ public class EnemyAI : MonoBehaviour
         Debug.Log(collision.collider);
         if (collision.otherCollider == attackHitbox)
         {
+            potentialTargets.Add(collision.collider.gameObject);
             //if we are able to attack right now, it means we already have a target
             //therefore we save this new target for later
-            if (canAttack)
-            {
-                potentialTargets.Add(collision.collider.gameObject);
-            } else
+            if (!canAttack)
             {
                 //If we cant attack, add this as our current target and update the bool
                 attackTarget = collision.collider.gameObject;
+                potentialTargets.RemoveAt(0); //since we added it as a potential target, we need to remove it now.
+                                              //We implement it like this to handle collisions that occur simultaneously.
                 canAttack = true;
             }
             blocked = true;
@@ -84,17 +102,15 @@ public class EnemyAI : MonoBehaviour
                 potentialTargets.Remove(collision.collider.gameObject); //The potential target was killed by something else, so we need to remove it from this list
             } else if((target == null || target == collision.collider.gameObject) && potentialTargets.Count > 0)
             {
+                Debug.Log("Selecting new target");
                 //Update target and remove it from the list of potential targets                
                 target = potentialTargets[0];
+                attackTarget = target;
                 potentialTargets.RemoveAt(0);             
             }
         }
     }
 
-    void Attack()
-    {
-        attackTarget.SendMessage("TakeDamage", enemyData.currentDamage);
-    }
 
     void MoveToTarget()
     {
