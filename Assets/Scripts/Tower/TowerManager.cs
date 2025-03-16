@@ -18,6 +18,8 @@ public class TowerManager : MonoBehaviour
         {
             DestroyRandomSegment();
         }
+
+        
     }
 
     public void AddSegment(TowerSegment newSegment)
@@ -37,6 +39,13 @@ public class TowerManager : MonoBehaviour
         towerSegments.RemoveAt(randomIndex);
         Destroy(randomSegment.gameObject);
 
+        StartCoroutine(ShiftSegmentsDown());
+    }
+
+    public void DestroySegment(TowerSegment segment)
+    {
+        towerSegments.Remove(segment);
+        Destroy(segment.gameObject);
         StartCoroutine(ShiftSegmentsDown());
     }
 

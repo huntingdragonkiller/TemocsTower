@@ -5,8 +5,9 @@ public class TowerSegment : MonoBehaviour
 {
     [Header("Tower Data")]
     public TowerScriptableObject towerData;
+    private TowerManager towerManager;
 
-    [Header("Attatchments")]
+    [Header("Attachments")]
     public Transform attachmentPoint;
     public TowerSegment belowSegment;
     
@@ -20,6 +21,11 @@ public class TowerSegment : MonoBehaviour
     {
         currentHealth = towerData.MaxHealth;
         currentDamage = towerData.Damage;
+    }
+
+    void Start()
+    {
+        towerManager = GameObject.Find("TowerManager").GetComponent<TowerManager>();
     }
 
     public void AttachTo(TowerSegment lowerSegment)
@@ -43,6 +49,6 @@ public class TowerSegment : MonoBehaviour
 
     public void Kill()
     {
-        Destroy(gameObject);
+        towerManager.SendMessage("DestroySegment", this);
     }
 }
