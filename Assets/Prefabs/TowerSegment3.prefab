@@ -517,7 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerData: {fileID: 11400000, guid: 78d6db259e4836f49bdc66820ed4d407, type: 2}
-  attatchmentPoint: {fileID: 8719136568473944580}
+  attachmentPoint: {fileID: 8719136568473944580}
   belowSegment: {fileID: 0}
   currentHealth: 0
   currentDamage: 0
