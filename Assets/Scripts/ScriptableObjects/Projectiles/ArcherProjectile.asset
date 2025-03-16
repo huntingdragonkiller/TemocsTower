@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArcherProjectile
   m_EditorClassIdentifier: 
   speed: 3
-  launchAngle: 30
+  launchAngle: 150
   damage: 10

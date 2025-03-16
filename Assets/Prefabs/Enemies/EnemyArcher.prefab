@@ -78,12 +78,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -15.004465, y: 6.8432255}
-      - {x: -17.52049, y: -1.0335245}
-      - {x: -6.508745, y: -1.0380149}
-      - {x: -3.4870257, y: 4.267794}
-      - {x: -1.0784492, y: 13.410383}
-      - {x: -9.5941725, y: 11.735692}
+    - - {x: -11.529185, y: 6.6204515}
+      - {x: -8.832291, y: -1.0335236}
+      - {x: -3.7463436, y: -0.81524044}
+      - {x: -0.457294, y: 3.5103614}
+      - {x: 1.770134, y: 16.089006}
+      - {x: -10.256752, y: 15.771793}
+      - {x: -11.510033, y: 11.824802}
   m_UseDelaunayMesh: 0
 --- !u!1 &7357179300845184114
 GameObject:
@@ -228,6 +229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackHitbox: {fileID: 3482849600686319073}
   target: {fileID: 0}
+  canAttack: 0
+  attackTarget: {fileID: 0}
+  archerProjectile: {fileID: 4899576608466118631, guid: 20e78f3e018d84c6e8580fae1e332016, type: 3}
 --- !u!114 &6919039661734210343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,8 +244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c8ce544bc37f41a7d4b73b6cda4be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: a8231fcc27f184b34a0494decd1ce885, type: 2}
+  enemyData: {fileID: 11400000, guid: 8c2a457153aad4b2984595ae1cbbb7dc, type: 2}
   currentMoveSpeed: 0
+  attackSpeed: 0
   currentHealth: 0
   currentDamage: 0
   isGroundEnemy: 0
