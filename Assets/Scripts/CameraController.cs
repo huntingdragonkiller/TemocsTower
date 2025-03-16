@@ -3,12 +3,36 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public float cameraSpeed;
-    
-    void FixedUpdate()
+    private Camera _zoomCamera;
+    private Vector3 _elevation;
+
+    private void Start()
     {
+        _zoomCamera = Camera.main;
+        _elevation = gameObject.transform.position;
+    }
+    
+    void Update()
+    {
+
         if (Input.GetKey(KeyCode.W))
-            transform.position += new Vector3(0, cameraSpeed, 0);
-        if(Input.GetKey(KeyCode.S))
-            transform.position -= new Vector3(0, cameraSpeed, 0);
+        {
+            _elevation.y += cameraSpeed * Time.deltaTime;
+            gameObject.transform.position = _elevation;
+        }
+
+        if (Input.GetKey(KeyCode.S))
+        {
+            _elevation.y -= cameraSpeed * Time.deltaTime;
+            gameObject.transform.position = _elevation;
+        }
+            
+
+        
+        
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            _zoomCamera.orthographicSize -= 1;
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            _zoomCamera.orthographicSize += 1;
     }
 }

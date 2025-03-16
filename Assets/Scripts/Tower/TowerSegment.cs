@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TowerSegment : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class TowerSegment : MonoBehaviour
     public TowerScriptableObject towerData;
 
     [Header("Attatchments")]
-    public Transform attatchmentPoint;
+    public Transform attachmentPoint;
     public TowerSegment belowSegment;
     
     // current stats
@@ -26,7 +27,7 @@ public class TowerSegment : MonoBehaviour
         if (lowerSegment != null)
         {
             belowSegment = lowerSegment;
-            transform.position = lowerSegment.attatchmentPoint.position;
+            transform.position = lowerSegment.attachmentPoint.position;
         }
     }
 }
