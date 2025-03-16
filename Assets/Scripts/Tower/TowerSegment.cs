@@ -22,12 +22,27 @@ public class TowerSegment : MonoBehaviour
         currentDamage = towerData.Damage;
     }
 
-    public void AttatchTo(TowerSegment lowerSegment)
+    public void AttachTo(TowerSegment lowerSegment)
     {
         if (lowerSegment != null)
         {
             belowSegment = lowerSegment;
             transform.position = lowerSegment.attachmentPoint.position;
         }
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+        Debug.Log("My health is: " + currentHealth);
+        if (currentHealth <= 0)
+        {
+            Kill();
+        }
+    }
+
+    public void Kill()
+    {
+        Destroy(gameObject);
     }
 }

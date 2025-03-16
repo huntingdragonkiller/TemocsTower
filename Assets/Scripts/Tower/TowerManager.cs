@@ -23,7 +23,7 @@ public class TowerManager : MonoBehaviour
     public void AddSegment(TowerSegment newSegment)
     {
         TowerSegment topSegment = towerSegments[towerSegments.Count - 1];
-        newSegment.AttatchTo(topSegment);
+        newSegment.AttachTo(topSegment);
         towerSegments.Add(newSegment);
     }
 

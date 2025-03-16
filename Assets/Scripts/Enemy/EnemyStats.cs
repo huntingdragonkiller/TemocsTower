@@ -8,15 +8,21 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public float currentMoveSpeed;
     [HideInInspector]
+    public float attackSpeed;
+    [HideInInspector]
     public float currentHealth;
     [HideInInspector]
     public float currentDamage;
-    
+    [HideInInspector]
+    public bool isGroundEnemy;
+
     void Awake()
     {
-        currentMoveSpeed = enemyData.MoveSpeed;
+        currentMoveSpeed = enemyData.MoveSpeed * Time.fixedDeltaTime;//Gives us the move speed in tiles per second
         currentHealth = enemyData.MaxHealth;
         currentDamage = enemyData.Damage;
+        attackSpeed = enemyData.AttackSpeed;
+        isGroundEnemy = enemyData.IsGroundEnemy;
     }
     
     public void TakeDamage(float dmg)
