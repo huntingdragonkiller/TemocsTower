@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 673850467231469448}
   m_Layer: 7
   m_Name: AttackHitbox
-  m_TagString: Untagged
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,6 +211,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackHitbox: {fileID: 673850467231469448}
   target: {fileID: 0}
+  canAttack: 0
+  attackTarget: {fileID: 0}
 --- !u!114 &6919039661734210343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: ddc04ed194ff947d6a482acbfc522eb3, type: 2}
   currentMoveSpeed: 0
+  attackSpeed: 0
   currentHealth: 0
   currentDamage: 0
   isGroundEnemy: 0
