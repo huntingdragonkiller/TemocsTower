@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,7 +20,7 @@ public class EnemyManager : MonoBehaviour
     {
         GameObject[] towerSegments = GameObject.FindGameObjectsWithTag("Tower");
 
-        return towerSegments[Random.Range(0, towerSegments.Length)];
+        return towerSegments[UnityEngine.Random.Range(0, towerSegments.Length)];
     }
     //Targets a specific index in the list of tower segments, used for ground troops only right now
     public GameObject FocusSegment(int index)
@@ -42,7 +43,14 @@ public class EnemyManager : MonoBehaviour
     void SpawnAirEnemy()
     {
         GameObject focus = FocusSegment();
-        Vector3 spawnPosition = focus.transform.position + new Vector3(xSpawnOffset, 0 , 0);
+        Vector3 spawnPosition = focus.transform.position;
+        int left = UnityEngine.Random.Range(0,2); 
+        if(left == 0){
+            spawnPosition += new Vector3(xSpawnOffset, 0 , 0);
+        }else
+        {
+            spawnPosition += new Vector3(-xSpawnOffset, 0 , 0);
+        }
         EnemyAI newEnemy = Instantiate(availableAirEnemies[0], spawnPosition, Quaternion.identity);
         newEnemy.target = focus;
         
@@ -51,7 +59,14 @@ public class EnemyManager : MonoBehaviour
     void SpawnGroundEnemy()
     {
         GameObject focus = FocusSegment(0);
-        Vector3 spawnPosition = focus.transform.position + new Vector3(xSpawnOffset, -focus.transform.position.y, 0);
+        Vector3 spawnPosition = focus.transform.position + new Vector3(0, -focus.transform.position.y, 0);
+        int left = UnityEngine.Random.Range(0,2); 
+        if(left == 0){
+            spawnPosition += new Vector3(xSpawnOffset, 0 , 0);
+        }else
+        {
+            spawnPosition += new Vector3(-xSpawnOffset, 0 , 0);
+        }
         EnemyAI newEnemy = Instantiate(availableGroundEnemies[0], spawnPosition, Quaternion.identity);
         newEnemy.target = focus;
     }

@@ -54,6 +54,19 @@ public class TowerManager : MonoBehaviour
         float duration = 0.05f; // Adjust for smoother/faster falling
         float elapsedTime;
         
+        //Setting the tower at the bottom to the lowest position (will do nothing if its already there)
+        if(towerSegments[0].gameObject.transform.position != new Vector3(0, 2, 0)){
+            Vector3 startPos = towerSegments[0].gameObject.transform.position;
+            Vector3 targetPos = new Vector3(0, 2, 0);
+            elapsedTime = 0;
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / duration;
+                towerSegments[0].gameObject.transform.position = Vector3.Lerp(startPos, targetPos, t);
+                yield return null;
+            }
+        }
         for (int i = 1; i < towerSegments.Count; i++) // Skip base segment
         {
             TowerSegment below = towerSegments[i-1];

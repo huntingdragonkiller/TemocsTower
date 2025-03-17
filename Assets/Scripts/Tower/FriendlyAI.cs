@@ -42,7 +42,8 @@ public class FriendlyAI : MonoBehaviour
 
     void Attack()
     {
-        attackTarget.SendMessage("TakeDamage", friendlyData.currentDamage);
+        if(attackTarget.gameObject != null)
+            attackTarget.SendMessage("TakeDamage", friendlyData.currentDamage);
     }
 
     void RetargetTower()
@@ -89,7 +90,7 @@ public class FriendlyAI : MonoBehaviour
         //If a collision ended and there are no other collisions, we cant attack so set target to null and update bool
         if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox")
         {
-            if (!attackHitbox.IsTouchingLayers(attackHitboxMask)) //if the attack hitbox is not colliding with anything it means we cant attack
+            if (!attackHitbox.IsTouchingLayers(attackHitboxMask) || potentialTargets.Count == 0) //if the attack hitbox is not colliding with anything it means we cant attack
             {
                 Debug.Log("No more enemies");
                 if (potentialTargets.Count > 0)
