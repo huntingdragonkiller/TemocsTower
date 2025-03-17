@@ -1,10 +1,10 @@
-using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class FriendlyAI : MonoBehaviour
 {
-    protected EnemyStats enemyData;
+    protected EnemyStats friendlyData;
     public Collider2D attackHitbox;
     LayerMask attackHitboxMask;
     Collider2D hitbox;
@@ -13,18 +13,18 @@ public class EnemyAI : MonoBehaviour
     bool blocked = false;
     public bool canAttack = false;
     public GameObject attackTarget;
-    List<GameObject> potentialTargets  = new List<GameObject>();
+    List<GameObject> potentialTargets = new List<GameObject>();
     private IEnumerator attackCoroutine;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        enemyData = this.GetComponent<EnemyStats>();
+        friendlyData = this.GetComponent<EnemyStats>();
         hitbox = GetComponent<Collider2D>();
         hitboxMask = hitbox.callbackLayers;
         attackHitboxMask = attackHitbox.callbackLayers;
-        attackCoroutine = AttackSubRoutine(enemyData.attackSpeed);
+        attackCoroutine = AttackSubRoutine(friendlyData.attackSpeed);
         StartCoroutine(attackCoroutine);
 
     }
@@ -42,7 +42,7 @@ public class EnemyAI : MonoBehaviour
 
     void Attack()
     {
-        attackTarget.SendMessage("TakeDamage", enemyData.currentDamage);
+        attackTarget.SendMessage("TakeDamage", friendlyData.currentDamage);
     }
 
     void RetargetTower()
@@ -56,8 +56,8 @@ public class EnemyAI : MonoBehaviour
         if (target == null)
             RetargetTower();
         //if(attackHitbox.IsTouchingLayers())
-        if(!blocked && target != null)
-            MoveToTarget();
+        if (!blocked && target != null)
+            Move();
         //transform.position.x;
     }
     private void OnCollisionEnter2D(Collision2D collision)
@@ -74,15 +74,13 @@ public class EnemyAI : MonoBehaviour
             {
                 //If we cant attack, add this as our current target and update the bool
                 attackTarget = collision.collider.gameObject;
+
                 potentialTargets.RemoveAt(0); //since we added it as a potential target, we need to remove it now.
                                               //We implement it like this to handle collisions that occur simultaneously.
                 canAttack = true;
             }
             blocked = true;
 
-        } else if(collision.otherCollider == hitbox && collision.collider.gameObject.tag != "Hitbox")
-        {
-            blocked = true;
         }
     }
 
@@ -94,7 +92,7 @@ public class EnemyAI : MonoBehaviour
             if (!attackHitbox.IsTouchingLayers(attackHitboxMask)) //if the attack hitbox is not colliding with anything it means we cant attack
             {
                 Debug.Log("No more enemies");
-                if(potentialTargets.Count > 0)
+                if (potentialTargets.Count > 0)
                     potentialTargets.Clear(); //if we can't attack then there shouldn't be potential targets, so we have to clear the list (just in case)
                 attackTarget = null;
                 blocked = false;
@@ -103,45 +101,59 @@ public class EnemyAI : MonoBehaviour
             else if (potentialTargets.Contains(collision.collider.gameObject))
             {
                 potentialTargets.Remove(collision.collider.gameObject); //The potential target was killed by something else, so we need to remove it from this list
-            } else if((target == null || target == collision.collider.gameObject) && potentialTargets.Count > 0)
+            }
+            else if ((attackTarget == null || attackTarget == collision.collider.gameObject) && potentialTargets.Count > 0)
             {
                 Debug.Log("Selecting new target");
                 //Update target and remove it from the list of potential targets                
                 target = potentialTargets[0];
                 attackTarget = target;
-                potentialTargets.RemoveAt(0);             
-            }
-            else if (collision.otherCollider == hitbox && collision.collider.gameObject.tag != "Hitbox")
-            {
-                blocked = false;
+                potentialTargets.RemoveAt(0);
             }
         }
     }
 
 
-    void MoveToTarget()
+    void Move()
     {
         Vector3 movementVector = Vector3.zero;
 
-        if (target.transform.position.y > transform.position.y && !enemyData.isGroundEnemy)
+        if (target.transform.position.y > transform.position.y && !friendlyData.isGroundEnemy)
         {
-            movementVector += Vector3.up * enemyData.currentMoveSpeed;
-        } else if (target.transform.position.y < transform.position.y && !enemyData.isGroundEnemy)
+            movementVector += Vector3.up * friendlyData.currentMoveSpeed;
+        }
+        else if (target.transform.position.y < transform.position.y && !friendlyData.isGroundEnemy)
         {
-            movementVector += Vector3.down * enemyData.currentMoveSpeed;
+            movementVector += Vector3.down * friendlyData.currentMoveSpeed;
         }
 
-        //transform.position = new Vector3(Vector3.Lerp(transform.position, target.transform.position, enemyData.currentMoveSpeed).x, transform.position.y, 0);
-        if (transform.position.x > 0)
+        //transform.position = new Vector3(Vector3.Lerp(transform.position, target.transform.position, friendlyData.currentMoveSpeed).x, transform.position.y, 0);
+        if (transform.position.x < 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
-            movementVector += Vector3.left * enemyData.currentMoveSpeed;
+            movementVector += Vector3.left * friendlyData.currentMoveSpeed;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);//flips the enemy around
-            movementVector += Vector3.right * enemyData.currentMoveSpeed;
+            transform.localScale = new Vector3(-1, 1, 1);//flips the friendly around
+            movementVector += Vector3.right * friendlyData.currentMoveSpeed;
         }
         transform.position += movementVector;
     }
+
+    public float GetMoveSpeed()
+    {
+        if (blocked)
+            return 0;
+        if (transform.position.x < 0)
+        {
+            return -1 * friendlyData.currentMoveSpeed;
+        } else
+        {
+
+            return 1 * friendlyData.currentMoveSpeed;
+        }
+    }
 }
+
+

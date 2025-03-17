@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tower
   - Wall
+  - Hitbox
   layers:
   - Default
   - TransparentFX
