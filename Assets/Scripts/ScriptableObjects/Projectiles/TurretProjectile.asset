@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0558ad8ab5eb90a47b536934d39b44be, type: 3}
-  m_Name: BaseSegment
+  m_Script: {fileID: 11500000, guid: 2c4211b62c68544e59f2121f39a8d240, type: 3}
+  m_Name: TurretProjectile
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  speed: 7
+  launchAngle: 0
   damage: 5
+  tracking: 1
+  trackingFrames: 2000

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0558ad8ab5eb90a47b536934d39b44be, type: 3}
-  m_Name: SegmentTest2
+  m_Name: SoldierFactory
   m_EditorClassIdentifier: 
-  maxHealth: 25
-  damage: 20
+  maxHealth: 100
+  damage: 5

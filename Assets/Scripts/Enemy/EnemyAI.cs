@@ -63,8 +63,8 @@ public class EnemyAI : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        Debug.Log(collision.otherCollider);
-        Debug.Log(collision.collider);
+        // Debug.Log(collision.otherCollider);
+        // Debug.Log(collision.collider);
         if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox")
         {
             potentialTargets.Add(collision.collider.gameObject);

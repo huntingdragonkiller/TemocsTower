@@ -852,12 +852,9 @@ MonoBehaviour:
   towerManager: {fileID: 1618705784}
   menuOverlay: {fileID: 612250944}
   availableSegments:
-  - {fileID: 5844660375515185066, guid: eb5f2ea4efa2fcf40bccef36dba6927d, type: 3}
-  - {fileID: 2776101330237305685, guid: 091b768b291eca2409ecf9b731d3888c, type: 3}
-  - {fileID: 5099455533745200559, guid: 2f218e0250a79124cb21ba4bf3fee667, type: 3}
-  - {fileID: 5099455533745200559, guid: db0633aa20b30b147aa02c8f195f8c2c, type: 3}
-  - {fileID: 5844660375515185066, guid: dcbf10a859e624c4e8f0b824d7dd18fe, type: 3}
-  - {fileID: 2776101330237305685, guid: 7a53ea240f0d9f549a00ec4138e9efb5, type: 3}
+  - {fileID: 28316151391386272, guid: 3728ee905200e08489bebd66f7500779, type: 3}
+  - {fileID: 8003988005900433263, guid: 091b768b291eca2409ecf9b731d3888c, type: 3}
+  - {fileID: 860667373652905503, guid: 2f218e0250a79124cb21ba4bf3fee667, type: 3}
   optionButtons:
   - {fileID: 1953524752}
   - {fileID: 604666491}
@@ -1746,22 +1743,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 28316151391386272, guid: 3728ee905200e08489bebd66f7500779, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 28316151391386272, guid: 3728ee905200e08489bebd66f7500779, type: 3}
-      propertyPath: generateSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3218840708449623473, guid: 3728ee905200e08489bebd66f7500779, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6010247459773641463, guid: 3728ee905200e08489bebd66f7500779, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 7540003479461671977, guid: 3728ee905200e08489bebd66f7500779, type: 3}
       propertyPath: m_Name
       value: BaseSegment
