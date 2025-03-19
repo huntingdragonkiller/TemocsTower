@@ -29,6 +29,14 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    public int GetSpawnPoints(){
+        return enemyData.spawnCost;
+    }
+
+    public bool IsGroundEnemy(){
+        return enemyData.isGroundEnemy;
+    }
+
     // attacks at an interval given by the attack speed stat
     protected virtual IEnumerator AttackSubRoutine(float waitTime)
     {

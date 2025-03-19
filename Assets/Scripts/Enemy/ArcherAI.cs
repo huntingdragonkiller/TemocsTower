@@ -19,6 +19,7 @@ public class ArcherAI : EnemyAI
     {
         Projectile newProjectile = Instantiate(archerProjectile, transform.position, Quaternion.identity);
         Debug.Log("Targeting " + attackTarget);
+        newProjectile.damage = enemyData.currentDamage;
         Vector3 targetPosition = attackTarget.transform.position;
         FriendlyAI attackTargetAI = attackTarget.GetComponent<FriendlyAI>();
         if (attackTargetAI != null)

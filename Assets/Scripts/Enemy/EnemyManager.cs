@@ -1,31 +1,117 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     public float xSpawnOffset = 10f;
-    public List<EnemyAI> availableGroundEnemies;
-    public List<EnemyAI> availableAirEnemies;
+    public float xSpawnVariation = 0.25f;
+    public float ySpawnVariation = 2f;
+    public List<EnemyAI> availableEnemies;
+    public float waveDuration;
+    public float spawnIntervals;
+    public int[] levelPoints;
+    int currentLevel = 0;
+    int numSpawnTimes;
+    int currentSpawnTime;
+    public MiniWave miniWave;
+    GameObject currentFocus;
+    int focusedIndex;
+    GameObject[] towerSegments;
+    int cheapestEnemyCost = int.MaxValue;
+
+    
+    private IEnumerator wave;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        foreach(EnemyAI enemyAI in availableEnemies){
+            if(enemyAI.GetSpawnPoints() < cheapestEnemyCost){
+                cheapestEnemyCost = enemyAI.GetSpawnPoints();
+            }
+        }
+    }
+
+    public void StartWave(){
+        numSpawnTimes = (int) (waveDuration / spawnIntervals);
+        currentSpawnTime = 1;
+        currentFocus = FocusSegment();
+        Debug.Log("Starting wave " + currentLevel + 
+                "\nTargeting Tower at " + currentFocus.transform.position + 
+                "\nAvailable points to spend: " + GetLevelPoints(currentLevel) + 
+                "\nWave Duration: " + waveDuration +
+                 "\nSpawning " + numSpawnTimes + " times, once every " + spawnIntervals + " seconds");
+        wave = SpawnCoroutine(spawnIntervals, GetLevelPoints(currentLevel));
+        StartCoroutine(wave);
+    }
+
+    IEnumerator SpawnCoroutine(float waitTime, int points){
+        int remainingPoints = points; 
+        while(remainingPoints >= cheapestEnemyCost && currentSpawnTime <= numSpawnTimes){
+            yield return new WaitForSeconds(waitTime);
+            if(currentSpawnTime == numSpawnTimes / 2 || currentSpawnTime == numSpawnTimes)
+            {
+                int miniWavePoints = remainingPoints / 4;
+                //if its the last wave we use the rest of the points
+                if(currentSpawnTime == numSpawnTimes)
+                    miniWavePoints = remainingPoints;
+                remainingPoints -= miniWavePoints;
+                MiniWave newMiniWave = StartMiniWave(miniWavePoints);
+                while(newMiniWave != null){}//waiting until the miniwave is over
+
+            } else {
+                EnemyAI choice = PickEnemy(remainingPoints);
+            }
+            
+        }
+        currentLevel++;
+    }
+
+    //Recursively randomly picks from the list of available enemies until a spawnable one is found.
+    //This assumes that remainingPoints > cheapestEnemyCost, which should be true.
+    private EnemyAI PickEnemy(int remainingPoints)
+    {
+        EnemyAI choice = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count)];
+        if(choice.GetSpawnPoints() <= remainingPoints){
+            return choice;
+        } else {
+            return PickEnemy(remainingPoints);
+        }
+    }
+    //Creates a miniWave Object, the instantiates the miniwave enemies as its children until we run out of points
+    private MiniWave StartMiniWave(int points)
+    {
+        MiniWave newMiniWave = Instantiate(miniWave, transform.position, Quaternion.identity);
+        while (points >= cheapestEnemyCost){
+            EnemyAI choice = PickEnemy(points);
+            points -= choice.GetSpawnPoints();
+            SpawnEnemy(choice, newMiniWave.transform);
+        }
+        return newMiniWave;
+    }
+
+    //While we have hardcoded levels pull from the matrix, otherwise just calculate it
+    int GetLevelPoints(int level){
+        if(level < levelPoints.Count())
+            return levelPoints[level];
+        return (int) (10 * MathF.Pow(level, 1.2f));//PLACEHOLDER FUNCTION, probably want to think of a better one
     }
 
     //Gets a list of all towers and picks a random one to assign as the current segment to focus
     public GameObject FocusSegment()
     {
-        GameObject[] towerSegments = GameObject.FindGameObjectsWithTag("Tower");
-
-        return towerSegments[UnityEngine.Random.Range(0, towerSegments.Length)];
+        towerSegments = GameObject.FindGameObjectsWithTag("Tower");
+        focusedIndex = UnityEngine.Random.Range(0, towerSegments.Length);
+        return towerSegments[focusedIndex];
     }
     //Targets a specific index in the list of tower segments, used for ground troops only right now
     public GameObject FocusSegment(int index)
     {
-        GameObject[] towerSegments = GameObject.FindGameObjectsWithTag("Tower");
+        towerSegments = GameObject.FindGameObjectsWithTag("Tower");
         if(towerSegments.Length > 0)
             return towerSegments[index];
         return null;
@@ -34,16 +120,16 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            SpawnGroundEnemy();
-        else if (Input.GetKeyDown(KeyCode.R))
-            SpawnAirEnemy();
+        // if (Input.GetKeyDown(KeyCode.E))
+        //     SpawnGroundEnemy();
+        // else if (Input.GetKeyDown(KeyCode.R))
+        //     SpawnAirEnemy();
     }
 
-    void SpawnAirEnemy()
+    void SpawnAirEnemy(EnemyAI toSpawn, Transform parent)
     {
-        GameObject focus = FocusSegment();
-        Vector3 spawnPosition = focus.transform.position;
+        int spawnIndex = Math.Clamp(focusedIndex + UnityEngine.Random.Range(-1, 2), 0, towerSegments.Length - 1);
+        Vector3 spawnPosition = towerSegments[spawnIndex].transform.position + GetRandomSpawnOffset();
         int left = UnityEngine.Random.Range(0,2); 
         if(left == 0){
             spawnPosition += new Vector3(xSpawnOffset, 0 , 0);
@@ -51,15 +137,16 @@ public class EnemyManager : MonoBehaviour
         {
             spawnPosition += new Vector3(-xSpawnOffset, 0 , 0);
         }
-        EnemyAI newEnemy = Instantiate(availableAirEnemies[0], spawnPosition, Quaternion.identity);
-        newEnemy.target = focus;
+        EnemyAI newEnemy = Instantiate(toSpawn, spawnPosition, Quaternion.identity, parent);
+        newEnemy.target = currentFocus;
         
     }
 
-    void SpawnGroundEnemy()
+    void SpawnGroundEnemy(EnemyAI toSpawn, Transform parent)
     {
         GameObject focus = FocusSegment(0);
         Vector3 spawnPosition = focus.transform.position + new Vector3(0, -focus.transform.position.y, 0);
+        spawnPosition.x += UnityEngine.Random.Range(-xSpawnVariation,xSpawnVariation);
         int left = UnityEngine.Random.Range(0,2); 
         if(left == 0){
             spawnPosition += new Vector3(xSpawnOffset, 0 , 0);
@@ -67,7 +154,25 @@ public class EnemyManager : MonoBehaviour
         {
             spawnPosition += new Vector3(-xSpawnOffset, 0 , 0);
         }
-        EnemyAI newEnemy = Instantiate(availableGroundEnemies[0], spawnPosition, Quaternion.identity);
+        EnemyAI newEnemy = Instantiate(toSpawn, spawnPosition, Quaternion.identity, parent);
         newEnemy.target = focus;
+    }
+
+    Vector3 GetRandomSpawnOffset(){
+        return new Vector3(UnityEngine.Random.Range(-xSpawnVariation,xSpawnVariation), UnityEngine.Random.Range(-ySpawnVariation,ySpawnVariation), 0);
+    }
+
+    void SpawnEnemy(EnemyAI toSpawn){
+        SpawnEnemy(toSpawn, transform);
+    }
+    void SpawnEnemy(EnemyAI toSpawn, Transform parent){
+        if(toSpawn.IsGroundEnemy())
+        {
+            SpawnGroundEnemy(toSpawn, parent);
+        } else 
+        {
+             SpawnAirEnemy(toSpawn, parent);
+        }
+
     }
 }

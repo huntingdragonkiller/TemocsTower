@@ -14,6 +14,8 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public float currentDamage;
     [HideInInspector]
+    public int spawnCost;
+    [HideInInspector]
     public bool isGroundEnemy;
 
     void Awake()
@@ -23,6 +25,7 @@ public class EnemyStats : MonoBehaviour
         currentDamage = enemyData.Damage;
         attackSpeed = enemyData.AttackSpeed;
         isGroundEnemy = enemyData.IsGroundEnemy;
+        spawnCost = enemyData.SpawnCost;
     }
     
     public void TakeDamage(float dmg)

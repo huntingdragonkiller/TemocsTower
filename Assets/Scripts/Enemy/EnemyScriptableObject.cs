@@ -23,4 +23,8 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField]
     bool isGroundEnemy;
     public bool IsGroundEnemy { get => isGroundEnemy; set => isGroundEnemy = value; }
+    [SerializeField]
+    int spawnCost;
+    public int SpawnCost { get => spawnCost; set => spawnCost = value; }
+
 }
