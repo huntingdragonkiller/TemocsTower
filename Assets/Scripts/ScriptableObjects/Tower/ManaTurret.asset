@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   damage: 1
+  upgradeCost: 15

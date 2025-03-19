@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class SoldierFactory : TowerSegment
 {
     public GameObject[] spawnLocations;
+    public FactoryUIManager factoryUIManager;
 
     public FriendlyAI soldier;
     public float generateSpeed;
@@ -13,14 +14,26 @@ public class SoldierFactory : TowerSegment
     [SerializeField]
     private int maxSoldiers;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         createSoldier = CreateSoldier(generateSpeed);
         StartCoroutine(createSoldier);
+        factoryUIManager.UpdateMaxSoldiers(maxSoldiers);
+        factoryUIManager.UpdateProdSpeed(generateSpeed);
+
 
     }
 
-
+    public override bool Upgrade()
+    {
+        if(!base.Upgrade())
+            return false;
+        
+        maxSoldiers++;
+        factoryUIManager.UpdateMaxSoldiers(maxSoldiers);
+        return true;
+    }
 
     // attacks at an interval given by the attack speed stat
     protected virtual IEnumerator CreateSoldier(float waitTime)

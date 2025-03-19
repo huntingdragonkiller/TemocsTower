@@ -20,6 +20,7 @@ public class CoinManager : MonoBehaviour
         if (coins >= cost)
         {
             coins -= cost;
+            Debug.Log("Purchase Successful (" + cost + " coins), remaining coins:" + coins);
             return true;
         }
         return false;

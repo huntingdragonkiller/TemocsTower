@@ -6,18 +6,40 @@ public class TurretTower : TowerSegment
 {
     public float damage;
     public float attackSpeed;
-    private IEnumerator generateMana;
+    private IEnumerator attacking;
     bool canAttack;
     List<GameObject> enemies = new List<GameObject>();
     public Collider2D attackFOV;
     public Projectile turretProjectile;
+    public TurretUIManager turretUIManager;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
         canAttack = false;
-        generateMana = GenerateMana(attackSpeed);
-        StartCoroutine(generateMana);
+        attacking = AttackCoroutine(attackSpeed);
+        StartCoroutine(attacking);
+        turretUIManager.UpdateDamage((int)damage);
+        turretUIManager.UpdateAttackSpeed(attackSpeed);
 
+    }
+    public override bool Upgrade()
+    {
+        if(!base.Upgrade())
+            return false;
+        
+        damage += 5;
+        attackSpeed -= 0.1f;
+        RestartAttackingCoroutine();
+        turretUIManager.UpdateDamage((int)damage);
+        turretUIManager.UpdateAttackSpeed(attackSpeed);
+        return true;
+    }
+
+    void RestartAttackingCoroutine(){
+        StopCoroutine(attacking);
+        attacking = AttackCoroutine(attackSpeed);
+        StartCoroutine(attacking);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -36,16 +58,16 @@ public class TurretTower : TowerSegment
     }
 
     // attacks at an interval given by the attack speed stat
-    protected virtual IEnumerator GenerateMana(float waitTime)
+    protected virtual IEnumerator AttackCoroutine(float waitTime)
     {
         while (true)
         {
+            yield return new WaitForSeconds(waitTime);
             //If there are enemies present if our FOV, attack them
             if (enemies.Count > 0)
             {
                 Attack();
             }
-            yield return new WaitForSeconds(waitTime);
         }
     }
 

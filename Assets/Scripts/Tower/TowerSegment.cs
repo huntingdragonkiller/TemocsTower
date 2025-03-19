@@ -5,6 +5,7 @@ public class TowerSegment : MonoBehaviour
 {
     [Header("Tower Data")]
     public TowerScriptableObject towerData;
+    public TowerUIManager towerUIManager;
     private TowerManager towerManager;
 
     [Header("Attachments")]
@@ -20,12 +21,18 @@ public class TowerSegment : MonoBehaviour
     public int upgradeCost;
 
     public int currentLevel = 1;
+    private float maxHealth;
 
-    void Awake()
+    public virtual void Awake()
     {
-        currentHealth = towerData.MaxHealth;
+        maxHealth = towerData.MaxHealth;
+        currentHealth = maxHealth;
         currentDamage = towerData.Damage;
         upgradeCost = towerData.UpgradeCost;
+        towerUIManager.UpdateHealth(currentHealth, maxHealth);
+        towerUIManager.UpdateCost(upgradeCost);
+        towerUIManager.UpdateLevel(currentLevel);
+        Debug.Log("My upgrade costs: " + upgradeCost);
     }
 
     void Start()
@@ -42,11 +49,15 @@ public class TowerSegment : MonoBehaviour
         }
     }
 
+    public void TryUpgrade(){
+        Upgrade();
+    }
     public virtual bool Upgrade()
     {
         if (FindFirstObjectByType<CoinManager>().SpendCoins(upgradeCost))
         {
             currentLevel++;
+            towerUIManager.UpdateLevel(currentLevel);
             return true;
         } else
         {
@@ -64,6 +75,7 @@ public class TowerSegment : MonoBehaviour
         {
             Kill();
         }
+        towerUIManager.UpdateHealth(currentHealth, maxHealth);
     }
 
     public void Kill()
