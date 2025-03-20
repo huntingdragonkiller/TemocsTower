@@ -56,11 +56,13 @@ public class TowerUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        elapsedFrames = 0;
         hovering = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        elapsedFrames = 0;
         hovering = false;
     }
 }

@@ -11,8 +11,10 @@ public class EnemyManager : MonoBehaviour
     public float xSpawnVariation = 0.25f;
     public float ySpawnVariation = 2f;
     public List<EnemyAI> availableEnemies;
+    public Dictionary<EnemyAI, int> enemyCost = new Dictionary<EnemyAI, int>();
     public float waveDuration;
     public float spawnIntervals;
+    public float waveStartDelay;
     public int[] levelPoints;
     int currentLevel = 0;
     int numSpawnTimes;
@@ -26,14 +28,21 @@ public class EnemyManager : MonoBehaviour
     
     private IEnumerator wave;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //Grabs all the enemies, spawns them in so we can access their cost
+    //then obliterates them after they've served their purpose
     void Start()
     {
         foreach(EnemyAI enemyAI in availableEnemies){
-            if(enemyAI.GetSpawnPoints() < cheapestEnemyCost){
-                cheapestEnemyCost = enemyAI.GetSpawnPoints();
+            Debug.Log("checking" + enemyAI.name);
+            EnemyAI tempAI = Instantiate(enemyAI, new Vector3(10000, 10000, 0), Quaternion.identity);
+            enemyCost.Add(enemyAI, tempAI.GetSpawnPoints());
+            if(tempAI.GetSpawnPoints() < cheapestEnemyCost){
+                cheapestEnemyCost = tempAI.GetSpawnPoints();
             }
+            Destroy(tempAI.gameObject);
         }
+        Debug.Log("Cheapest enemy is " + cheapestEnemyCost);
+        Debug.Log(enemyCost.Keys);
     }
 
     public void StartWave(){
@@ -51,8 +60,9 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator SpawnCoroutine(float waitTime, int points){
         int remainingPoints = points; 
-        while(remainingPoints >= cheapestEnemyCost && currentSpawnTime <= numSpawnTimes){
-            yield return new WaitForSeconds(waitTime);
+        Debug.Log("in spawn routine");
+        do{
+            yield return new WaitForSeconds(waveStartDelay);
             if(currentSpawnTime == numSpawnTimes / 2 || currentSpawnTime == numSpawnTimes)
             {
                 int miniWavePoints = remainingPoints / 4;
@@ -60,14 +70,31 @@ public class EnemyManager : MonoBehaviour
                 if(currentSpawnTime == numSpawnTimes)
                     miniWavePoints = remainingPoints;
                 remainingPoints -= miniWavePoints;
+                Debug.Log("Miniwave time, points allocated: " + miniWavePoints);
                 MiniWave newMiniWave = StartMiniWave(miniWavePoints);
-                while(newMiniWave != null){}//waiting until the miniwave is over
+                // while(newMiniWave != null){//waiting until the miniwave is over
+                //     yield return new WaitForFixedUpdate();
+                // }
 
             } else {
                 EnemyAI choice = PickEnemy(remainingPoints);
+                Debug.Log("Spawning " + choice );
+                SpawnEnemy(choice);
+                remainingPoints -= enemyCost[choice];
             }
-            
-        }
+            currentSpawnTime++;
+            yield return new WaitForSeconds(waitTime);
+        } while (remainingPoints >= cheapestEnemyCost && currentSpawnTime <= numSpawnTimes);
+        Debug.Log("end spawn routine");
+        FinishWave();
+    }
+
+    //Tells the selection manager to display the win reward
+    //Tells the tower manager to full heal all the segments
+    private void FinishWave()
+    {
+        FindAnyObjectByType<SegmentSelectionManager>().ShowSegmentChoices();
+        FindAnyObjectByType<TowerManager>().HealAllSegments();
         currentLevel++;
     }
 
@@ -76,7 +103,7 @@ public class EnemyManager : MonoBehaviour
     private EnemyAI PickEnemy(int remainingPoints)
     {
         EnemyAI choice = availableEnemies[UnityEngine.Random.Range(0, availableEnemies.Count)];
-        if(choice.GetSpawnPoints() <= remainingPoints){
+        if(enemyCost[choice] <= remainingPoints){
             return choice;
         } else {
             return PickEnemy(remainingPoints);
@@ -85,10 +112,10 @@ public class EnemyManager : MonoBehaviour
     //Creates a miniWave Object, the instantiates the miniwave enemies as its children until we run out of points
     private MiniWave StartMiniWave(int points)
     {
-        MiniWave newMiniWave = Instantiate(miniWave, transform.position, Quaternion.identity);
+        MiniWave newMiniWave = Instantiate(miniWave, transform.position, Quaternion.identity, transform);
         while (points >= cheapestEnemyCost){
             EnemyAI choice = PickEnemy(points);
-            points -= choice.GetSpawnPoints();
+            points -= enemyCost[choice];
             SpawnEnemy(choice, newMiniWave.transform);
         }
         return newMiniWave;
@@ -166,13 +193,16 @@ public class EnemyManager : MonoBehaviour
         SpawnEnemy(toSpawn, transform);
     }
     void SpawnEnemy(EnemyAI toSpawn, Transform parent){
-        if(toSpawn.IsGroundEnemy())
+        // i fucking hate doing this but I dont want to wastee time refactoring code rn
+        // :P
+        EnemyAI tempAI = Instantiate(toSpawn, new Vector3(10000, 10000, 0), Quaternion.identity);
+        if(tempAI.IsGroundEnemy())
         {
             SpawnGroundEnemy(toSpawn, parent);
         } else 
         {
              SpawnAirEnemy(toSpawn, parent);
         }
-
+        Destroy(tempAI.gameObject);//They've served their purpose, kill!!!
     }
 }

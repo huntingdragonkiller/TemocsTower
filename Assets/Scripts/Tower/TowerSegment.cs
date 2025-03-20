@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -22,9 +23,11 @@ public class TowerSegment : MonoBehaviour
 
     public int currentLevel = 1;
     private float maxHealth;
+    HealthBarManager healthBar;
 
     public virtual void Awake()
     {
+        healthBar = GetComponentInChildren<HealthBarManager>();
         maxHealth = towerData.MaxHealth;
         currentHealth = maxHealth;
         currentDamage = towerData.Damage;
@@ -66,6 +69,18 @@ public class TowerSegment : MonoBehaviour
             // and add only code for if the upgrade was successful
         }
     }
+    public void FullHeal(){
+        currentHealth = maxHealth;
+        towerUIManager.UpdateHealth(currentHealth, maxHealth);
+        healthBar.UpdateHealth(1);
+    }
+
+
+    public void HealDamage(float healAmount){
+        currentHealth = Math.Clamp(currentHealth + healAmount, 0, maxHealth);
+        towerUIManager.UpdateHealth(currentHealth, maxHealth);
+        healthBar.UpdateHealth(currentHealth/maxHealth);
+    }
 
     public void TakeDamage(float dmg)
     {
@@ -76,6 +91,7 @@ public class TowerSegment : MonoBehaviour
             Kill();
         }
         towerUIManager.UpdateHealth(currentHealth, maxHealth);
+        healthBar.UpdateHealth(currentHealth/maxHealth);
     }
 
     public void Kill()

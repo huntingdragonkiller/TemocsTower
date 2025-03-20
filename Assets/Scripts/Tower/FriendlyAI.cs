@@ -66,7 +66,7 @@ public class FriendlyAI : MonoBehaviour
 
         //Debug.Log(collision.otherCollider);
         //Debug.Log(collision.collider);
-        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox")
+        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox" && collision.collider.gameObject.tag != "Tower")
         {
             potentialTargets.Add(collision.collider.gameObject);
             //if we are able to attack right now, it means we already have a target
@@ -88,7 +88,7 @@ public class FriendlyAI : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         //If a collision ended and there are no other collisions, we cant attack so set target to null and update bool
-        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox")
+        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox" && collision.collider.gameObject.tag != "Hitbox")
         {
             if (!attackHitbox.IsTouchingLayers(attackHitboxMask) || potentialTargets.Count == 0) //if the attack hitbox is not colliding with anything it means we cant attack
             {

@@ -42,6 +42,12 @@ public class TowerManager : MonoBehaviour
         StartCoroutine(ShiftSegmentsDown());
     }
 
+    public void HealAllSegments(){
+        foreach (TowerSegment segment in towerSegments){
+            segment.FullHeal();
+        }
+    }
+
     public void DestroySegment(TowerSegment segment)
     {
         towerSegments.Remove(segment);

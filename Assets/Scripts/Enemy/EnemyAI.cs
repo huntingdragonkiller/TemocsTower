@@ -17,8 +17,8 @@ public class EnemyAI : MonoBehaviour
     private IEnumerator attackCoroutine;
 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    void Awake()
     {
         enemyData = this.GetComponent<EnemyStats>();
         hitbox = GetComponent<Collider2D>();

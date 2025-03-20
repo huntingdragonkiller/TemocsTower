@@ -18,3 +18,4 @@ MonoBehaviour:
   damage: 5
   isGroundEnemy: 0
   spawnCost: 10
+  killReward: 5

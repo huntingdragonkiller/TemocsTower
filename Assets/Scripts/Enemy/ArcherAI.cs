@@ -8,6 +8,7 @@ public class ArcherAI : EnemyAI
     // baller
     protected override IEnumerator AttackSubRoutine(float waitTime)
     {
+        Debug.Log("Archer attack routine, wait time: " + waitTime);
         while (true)
         {
             if (canAttack)

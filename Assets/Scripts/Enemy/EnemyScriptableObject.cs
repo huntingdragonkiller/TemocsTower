@@ -26,5 +26,8 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField]
     int spawnCost;
     public int SpawnCost { get => spawnCost; set => spawnCost = value; }
+    [SerializeField]
+    int killReward;
+    public int KillReward { get => killReward; set => killReward = value; }
 
 }
