@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -6,7 +7,7 @@ public class TowerSegment : MonoBehaviour
 {
     [Header("Tower Data")]
     public TowerScriptableObject towerData;
-    public TowerUIManager towerUIManager;
+    TowerUIManager towerUIManager;
     private TowerManager towerManager;
 
     [Header("Attachments")]
@@ -22,11 +23,12 @@ public class TowerSegment : MonoBehaviour
     public int upgradeCost;
 
     public int currentLevel = 1;
-    private float maxHealth;
+    protected float maxHealth;
     HealthBarManager healthBar;
 
     public virtual void Awake()
     {
+        towerUIManager = GetComponentInChildren<TowerUIManager>();
         healthBar = GetComponentInChildren<HealthBarManager>();
         maxHealth = towerData.MaxHealth;
         currentHealth = maxHealth;
@@ -42,6 +44,12 @@ public class TowerSegment : MonoBehaviour
     {
         towerManager = GameObject.Find("TowerManager").GetComponent<TowerManager>();
     }
+    
+    void OnDestroy()
+    {
+        StopAllCoroutines();        
+    }
+
 
     public void AttachTo(TowerSegment lowerSegment)
     {
@@ -69,6 +77,7 @@ public class TowerSegment : MonoBehaviour
             // and add only code for if the upgrade was successful
         }
     }
+    
     public void FullHeal(){
         currentHealth = maxHealth;
         towerUIManager.UpdateHealth(currentHealth, maxHealth);
@@ -85,7 +94,7 @@ public class TowerSegment : MonoBehaviour
     public void TakeDamage(float dmg)
     {
         currentHealth -= dmg;
-        Debug.Log("My health is: " + currentHealth);
+        // Debug.Log("My health is: " + currentHealth);
         if (currentHealth <= 0)
         {
             Kill();
@@ -94,7 +103,7 @@ public class TowerSegment : MonoBehaviour
         healthBar.UpdateHealth(currentHealth/maxHealth);
     }
 
-    public void Kill()
+    public virtual void Kill()
     {
         towerManager.SendMessage("DestroySegment", this);
     }

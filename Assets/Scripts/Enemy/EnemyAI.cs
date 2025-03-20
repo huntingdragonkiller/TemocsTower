@@ -29,6 +29,11 @@ public class EnemyAI : MonoBehaviour
 
     }
 
+    void OnDestroy()
+    {
+        StopAllCoroutines();        
+    }
+
     public int GetSpawnPoints(){
         return enemyData.spawnCost;
     }

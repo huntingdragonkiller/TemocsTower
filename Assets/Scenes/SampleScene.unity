@@ -1126,6 +1126,8 @@ MonoBehaviour:
   - {fileID: 28316151391386272, guid: 3728ee905200e08489bebd66f7500779, type: 3}
   - {fileID: 8003988005900433263, guid: 091b768b291eca2409ecf9b731d3888c, type: 3}
   - {fileID: 860667373652905503, guid: 2f218e0250a79124cb21ba4bf3fee667, type: 3}
+  - {fileID: 863211356760268566, guid: 7a53ea240f0d9f549a00ec4138e9efb5, type: 3}
+  - {fileID: 7117589566202867318, guid: dcbf10a859e624c4e8f0b824d7dd18fe, type: 3}
   optionButtons:
   - {fileID: 1953524752}
   - {fileID: 604666491}
@@ -1446,6 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseSegment: {fileID: 1277409848}
   towerSegments: []
+  dropDownAnimationTime: 0.75
 --- !u!4 &1618705785
 Transform:
   m_ObjectHideFlags: 0

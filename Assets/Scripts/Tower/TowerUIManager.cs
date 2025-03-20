@@ -10,21 +10,36 @@ public class TowerUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public TextMeshProUGUI health;
 
     public TowerScriptableObject stats;
-    public RectTransform towerRect;
-    public int initialWidth;
-    public int initialHeight;
-    public int enlargedWidth;
-    public int enlargedHeight;
-    public float animationTime;
+    RectTransform towerRect;
+    float initialWidth;
+    float initialHeight;
+    float enlargedWidth;
+    float enlargedHeight;
+    float animationTime = 1.25f;
 
     int animationFrames;
     int elapsedFrames = 0;
     bool hovering = false;
+
+    void Awake()
+    {
+        towerRect = GetComponent<RectTransform>();
+        initialHeight = towerRect.rect.height;
+        initialWidth = towerRect.rect.width;
+        RectTransform maximizedRect = GameObject.Find("Panel").GetComponent<RectTransform>();
+        enlargedHeight = maximizedRect.rect.height;
+        enlargedWidth = maximizedRect.rect.width;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animationFrames = (int) (animationTime / Time.fixedDeltaTime);
         Debug.Log(towerRect.sizeDelta);
+        Debug.Log(towerRect.rect.height);
+        Debug.Log(towerRect.rect.width);
+        Debug.Log(enlargedHeight);
+        Debug.Log(enlargedWidth);
         // towerRect.sizeDelta = new Vector2(enlargedHeight, enlargedWidth);
     }
 
@@ -51,7 +66,7 @@ public class TowerUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
 
     public void UpdateHealth(float newHealth, float maxHealth){
-        health.text = "Health: " + newHealth.ToString() + " / " +  maxHealth.ToString();
+        health.text = "Health: " +((int) newHealth).ToString() + " / " +  ((int)maxHealth).ToString();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
