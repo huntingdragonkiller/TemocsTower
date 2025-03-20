@@ -24,6 +24,7 @@ public class EnemyManager : MonoBehaviour
     int focusedIndex;
     GameObject[] towerSegments;
     int cheapestEnemyCost = int.MaxValue;
+    int highestEnemyCost = int.MinValue;
 
     
     private IEnumerator wave;
@@ -38,10 +39,13 @@ public class EnemyManager : MonoBehaviour
             enemyCost.Add(enemyAI, tempAI.GetSpawnPoints());
             if(tempAI.GetSpawnPoints() < cheapestEnemyCost){
                 cheapestEnemyCost = tempAI.GetSpawnPoints();
+            } else if (tempAI.GetSpawnPoints() > highestEnemyCost){
+                highestEnemyCost = tempAI.GetSpawnPoints();
             }
             Destroy(tempAI.gameObject);
         }
         Debug.Log("Cheapest enemy is " + cheapestEnemyCost);
+        Debug.Log("Expensive enemy is " + highestEnemyCost);
         Debug.Log(enemyCost.Keys);
     }
 
@@ -63,7 +67,7 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("in spawn routine");
         do{
             yield return new WaitForSeconds(waveStartDelay);
-            if(currentSpawnTime == numSpawnTimes / 2 || currentSpawnTime == numSpawnTimes)
+            if((currentSpawnTime == numSpawnTimes / 2 && remainingPoints / 4 >= cheapestEnemyCost)|| currentSpawnTime == numSpawnTimes)
             {
                 int miniWavePoints = remainingPoints / 4;
                 //if its the last wave we use the rest of the points
