@@ -8,6 +8,10 @@ public class CoinManager : MonoBehaviour
 
     public TextMeshProUGUI coinText;
 
+    void Awake()
+    {
+        UpdateCoinText();
+    }
     //adds coins, intended to be called when enemies die
     //TODO: play a small short coin sound
     public void AddCoins(int toAdd)

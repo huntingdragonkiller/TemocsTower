@@ -64,6 +64,7 @@ public class SegmentSelectionManager : MonoBehaviour
         {
             button.gameObject.SetActive(false);
         }
+        FindAnyObjectByType<ShopManager>().InitializeShop();
     }
     
     private TowerSegment GetValidSegment(List<TowerSegment> choices)

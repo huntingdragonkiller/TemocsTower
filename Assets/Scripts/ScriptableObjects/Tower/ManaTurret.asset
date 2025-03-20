@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   damage: 1
+  purchaseCost: 30
   upgradeCost: 15
+  description: Shoots down enemies
+  sprite: {fileID: 3365517634901027850, guid: d9cea04ca8160234b90183d49e942e9f, type: 3}

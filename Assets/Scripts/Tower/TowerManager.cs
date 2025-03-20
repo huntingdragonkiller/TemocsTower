@@ -1,16 +1,21 @@
 using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class TowerManager : MonoBehaviour
 {
     public TowerSegment baseSegment; // Starting segment of the tower
     public List<TowerSegment> towerSegments = new List<TowerSegment>();
+    
+    private Dictionary<TowerScriptableObject, int> numTowerTracker = new Dictionary<TowerScriptableObject, int>();
     public float dropDownAnimationTime = .1f;
 
     private void Start()
     {
         towerSegments.Add(baseSegment);
+        numTowerTracker.Add(baseSegment.towerData, 1);
+        GameObject.FindAnyObjectByType<ShopManager>().AddNewTower(baseSegment);
     }
 
     private void Update()
@@ -25,6 +30,13 @@ public class TowerManager : MonoBehaviour
 
     public void AddSegment(TowerSegment newSegment)
     {
+        if (!numTowerTracker.ContainsKey(newSegment.towerData)){
+            Debug.Log("Unique tower added: " + newSegment);
+            numTowerTracker.Add(newSegment.towerData, 1);
+            GameObject.FindAnyObjectByType<ShopManager>().AddNewTower(newSegment);
+        } else {
+            numTowerTracker[newSegment.towerData]++;
+        }
         TowerSegment topSegment = towerSegments[towerSegments.Count - 1];
         newSegment.AttachTo(topSegment);
         towerSegments.Add(newSegment);

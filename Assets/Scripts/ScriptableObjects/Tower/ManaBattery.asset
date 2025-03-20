@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 500
   damage: 20
+  purchaseCost: 10
   upgradeCost: 20
+  description: ' Increased Max mana, but if the segment dies it blows up, taking
+    the adjacent towers w/ it (also kills nearby enemies too tho'
+  sprite: {fileID: 3365517634901027850, guid: d9cea04ca8160234b90183d49e942e9f, type: 3}
