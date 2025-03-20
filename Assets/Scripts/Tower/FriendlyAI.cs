@@ -1,29 +1,38 @@
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class FriendlyAI : MonoBehaviour
 {
     protected EnemyStats friendlyData;
     public Collider2D attackHitbox;
+    public float fallSpeedTilePerSecond = 2f;
     LayerMask attackHitboxMask;
     Collider2D hitbox;
     LayerMask hitboxMask;
-    public GameObject target;
+    public EnemyAI target;
     bool blocked = false;
     public bool canAttack = false;
-    public GameObject attackTarget;
-    List<GameObject> potentialTargets = new List<GameObject>();
+    List<EnemyAI> enemies = new List<EnemyAI>();
     private IEnumerator attackCoroutine;
-
+    bool inAir = true;
+    float fallSpeed;
+    public float patrolRadiusFromOrigin = 5f;
+    public float detectEnemiesDistance = 10f;
+    private bool _movingRight;
+    private bool enemiesPresent = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        // Debug.Log("My height is: " + transform.position.y);
+        // Debug.Log("My local height is: " + transform.localPosition.y);
+        fallSpeed = fallSpeedTilePerSecond * Time.fixedDeltaTime;
         friendlyData = this.GetComponent<EnemyStats>();
         hitbox = GetComponent<Collider2D>();
-        hitboxMask = hitbox.callbackLayers;
-        attackHitboxMask = attackHitbox.callbackLayers;
+        hitboxMask = hitbox.includeLayers;
+        attackHitboxMask = attackHitbox.includeLayers;
         attackCoroutine = AttackSubRoutine(friendlyData.attackSpeed);
         StartCoroutine(attackCoroutine);
 
@@ -34,119 +43,126 @@ public class FriendlyAI : MonoBehaviour
     {
         while (true)
         {
-            if (canAttack)
+            if (enemies.Count > 0)
+            {
                 Attack();
+            }
             yield return new WaitForSeconds(waitTime);
         }
     }
 
     void Attack()
     {
-        if(attackTarget.gameObject != null)
-            attackTarget.SendMessage("TakeDamage", friendlyData.currentDamage);
+        EnemyAI target = GetTarget();
+        if(target != null)
+            target.SendMessage("TakeDamage", friendlyData.currentDamage);
     }
 
-    void RetargetTower()
-    {
-        target = GameObject.FindAnyObjectByType<EnemyManager>().FocusSegment(0); //Default retargets base tower segment
+    //Returns the target dependant on the towers target settings
+    //Currently this only returns the enemy that first appeared
+    EnemyAI GetTarget(){
+        return enemies[0];
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (target == null)
-            RetargetTower();
+        if(transform.position.y <= 0)
+        {
+            inAir = false;
+            transform.position = new Vector3(transform.position.x, 0, transform.position.z); //snap to y = 0
+        }
         //if(attackHitbox.IsTouchingLayers())
-        if (!blocked && target != null)
+        if (enemies.Count <= 0)
             Move();
+        enemiesPresent = CheckForEnemies();
         //transform.position.x;
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-
-        //Debug.Log(collision.otherCollider);
-        //Debug.Log(collision.collider);
-        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox" && collision.collider.gameObject.tag != "Tower")
-        {
-            potentialTargets.Add(collision.collider.gameObject);
-            //if we are able to attack right now, it means we already have a target
-            //therefore we save this new target for later
-            if (!canAttack)
-            {
-                //If we cant attack, add this as our current target and update the bool
-                attackTarget = collision.collider.gameObject;
-
-                potentialTargets.RemoveAt(0); //since we added it as a potential target, we need to remove it now.
-                                              //We implement it like this to handle collisions that occur simultaneously.
-                canAttack = true;
-            }
-            blocked = true;
-
+        //If we something enters the collider, it's in the enemies layer, if it's not the enemies FOV, we can attack it
+        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox"){
+            enemies.Add(collision.collider.gameObject.GetComponent<EnemyAI>());
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
-        //If a collision ended and there are no other collisions, we cant attack so set target to null and update bool
-        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox" && collision.collider.gameObject.tag != "Hitbox")
-        {
-            if (!attackHitbox.IsTouchingLayers(attackHitboxMask) || potentialTargets.Count == 0) //if the attack hitbox is not colliding with anything it means we cant attack
-            {
-                Debug.Log("No more enemies");
-                if (potentialTargets.Count > 0)
-                    potentialTargets.Clear(); //if we can't attack then there shouldn't be potential targets, so we have to clear the list (just in case)
-                attackTarget = null;
-                blocked = false;
-                canAttack = false;
-            }
-            else if (potentialTargets.Contains(collision.collider.gameObject))
-            {
-                potentialTargets.Remove(collision.collider.gameObject); //The potential target was killed by something else, so we need to remove it from this list
-            }
-            else if ((attackTarget == null || attackTarget == collision.collider.gameObject) && potentialTargets.Count > 0)
-            {
-                Debug.Log("Selecting new target");
-                //Update target and remove it from the list of potential targets                
-                target = potentialTargets[0];
-                attackTarget = target;
-                potentialTargets.RemoveAt(0);
-            }
+        //if its left the collider we cant attack it
+        if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox"){
+            enemies.Remove(collision.collider.gameObject.GetComponent<EnemyAI>());
+            if(enemies.Count <= 0)
+                enemiesPresent = CheckForEnemies();
         }
     }
-
 
     void Move()
     {
         Vector3 movementVector = Vector3.zero;
+        //if in the air fall down until we hit the ground then do normal movement
+        if(inAir){
+            movementVector = Vector3.down * fallSpeed;
+            transform.position += movementVector;
+            return;
+        } else if(!enemiesPresent){
+            movementVector = Patrol();
+        } else {
+             movementVector = MoveToEnemy();
+        }
 
-        if (target.transform.position.y > transform.position.y && !friendlyData.isGroundEnemy)
-        {
-            movementVector += Vector3.up * friendlyData.currentMoveSpeed;
-        }
-        else if (target.transform.position.y < transform.position.y && !friendlyData.isGroundEnemy)
-        {
-            movementVector += Vector3.down * friendlyData.currentMoveSpeed;
-        }
-
-        //transform.position = new Vector3(Vector3.Lerp(transform.position, target.transform.position, friendlyData.currentMoveSpeed).x, transform.position.y, 0);
-        if (transform.position.x < 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            movementVector += Vector3.left * friendlyData.currentMoveSpeed;
-        }
-        else
-        {
-            transform.localScale = new Vector3(-1, 1, 1);//flips the friendly around
-            movementVector += Vector3.right * friendlyData.currentMoveSpeed;
-        }
         transform.position += movementVector;
+    }
+
+    //If there are enemies move in the direction we last spotted them at
+    private Vector3 MoveToEnemy()
+    {
+        Vector3 movementVector = Vector3.right * friendlyData.currentMoveSpeed;
+        float moveDirection = _movingRight ? 1f : -1f;
+        // enemiesPresent = CheckForEnemies();
+        return movementVector * moveDirection;
+    }
+
+    Vector3 Patrol()
+    {
+        Vector3 movementVector = Vector3.right * friendlyData.currentMoveSpeed;
+        float moveDirection = _movingRight ? 1f : -1f;
+
+        // Check if the enemy reached a patrol point
+        if (_movingRight && transform.position.x >= patrolRadiusFromOrigin)
+        {
+            _movingRight = false;
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (!_movingRight && transform.position.x <= -patrolRadiusFromOrigin)
+        {
+            _movingRight = true;
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        // enemiesPresent = CheckForEnemies();
+        return movementVector * moveDirection;
+        
+    }
+
+    bool CheckForEnemies(){
+        Vector3 direction = _movingRight ? Vector3.right : Vector3.left;
+        // Debug.DrawLine(transform.position, direction * detectEnemiesDistance, Color.red, 0.2f);
+        // Debug.Log(attackHitboxMask.value);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectEnemiesDistance, attackHitboxMask);
+        if (hit)
+        {
+            // Debug.Log("Enemy Detected! " + hit.collider.gameObject.name + "at: " + hit.collider.gameObject.transform.position);
+            enemiesPresent = true;
+            return true;
+        }
+        return false;
     }
 
     public float GetMoveSpeed()
     {
-        if (blocked)
+        if (enemies.Count > 0)
             return 0;
-        if (transform.position.x < 0)
+        if (!_movingRight)
         {
             return -1 * friendlyData.currentMoveSpeed;
         } else

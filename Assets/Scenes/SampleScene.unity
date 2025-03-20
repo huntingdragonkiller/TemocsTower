@@ -1494,9 +1494,8 @@ MonoBehaviour:
   xSpawnVariation: 1
   ySpawnVariation: 2
   availableEnemies:
-  - {fileID: 7916182504928932248, guid: a4c20ca09c89c40749c42dbfb7825ffd, type: 3}
-  - {fileID: 8996631404203410908, guid: e61339ce67f5f478f90624f5376a4a03, type: 3}
   - {fileID: 8996631404203410908, guid: 02c8feec6146442c69146c7b573bb555, type: 3}
+  - {fileID: 7916182504928932248, guid: a4c20ca09c89c40749c42dbfb7825ffd, type: 3}
   waveDuration: 60
   spawnIntervals: 15
   waveStartDelay: 0
