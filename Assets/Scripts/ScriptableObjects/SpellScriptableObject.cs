@@ -7,6 +7,9 @@ public class SpellScriptableObject : ScriptableObject
     // [SerializeField] GameObject spellPrefab;
     // public GameObject SpellPrefab {get => spellPrefab; set => spellPrefab = value; } 
 
+    [SerializeField] int damage;
+    public int Damage {get => damage; set => damage = value; }
+
     [SerializeField] float cooldownTime;
     public float CooldownTime {get => cooldownTime; set => cooldownTime = value; }
 

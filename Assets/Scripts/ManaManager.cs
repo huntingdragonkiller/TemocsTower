@@ -6,6 +6,7 @@ public class ManaManager : MonoBehaviour
 
     public List<GameObject> spellPrefabs;
     public int manaAmount;
+    public int maxMana;
     //public SpellScriptableGameObject currentSpell;
 
     public static ManaManager instance;
@@ -23,11 +24,6 @@ public class ManaManager : MonoBehaviour
     // castSpell(currentSpellPrefab)
     // something like that. Thoughts ? 
 
-
-    // mana cost
-    // cooldown
-    // how much damage is dealt (can be null (mana shield))
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -39,4 +35,22 @@ public class ManaManager : MonoBehaviour
     {
         
     }
+
+    public static void addToMana(int manaToAdd) {
+        if (manaAmount + manaToAdd >= maxMana) {
+            manaAmount = maxMana;
+        } else {
+            manaAmount += manaToAdd;
+        }
+    }
+
+    public static void decreaseMana(int manaCost) {
+        if (manaAmount - manaCost <= 0) {
+            manaAmount = 0;
+        } else {
+            manaAmount -= manaCost;
+        }
+    }
+
+
 }
