@@ -4,10 +4,9 @@ using UnityEngine;
 public class ManaManager : MonoBehaviour
 {
 
-    
     public List<GameObject> spellPrefabs;
     public int manaAmount;
-    public SpellScriptableGameObject currentSpell;
+    //public SpellScriptableGameObject currentSpell;
 
     public static ManaManager instance;
 
