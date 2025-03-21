@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-6428266763199517216
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mana_generation_02_{-6428266763199517216}
+  m_AudioClip: {fileID: 8300000, guid: 1063994365c31634bb7e0d77954ee2d2, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &1138385472742159068
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mana_generation_01_{1138385472742159068}
+  m_AudioClip: {fileID: 8300000, guid: 3187cd0c07ae1c343ac570aa8a585433, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ManaGen
+  m_Volume: 0
+  m_Pitch: 0
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -4.11067, y: 4.42688}
+  m_PitchRandomizationRange: {x: -52.173904, y: 52.173904}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: 1138385472742159068}
+  - {fileID: -6428266763199517216}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0

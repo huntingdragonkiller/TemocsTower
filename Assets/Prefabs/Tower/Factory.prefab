@@ -1198,6 +1198,7 @@ MonoBehaviour:
   currentDamage: 0
   upgradeCost: 0
   currentLevel: 1
+  creationSound: {fileID: 8300000, guid: a3af9704c5df5f64bb4515511d9ecc51, type: 3}
   spawnLocations:
   - {fileID: 4146725706286021919}
   - {fileID: 6978696543208543729}

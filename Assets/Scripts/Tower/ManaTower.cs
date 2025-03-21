@@ -1,8 +1,11 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class ManaTower : TowerSegment
 {
+    [SerializeField]
+    AudioResource manaGenSound;
     public float generateAmount;
     public float generateInterval;
     private IEnumerator generateMana;
@@ -44,6 +47,7 @@ public class ManaTower : TowerSegment
         {
             yield return new WaitForSeconds(waitTime);
             Debug.Log("Generated " + generateAmount + " mana");
+            SoundFXManager.instance.PlaySoundFXClip(manaGenSound, transform, 1);
             
         }
     }

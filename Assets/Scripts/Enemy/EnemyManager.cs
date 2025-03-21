@@ -97,8 +97,9 @@ public class EnemyManager : MonoBehaviour
     //Tells the tower manager to full heal all the segments
     private void FinishWave()
     {
-        FindAnyObjectByType<SegmentSelectionManager>().ShowSegmentChoices();
+        FindAnyObjectByType<SelectionManager>().NewSelections();
         FindAnyObjectByType<TowerManager>().HealAllSegments();
+        FindAnyObjectByType<ShopManager>().InitializeShop();
         currentLevel++;
     }
 

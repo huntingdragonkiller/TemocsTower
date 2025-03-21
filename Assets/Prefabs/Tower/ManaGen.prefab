@@ -1406,6 +1406,7 @@ MonoBehaviour:
   currentDamage: 0
   upgradeCost: 0
   currentLevel: 1
+  manaGenSound: {fileID: 6418180475301049370, guid: 85324354116b04e46925bd0d00a256b0, type: 2}
   generateAmount: 10
   generateInterval: 3
   manaUIManager: {fileID: 8093088161781736983}

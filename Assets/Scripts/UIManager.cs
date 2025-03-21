@@ -35,18 +35,25 @@ public class UIManager : MonoBehaviour
 
     public void OpenPauseMenu()
     {
-        overlay.SetActive(true);
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-        paused = true;
+        Pause();
     }
 
     public void ClosePauseMenu()
     {
+        Unpause();
+        pauseMenu.SetActive(false);
+    }
 
+    public void Pause(){
+        Time.timeScale = 0f;
+        paused = true;
+        overlay.SetActive(true);
+    }
+
+    public void Unpause(){
         Time.timeScale = 1.0f;
         paused = false;
-        pauseMenu.SetActive(false);
         overlay.SetActive(false);
     }
 

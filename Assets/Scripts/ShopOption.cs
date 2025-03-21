@@ -20,22 +20,36 @@ public class ShopOption : MonoBehaviour
     int cost;
     int currentRerollCost;
     ShopManager shopManager;
-    GameObject currentItem;
+    SelectionScriptableObject currentItem;
    
     void Awake()
     {
         shopManager = GetComponentInParent<ShopManager>();
     }
 
-    public void SetNewItem(Sprite image, string name, string description, int cost, int rerollCost, GameObject item){
-        previewImage.sprite = image;
-        itemName.text = name;
-        itemDescription.text = description;
+    // Sets the display for the passed selection, if it can display it
+    // Returns true if it was able to successfully change the tower
+    // Returns false if it can't display it
+    public bool SetNewItem(SelectionScriptableObject selection, int rerollCost){
+        if(!CheckIfValidSelection(selection))
+            return false;
+        previewImage.sprite = selection.Sprite;
+        itemName.text = selection.Name;
+        itemDescription.text = selection.Description;
         itemCost.text = cost.ToString();
-        this.cost = cost;
+        cost = selection.Cost;
         this.rerollCost.text = rerollCost.ToString();
         currentRerollCost = rerollCost;
-        currentItem = item;
+        currentItem = selection;
+        return true;
+    }
+
+    bool CheckIfValidSelection(SelectionScriptableObject toCheck){
+        //If its a tower return true/false if it can/can't display towers
+        if(toCheck.Selection.GetComponent<TowerSegment>() != null){
+            return canHaveTowers;
+        } 
+        else return true;
     }
 
     public void RequestReroll(){

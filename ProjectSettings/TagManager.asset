@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Hitbox
   - Ground
+  - Enemy
+  - Friendly
   layers:
   - Default
   - TransparentFX
