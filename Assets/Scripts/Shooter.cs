@@ -20,6 +20,7 @@ public class Shooter : MonoBehaviour
     {
 
         Debug.Log("Shooters shoot");
+
         Vector3 projectileSpawnPoint = transform.position;
         if (targetTransform.position.x - transform.position.x < 0) {
             projectileSpawnPoint.x -= 1f;

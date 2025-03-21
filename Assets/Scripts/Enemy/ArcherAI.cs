@@ -12,11 +12,10 @@ public class ArcherAI : EnemyAI
     private Shooter shooterScript;
 
 
-    void Start() {
+    protected override void Start() {
+        base.Start();
         shooterScript = GetComponent<Shooter>();
-        Debug.Log("Shooter Script Retrieved");
         shooterScript.InitializeShooter(refactoredArcherProjectile, projectileMaxMoveSpeed, projectileMaxHeight);
-        Debug.Log("Shooter Script Initialized");
     }
 
     // baller
@@ -25,8 +24,10 @@ public class ArcherAI : EnemyAI
         Debug.Log("Archer attack routine, wait time: " + waitTime);
         while (true)
         {
-            if (canAttack)
+            Debug.Log("actually waited!");
+            if (canAttack) {
                 Attack();
+            }
             yield return new WaitForSeconds(waitTime);
         }
     }
@@ -47,6 +48,7 @@ public class ArcherAI : EnemyAI
         // }
         // newProjectile.Launch(targetPosition);
         // Debug.Log("Archer Attack");
+
         if (attackTarget != null) {
             shooterScript.Shoot(attackTarget.transform);
 

@@ -24,9 +24,11 @@ public class EnemyAI : MonoBehaviour
         hitbox = GetComponent<Collider2D>();
         hitboxMask = hitbox.callbackLayers;
         attackHitboxMask = attackHitbox.callbackLayers;
+    }
+
+    protected virtual void Start() {
         attackCoroutine = AttackSubRoutine(enemyData.attackSpeed);
         StartCoroutine(attackCoroutine);
-
     }
 
     void OnDestroy()

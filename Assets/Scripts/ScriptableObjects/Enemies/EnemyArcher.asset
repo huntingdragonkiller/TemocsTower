@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyArcher
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  attackSpeed: 5
+  attackSpeed: 2
   maxHealth: 15
   damage: 12
   isGroundEnemy: 1
