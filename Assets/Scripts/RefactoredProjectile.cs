@@ -15,7 +15,7 @@ public class RefactoredProjectile : MonoBehaviour
     Rigidbody2D _rb;
 
     /********************/
-    private Transform target;
+    public Transform target;
 
     [HideInInspector]
     public float projectileSpeed;
