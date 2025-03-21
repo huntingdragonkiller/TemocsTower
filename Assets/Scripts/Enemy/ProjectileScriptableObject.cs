@@ -15,6 +15,7 @@ public class ProjectileScriptableObject : ScriptableObject
     [SerializeField]
     float damage;
     public float Damage { get => damage; set => damage = value; }
+
     [SerializeField]
     bool tracking;
     public bool Tracking { get => tracking; set => tracking = value; }
