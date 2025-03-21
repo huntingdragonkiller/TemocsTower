@@ -40,7 +40,8 @@ public class TowerSegment : MonoBehaviour
         Debug.Log("My upgrade costs: " + upgradeCost);
     }
 
-    void Start()
+    // Changed this
+    protected virtual void Start()
     {
         towerManager = GameObject.Find("TowerManager").GetComponent<TowerManager>();
     }

@@ -27,7 +27,7 @@ public class Shooter : MonoBehaviour
         } else {
             projectileSpawnPoint.x += 1f;
         }
-        RefactoredProjectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint, Quaternion.identity).GetComponent<RefactoredProjectile>();
+        RefactoredProjectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint, Quaternion.identity, transform).GetComponent<RefactoredProjectile>();
         projectile.InitializeProjectile(targetTransform, projectileMaxMoveSpeed, projectileMaxHeight);
         projectile.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, speedAnimationCurve);
     }

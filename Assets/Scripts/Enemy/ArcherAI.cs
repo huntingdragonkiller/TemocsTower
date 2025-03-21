@@ -24,7 +24,6 @@ public class ArcherAI : EnemyAI
         Debug.Log("Archer attack routine, wait time: " + waitTime);
         while (true)
         {
-            Debug.Log("actually waited!");
             if (canAttack) {
                 Attack();
             }

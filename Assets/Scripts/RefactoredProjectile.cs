@@ -13,10 +13,9 @@ public class RefactoredProjectile : MonoBehaviour
     public bool isGroundEnemy;
 
     Rigidbody2D _rb;
-    GameObject target;
 
     /********************/
-    private Vector3 targetInitialPosition;
+    private Transform target;
 
     [HideInInspector]
     public float projectileSpeed;
@@ -43,10 +42,10 @@ public class RefactoredProjectile : MonoBehaviour
     }
 
     public void InitializeProjectile(Transform target, float maxMoveSpeed, float trajectoryMaxHeight) {
-        this.targetInitialPosition = target.position;
+        this.target = target;
         this.maxMoveSpeed = maxMoveSpeed;
         
-        float xDistanceToTarget = targetInitialPosition.x - transform.position.x;
+        float xDistanceToTarget = target.position.x - transform.position.x;
         this.trajectoryMaxRelativeHeight = Mathf.Abs(xDistanceToTarget) * trajectoryMaxHeight;
         
     }
@@ -77,28 +76,39 @@ public class RefactoredProjectile : MonoBehaviour
     }
 
     public void updateProjectilePosition() {
-        Vector3 trajectoryRange = targetInitialPosition - trajectoryStartPoint;
 
-        // If shooter is behind target
-        if (trajectoryRange.x < 0) {
-            moveSpeed = -moveSpeed;
+        // if target dies while projectile is heading over there
+        // using target as a transform allows for tracking
+        if (target == null) {
+            KillRefactored();
+        } else {
+
+            Vector3 trajectoryRange = target.position - trajectoryStartPoint;
+
+            // If shooter is behind target
+            if (trajectoryRange.x < 0) {
+                moveSpeed = -moveSpeed;
+            }
+
+            float nextPositionX = transform.position.x + moveSpeed * Time.deltaTime;
+            float nextPositionXNormalized = (nextPositionX - trajectoryStartPoint.x) / trajectoryRange.x;
+
+
+            float nextPositionYNormalized = trajectoryAnimationCurve.Evaluate(nextPositionXNormalized);
+            float nextPositionYCorrectionNormalized = axisCorrectionAnimationCurve.Evaluate(nextPositionXNormalized);
+            float nextPositionYCorrectionAbsolute = nextPositionYCorrectionNormalized * trajectoryRange.y;
+            
+            float nextPositionY = trajectoryStartPoint.y + nextPositionYNormalized * trajectoryMaxRelativeHeight + nextPositionYCorrectionAbsolute;
+
+            Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
+            
+            calculateProjectileSpeed(nextPositionXNormalized);
+            
+            transform.position = newPosition;
+
         }
 
-        float nextPositionX = transform.position.x + moveSpeed * Time.deltaTime;
-        float nextPositionXNormalized = (nextPositionX - trajectoryStartPoint.x) / trajectoryRange.x;
-
-
-        float nextPositionYNormalized = trajectoryAnimationCurve.Evaluate(nextPositionXNormalized);
-        float nextPositionYCorrectionNormalized = axisCorrectionAnimationCurve.Evaluate(nextPositionXNormalized);
-        float nextPositionYCorrectionAbsolute = nextPositionYCorrectionNormalized * trajectoryRange.y;
         
-        float nextPositionY = trajectoryStartPoint.y + nextPositionYNormalized * trajectoryMaxRelativeHeight + nextPositionYCorrectionAbsolute;
-
-        Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
-        
-        calculateProjectileSpeed(nextPositionXNormalized);
-        
-        transform.position = newPosition;
     }
 
     public void calculateProjectileSpeed(float nextPositionXNormalized) {

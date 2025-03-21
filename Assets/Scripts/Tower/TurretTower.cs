@@ -9,20 +9,36 @@ public class TurretTower : TowerSegment
     private IEnumerator attacking;
     bool canAttack;
     List<GameObject> enemies = new List<GameObject>();
+
     public Collider2D attackFOV;
-    public Projectile turretProjectile;
+
+    public GameObject refactoredTurretProjectile;
+    public float projectileMaxMoveSpeed;
+    public float projectileMaxHeight;
+
+    private Shooter shooterScript;
+
     public TurretUIManager turretUIManager;
+
+
 
     public override void Awake()
     {
         base.Awake();
         canAttack = false;
-        attacking = AttackCoroutine(attackSpeed);
-        StartCoroutine(attacking);
         turretUIManager.UpdateDamage((int)damage);
         turretUIManager.UpdateAttackSpeed(attackSpeed);
 
     }
+
+    protected override void Start() {
+        base.Start();
+        attacking = AttackCoroutine(attackSpeed);
+        StartCoroutine(attacking);
+        shooterScript = GetComponent<Shooter>();
+        shooterScript.InitializeShooter(refactoredTurretProjectile, projectileMaxMoveSpeed, projectileMaxHeight);
+    }
+
     public override bool Upgrade()
     {
         if(!base.Upgrade())
@@ -66,16 +82,22 @@ public class TurretTower : TowerSegment
             //If there are enemies present if our FOV, attack them
             if (enemies.Count > 0)
             {
+
                 Attack();
             }
         }
     }
 
     void Attack(){
-        GameObject target = GetTarget();
-        Debug.Log("Targeting " + target.name + " at: " + target.transform.position);
-        Projectile newProjectile = Instantiate(turretProjectile, transform.position, Quaternion.identity);
-        newProjectile.TrackingLaunch(target);
+        // GameObject target = GetTarget();
+        // Debug.Log("Targeting " + target.name + " at: " + target.transform.position);
+        // RefactoredProjectile newProjectile = Instantiate(refactoredTurretProjectile, transform.position, Quaternion.identity);
+        // newProjectile.TrackingLaunch(target);
+
+        // Implement call to Shooter.shoot here
+        Debug.Log("1738 AY IM LIKE HEY WASSUP HELLO");
+        shooterScript.Shoot(GetTarget().transform);
+
     }
 
     //Returns the target dependant on the towers target settings
