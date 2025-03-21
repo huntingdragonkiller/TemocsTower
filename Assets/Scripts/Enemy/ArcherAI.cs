@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ArcherAI : EnemyAI
 {
-    public RefactoredProjectile refactoredArcherProjectile;
+    public GameObject refactoredArcherProjectile;
 
     // necessary vars for shooting
     public float projectileMaxMoveSpeed;

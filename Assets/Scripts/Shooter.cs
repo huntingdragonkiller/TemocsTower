@@ -4,7 +4,7 @@ using System;
 public class Shooter : MonoBehaviour
 {
 
-    private RefactoredProjectile projectilePrefab;
+    private GameObject projectilePrefab;
 
     private Transform targetTransform;
 
@@ -19,13 +19,13 @@ public class Shooter : MonoBehaviour
     public void Shoot(Transform targetTransform)
     {
 
-        Debug.Log("From Shooter yayyyyyyyyy");
-        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<Projectile>();
-        // projectile.InitializeProjectile(target, projectileMaxMoveSpeed, projectileMaxHeight);
-        // projectile.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, speedAnimationCurve);
+        Debug.Log("Shooters shoot");
+        RefactoredProjectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<RefactoredProjectile>();
+        projectile.InitializeProjectile(targetTransform, projectileMaxMoveSpeed, projectileMaxHeight);
+        projectile.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, speedAnimationCurve);
     }
 
-    public void InitializeShooter(RefactoredProjectile projectilePrefab, float projectileMaxMoveSpeed, float projectileMaxHeight) {
+    public void InitializeShooter(GameObject projectilePrefab, float projectileMaxMoveSpeed, float projectileMaxHeight) {
         this.projectilePrefab = projectilePrefab;
         this.projectileMaxMoveSpeed = projectileMaxMoveSpeed;
         this.projectileMaxHeight = projectileMaxHeight;
