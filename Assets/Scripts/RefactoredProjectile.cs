@@ -58,6 +58,7 @@ public class RefactoredProjectile : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Collision");
         if (collision.collider.gameObject.tag == "Ground") {
             KillRefactored();
         }else if(collision.collider.gameObject.tag != "Hitbox" && collision.collider.gameObject.tag != "Projectile"){
@@ -65,7 +66,8 @@ public class RefactoredProjectile : MonoBehaviour
             Debug.Log("Collider: " + collision.collider);
             collision.collider.SendMessage("TakeDamage", damage);
             KillRefactored();
-        } 
+        }
+        Debug.Log("Collision Done");
     }
 
     void Update()
