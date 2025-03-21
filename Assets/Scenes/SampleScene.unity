@@ -5740,10 +5740,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1591805941512096400, guid: f20756f1739e6324d8325007ecbc167a, type: 3}
-      propertyPath: refactoredArcherProjectile
-      value: 
-      objectReference: {fileID: 593108204090646903, guid: 74d2b227f20fd2d43a9468f507c2db55, type: 3}
     - target: {fileID: 2041316849130274348, guid: f20756f1739e6324d8325007ecbc167a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.9

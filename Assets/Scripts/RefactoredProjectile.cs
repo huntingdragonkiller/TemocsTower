@@ -79,8 +79,9 @@ public class RefactoredProjectile : MonoBehaviour
     {
         if(collision.collider.gameObject.tag != "Hitbox"){
             collision.collider.SendMessage("TakeDamage", damage);
-            Debug.Log("RefProj Hit");
-            //KillRefactored();
+            Debug.Log("Collision: " + collision);
+            Debug.Log("Collider: " + collision.collider);
+            // KillRefactored();
         }
     }
 

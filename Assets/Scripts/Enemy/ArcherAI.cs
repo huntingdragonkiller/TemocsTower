@@ -47,8 +47,10 @@ public class ArcherAI : EnemyAI
         // }
         // newProjectile.Launch(targetPosition);
         // Debug.Log("Archer Attack");
+        if (attackTarget != null) {
+            shooterScript.Shoot(attackTarget.transform);
 
-        shooterScript.Shoot(attackTarget.transform);
+        }
 
     }
 }

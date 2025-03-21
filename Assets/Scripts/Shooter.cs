@@ -20,7 +20,13 @@ public class Shooter : MonoBehaviour
     {
 
         Debug.Log("Shooters shoot");
-        RefactoredProjectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity).GetComponent<RefactoredProjectile>();
+        Vector3 projectileSpawnPoint = transform.position;
+        if (targetTransform.position.x - transform.position.x < 0) {
+            projectileSpawnPoint.x -= 1f;
+        } else {
+            projectileSpawnPoint.x += 1f;
+        }
+        RefactoredProjectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint, Quaternion.identity).GetComponent<RefactoredProjectile>();
         projectile.InitializeProjectile(targetTransform, projectileMaxMoveSpeed, projectileMaxHeight);
         projectile.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, speedAnimationCurve);
     }
