@@ -29,6 +29,8 @@ public class MusicManager : MonoBehaviour
     void Awake()
     {
         currentMusic = Instantiate(musicSoundObject, transform);
+        currentMusic.clip = menuMusic;
+        currentMusic.Play();
         animationFrames = (int) (transitionTime / Time.fixedDeltaTime);
 
     }
