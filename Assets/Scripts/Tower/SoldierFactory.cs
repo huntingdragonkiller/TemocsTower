@@ -43,6 +43,7 @@ public class SoldierFactory : TowerSegment
     {
         while (true)
         {
+            yield return new WaitForSeconds(waitTime);
             if (friends.Count < maxSoldiers)
             {
                 int index = Random.Range(0, spawnLocations.Length);
@@ -50,7 +51,6 @@ public class SoldierFactory : TowerSegment
                 friends.Add(newSoldier);
                 SoundFXManager.instance.PlaySoundFXClip(creationSound, transform, 1);
             }
-            yield return new WaitForSeconds(waitTime);
         }
     }
 }
