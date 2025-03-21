@@ -7,6 +7,7 @@ public class ManaManager : MonoBehaviour
     
     public List<GameObject> spellPrefabs;
     public int manaAmount;
+    public SpellScriptableGameObject currentSpell;
 
     public static ManaManager instance;
 

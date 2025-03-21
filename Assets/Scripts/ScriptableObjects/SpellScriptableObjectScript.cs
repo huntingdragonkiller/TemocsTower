@@ -1,7 +1,7 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewScriptableObjectScript", menuName = "Scriptable Objects/NewScriptableObjectScript")]
-public class NewScriptableObjectScript : ScriptableObject
+[CreateAssetMenu(fileName = "SpellScriptableObjectScript", menuName = "Scriptable Objects/SpellScriptableObjectScript")]
+public class SpellScriptableObjectScript : ScriptableObject
 {
     
 }
