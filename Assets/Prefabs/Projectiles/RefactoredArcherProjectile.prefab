@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8034530912110594569}
   - component: {fileID: 6832204593283575558}
   - component: {fileID: 8090859402320350546}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RefactoredArcherProjectile
-  m_TagString: Projectile
+  m_TagString: Hitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
