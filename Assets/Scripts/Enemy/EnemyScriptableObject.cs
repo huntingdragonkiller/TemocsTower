@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "EnemyScriptableObject", menuName = "ScriptableObjects/Enemy")]
 public class EnemyScriptableObject : ScriptableObject
@@ -29,5 +30,14 @@ public class EnemyScriptableObject : ScriptableObject
     [SerializeField]
     int killReward;
     public int KillReward { get => killReward; set => killReward = value; }
+    [SerializeField]
+    AudioResource attackSoundClip;
+    public AudioResource AttackSoundClip { get => attackSoundClip; set => attackSoundClip = value; }
+    [SerializeField]
+    AudioResource damageSoundClip;
+    public AudioResource DamageSoundClip { get => damageSoundClip; set => damageSoundClip = value; }
+    [SerializeField]
+    AudioResource deathSoundClip;
+    public AudioResource DeathSoundClip { get => deathSoundClip; set => deathSoundClip = value; }
 
 }

@@ -33,14 +33,18 @@ public class FriendlyAI : MonoBehaviour
         hitbox = GetComponent<Collider2D>();
         hitboxMask = hitbox.includeLayers;
         attackHitboxMask = attackHitbox.includeLayers;
+
+    }
+    void Start()
+    {
         attackCoroutine = AttackSubRoutine(friendlyData.attackSpeed);
         StartCoroutine(attackCoroutine);
-
     }
 
     // attacks at an interval given by the attack speed stat
     protected virtual IEnumerator AttackSubRoutine(float waitTime)
     {
+        Debug.Log("Starting: " + waitTime);
         while (true)
         {
             if (enemies.Count > 0)
@@ -54,8 +58,11 @@ public class FriendlyAI : MonoBehaviour
     void Attack()
     {
         EnemyAI target = GetTarget();
-        if(target != null)
+        if(target != null){
             target.SendMessage("TakeDamage", friendlyData.currentDamage);
+            SoundFXManager.instance.PlaySoundFXClip(friendlyData.attackSoundClip, transform, 1f);
+        }
+        Debug.Log("Attacking: " + target);
     }
 
     //Returns the target dependant on the towers target settings

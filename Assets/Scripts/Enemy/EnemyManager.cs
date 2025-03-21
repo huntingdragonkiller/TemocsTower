@@ -99,7 +99,6 @@ public class EnemyManager : MonoBehaviour
     {
         FindAnyObjectByType<SegmentSelectionManager>().ShowSegmentChoices();
         FindAnyObjectByType<TowerManager>().HealAllSegments();
-        FindAnyObjectByType<ShopManager>().InitializeShop();
         currentLevel++;
     }
 

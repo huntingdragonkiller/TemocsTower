@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: EnemySoldier
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  attackSpeed: 2
+  attackSpeed: 3
   maxHealth: 50
   damage: 8
   isGroundEnemy: 1
   spawnCost: 5
   killReward: 5
+  attackSoundClip: {fileID: 6418180475301049370, guid: 330b03283e2a9fa46ae055941efc9237, type: 2}
+  damageSoundClip: {fileID: 6418180475301049370, guid: 15ee0e1833720d74391dd469bc13e0ad, type: 2}
+  deathSoundClip: {fileID: 6418180475301049370, guid: 5492ab7933900c94dbe30959adba1353, type: 2}

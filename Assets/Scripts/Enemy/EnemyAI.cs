@@ -47,14 +47,15 @@ public class EnemyAI : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(waitTime);
             if (canAttack)
                 Attack();
-            yield return new WaitForSeconds(waitTime);
         }
     }
 
     void Attack()
     {
+        SoundFXManager.instance.PlaySoundFXClip(enemyData.attackSoundClip, transform, 1f);
         attackTarget.SendMessage("TakeDamage", enemyData.currentDamage);
     }
 

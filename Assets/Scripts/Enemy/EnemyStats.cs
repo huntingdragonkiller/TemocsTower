@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class EnemyStats : MonoBehaviour
     public bool isGroundEnemy;
     [HideInInspector]
     public int killReward;
+    [HideInInspector]
+    public AudioResource attackSoundClip;
+    [HideInInspector]
+    public AudioResource damageSoundClip;
+    [HideInInspector]
+    public AudioResource deathSoundClip;
     public HealthBarManager healthBar;
 
     void Awake()
@@ -31,6 +38,9 @@ public class EnemyStats : MonoBehaviour
         isGroundEnemy = enemyData.IsGroundEnemy;
         spawnCost = enemyData.SpawnCost;
         killReward = enemyData.KillReward;
+        attackSoundClip = enemyData.AttackSoundClip;
+        damageSoundClip = enemyData.DamageSoundClip;
+        deathSoundClip = enemyData.DeathSoundClip;
     }
     
     public void TakeDamage(float dmg)
@@ -40,11 +50,15 @@ public class EnemyStats : MonoBehaviour
         if (currentHealth <= 0)
         {
             Kill();
+        } else {
+            //play the damage sound instead of the death sound
+            SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
         }
     }
 
     public void Kill()
     {
+        SoundFXManager.instance.PlaySoundFXClip(deathSoundClip, transform, 1f);
         FindFirstObjectByType<CoinManager>().AddCoins(killReward);
         Destroy(gameObject);
     }

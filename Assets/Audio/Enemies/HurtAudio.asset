@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1233149941 &-9144063207871951697
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: hurt_02_{-9144063207871951697}
+  m_AudioClip: {fileID: 8300000, guid: e3344df1e393572438dab2863af0acec, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-8446010329180492967
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: hurt_04_{-8446010329180492967}
+  m_AudioClip: {fileID: 8300000, guid: 24af407dd62f90a4ca165348b1ed75d0, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1233149941 &-4841488122151258437
+AudioContainerElement:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: hurt_01_{-4841488122151258437}
+  m_AudioClip: {fileID: 8300000, guid: 3e6677f90fe2cdc4087f1e2e4287e164, type: 3}
+  m_Volume: 0
+  m_Enabled: 1
+--- !u!1307931743 &6418180475301049370
+AudioRandomContainer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: HurtAudio
+  m_Volume: -6
+  m_Pitch: 24
+  m_AutomaticTriggerTime: 0
+  m_LoopCount: 1
+  m_VolumeRandomizationRange: {x: -3.7944698, y: 0.3162098}
+  m_PitchRandomizationRange: {x: -184.98022, y: 403.16214}
+  m_AutomaticTriggerTimeRandomizationRange: {x: 0, y: 0}
+  m_LoopCountRandomizationRange: {x: 0, y: 0}
+  m_Elements:
+  - {fileID: -4841488122151258437}
+  - {fileID: -9144063207871951697}
+  - {fileID: -8446010329180492967}
+  m_AvoidRepeatingLast: 0
+  m_PlaybackMode: 2
+  m_TriggerMode: 0
+  m_AutomaticTriggerMode: 1
+  m_LoopMode: 0
+  m_VolumeRandomizationEnabled: 1
+  m_PitchRandomizationEnabled: 1
+  m_AutomaticTriggerTimeRandomizationEnabled: 0
+  m_LoopCountRandomizationEnabled: 0
