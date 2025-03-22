@@ -21,13 +21,6 @@ public class ManaManager : MonoBehaviour
         }
     }
 
-    // vars: currentSpell (ScriptableGameObject)
-    // string for UI reasons mostly. XXXXXXX
-    // addToMana
-    // decreaseMana
-    // castSpell(currentSpellPrefab)
-    // something like that. Thoughts ? 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,12 +33,26 @@ public class ManaManager : MonoBehaviour
 
         checkIfSpellSelected();
 
-        if (spellReady) {
+        // if 
+        if (spellReady && Input.GetMouseButtonDown(0)) {
             // call get mouse click coordinates  ?
             // on Mouse Click:
             //  get mouse click coordinates
             //  get coordinates of where fireball is gonna spawn from (either just outside top right
             //      corner of camera or top left corner of camera depending on mouse click position) 
+
+            // Get the mouse position in screen space
+            Vector3 mouseScreenPosition = Input.mousePosition;
+
+            // Set the Z position to be the camera's Z position (or a fixed value for 2D)
+            mouseScreenPosition.z = 0; // You can also use a fixed value like 0 if needed
+
+            // Convert the screen position to world position
+            Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+
+            // Output the world position (x, y)
+            Debug.Log("Mouse World Position: " + new Vector2(mouseWorldPosition.x, mouseWorldPosition.y));
+
         }
     }
 

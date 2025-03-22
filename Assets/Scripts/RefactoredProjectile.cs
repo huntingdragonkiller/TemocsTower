@@ -32,6 +32,8 @@ public class RefactoredProjectile : MonoBehaviour
     private Vector3 trajectoryStartPoint;
     private Vector3 moveDir;
 
+    private Vector3 initialTargetPosition;
+
 
     void Awake()
     {
@@ -45,6 +47,8 @@ public class RefactoredProjectile : MonoBehaviour
     public void InitializeProjectile(Transform target, float maxMoveSpeed, float trajectoryMaxHeight) {
         this.target = target;
         this.maxMoveSpeed = maxMoveSpeed;
+        
+        initialTargetPosition = target.position;
         
         float xDistanceToTarget = target.position.x - transform.position.x;
         this.trajectoryMaxRelativeHeight = Mathf.Abs(xDistanceToTarget) * trajectoryMaxHeight;
@@ -82,7 +86,7 @@ public class RefactoredProjectile : MonoBehaviour
 
         // if target dies while projectile is heading over there
         // using target as a transform allows for tracking
-        if (target == null) {
+        if (target == null || transform.position == initialTargetPosition) {
             KillRefactored();
         } else {
 
