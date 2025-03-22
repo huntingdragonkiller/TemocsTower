@@ -29,12 +29,12 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
      void Awake()
     {
         shopRect = GameObject.Find("Shop").GetComponent<RectTransform>();
-        Debug.Log("" + shopRect.sizeDelta);
+        //Debug.Log("" + shopRect.sizeDelta);
         initialWidth =  shopRect.rect.width;
         initialHeight =  shopRect.rect.height;
         initialSizeDelta = shopRect.sizeDelta;
         RectTransform enlargedRect = GameObject.Find("BackgroundPanel").GetComponent<RectTransform>();
-        Debug.Log("" + enlargedRect.sizeDelta);
+        //Debug.Log("" + enlargedRect.sizeDelta);
         enlargedHeight = enlargedRect.rect.height;
         enlargedWidth = enlargedRect.rect.width;
         enlargedSizeDelta = enlargedRect.sizeDelta;
@@ -53,7 +53,7 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             InitializeShop();
         }
         if(hovering){
-            Debug.Log("Expanding");
+            // Debug.Log("Expanding");
             float interpolationRatio = (float)elapsedFrames / (float)animationFrames;
             shopRect.sizeDelta = Vector2.Lerp(shopRect.sizeDelta, enlargedSizeDelta, interpolationRatio);
             elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
@@ -61,10 +61,10 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             float interpolationRatio = (float)elapsedFrames / (float)animationFrames;
             shopRect.sizeDelta = Vector2.Lerp(shopRect.sizeDelta, initialSizeDelta, interpolationRatio);
             
-            Debug.Log("Shrinking");
+            // Debug.Log("Shrinking");
             elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
         }
-        Debug.Log(shopRect.sizeDelta);
+        // Debug.Log(shopRect.sizeDelta);
     }
     public void InitializeShop(){
         List<GameObject> previousOptions = new List<GameObject>();

@@ -6405,7 +6405,7 @@ GameObject:
   - component: {fileID: 799959213}
   - component: {fileID: 799959212}
   - component: {fileID: 799959214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11760,7 +11760,7 @@ MonoBehaviour:
   ySpawnVariation: 2
   availableEnemies:
   - {fileID: 8996631404203410908, guid: 02c8feec6146442c69146c7b573bb555, type: 3}
-  - {fileID: 1591805941512096400, guid: f20756f1739e6324d8325007ecbc167a, type: 3}
+  - {fileID: 8476054331313644121, guid: 57d2a5f7e10bf4f35a632397da5de33f, type: 3}
   waveDuration: 60
   spawnIntervals: 15
   waveStartDelay: 0

@@ -72,7 +72,11 @@ public class TowerManager : MonoBehaviour
     {
         towerSegments.Remove(segment);
         Destroy(segment.gameObject);
-        StartCoroutine(ShiftSegmentsDown());
+        if(towerSegments.Count > 0){
+            StartCoroutine(ShiftSegmentsDown());
+        } else {
+            //Implement Loss
+        }
     }
 
     private IEnumerator ShiftSegmentsDown()
@@ -91,6 +95,7 @@ public class TowerManager : MonoBehaviour
                 elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
                 yield return new WaitForFixedUpdate();
             }
+            towerSegments[0].gameObject.transform.position = new Vector3(0, 2, 0); // Snap to final position
         }
         for (int i = 1; i < towerSegments.Count; i++) // Skip base segment
         {
@@ -117,5 +122,9 @@ public class TowerManager : MonoBehaviour
             current.transform.position = targetPos; // Snap to final position
             current.belowSegment = below;
         }
+
+        //Recurse if lowest tower is not at the bottom
+        if(towerSegments[0].gameObject.transform.position != new Vector3(0, 2, 0))
+            StartCoroutine(ShiftSegmentsDown());
     }
 }
