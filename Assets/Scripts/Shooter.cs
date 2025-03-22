@@ -35,8 +35,13 @@ public class Shooter : MonoBehaviour
         RefactoredProjectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint, Quaternion.identity, transform).GetComponent<RefactoredProjectile>();
         projectile.InitializeProjectile(targetTransform, projectileMaxMoveSpeed, projectileMaxHeight);
         projectile.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, speedAnimationCurve);
-        projectileVisual = projectile.GetComponent<ProjectileVisual>();
-        projectileVisual.InitializeVisual(projectile);
+        
+        try {
+            projectileVisual = projectile.GetComponent<ProjectileVisual>();
+            projectileVisual.InitializeVisual(projectile);
+        } catch (Exception e) {
+            Debug.Log("No Rotation");
+        }
     }
 
     public void InitializeShooter(GameObject projectilePrefab, float projectileMaxMoveSpeed, float projectileMaxHeight) {

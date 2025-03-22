@@ -6477,7 +6477,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.5, z: 0}
-  m_LocalScale: {x: 40, y: 5, z: 1}
+  m_LocalScale: {x: 100, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -9285,6 +9285,7 @@ MonoBehaviour:
   spellPrefabs: []
   manaAmount: 0
   maxMana: 0
+  spellReady: 0
 --- !u!1 &1218976046
 GameObject:
   m_ObjectHideFlags: 0
@@ -15960,11 +15961,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8730633055964834112, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.42
+      value: -28.3
       objectReference: {fileID: 0}
     - target: {fileID: 8730633055964834112, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8730633055964834112, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
       propertyPath: m_LocalPosition.z

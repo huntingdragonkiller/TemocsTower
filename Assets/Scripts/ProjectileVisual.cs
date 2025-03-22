@@ -9,6 +9,7 @@ public class ProjectileVisual : MonoBehaviour
     
     public void InitializeVisual(RefactoredProjectile projectile) {
         this.projectile = projectile;
+        projectileVisual = projectile.GetComponent<Transform>();
     }
 
     void Update() {
