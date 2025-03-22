@@ -43,7 +43,7 @@ public class SoldierFactory : TowerSegment
     {
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime * localTimeScale);
             if (friends.Count < maxSoldiers)
             {
                 int index = Random.Range(0, spawnLocations.Length);

@@ -46,7 +46,7 @@ public class GoldTower : TowerSegment
     {
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime * localTimeScale);
             coinManager.AddCoins((generateAmount));
             Debug.Log("Generated " + generateAmount + " gold");
             

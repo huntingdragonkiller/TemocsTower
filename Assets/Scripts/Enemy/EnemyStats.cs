@@ -13,6 +13,8 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public float currentHealth;
     [HideInInspector]
+    public float maxHealth;
+    [HideInInspector]
     public float currentDamage;
     [HideInInspector]
     public int spawnCost;
@@ -31,10 +33,15 @@ public class EnemyStats : MonoBehaviour
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBarManager>();
-        currentMoveSpeed = enemyData.MoveSpeed * Time.fixedDeltaTime;//Gives us the move speed in tiles per second
-        currentHealth = enemyData.MaxHealth;
-        currentDamage = enemyData.Damage;
-        attackSpeed = enemyData.AttackSpeed;
+        InitializeValues();
+        currentHealth = maxHealth;
+    }
+
+    public void InitializeValues(float percentChange = 1){
+        currentMoveSpeed = enemyData.MoveSpeed * percentChange * Time.fixedDeltaTime;//Gives us the move speed in tiles per second
+        maxHealth = enemyData.MaxHealth * percentChange;
+        currentDamage = enemyData.Damage * percentChange;
+        attackSpeed = enemyData.AttackSpeed * (1 / percentChange);
         isGroundEnemy = enemyData.IsGroundEnemy;
         spawnCost = enemyData.SpawnCost;
         killReward = enemyData.KillReward;

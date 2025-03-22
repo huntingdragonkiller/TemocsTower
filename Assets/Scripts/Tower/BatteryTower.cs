@@ -32,7 +32,7 @@ public class BatteryTower : TowerSegment
         while(true){
             Debug.Log("Healing for: " + maxHealth / 100f);
             HealDamage(maxHealth/100f);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f * localTimeScale);
         }
     }
 

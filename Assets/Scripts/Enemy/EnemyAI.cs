@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
     protected virtual void Start() {
         // Debug.Log("Enemy Start");
         canAttack = false;
-        attackCoroutine = AttackSubRoutine(enemyData.attackSpeed);
+        attackCoroutine = AttackSubRoutine();
         StartCoroutine(attackCoroutine);
     }
 
@@ -51,12 +51,12 @@ public class EnemyAI : MonoBehaviour
     }
 
     // attacks at an interval given by the attack speed stat
-    protected virtual IEnumerator AttackSubRoutine(float waitTime)
+    protected virtual IEnumerator AttackSubRoutine()
     {
         Debug.Log("In attack routine");
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(enemyData.attackSpeed);
             if (canAttack){
                 attackTarget = GetTarget();
                 Attack();

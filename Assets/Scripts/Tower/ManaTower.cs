@@ -45,7 +45,7 @@ public class ManaTower : TowerSegment
     {
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime * localTimeScale);
             Debug.Log("Generated " + generateAmount + " mana");
             SoundFXManager.instance.PlaySoundFXClip(manaGenSound, transform, 1);
             
