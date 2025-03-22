@@ -25,6 +25,9 @@ public class TowerSegment : MonoBehaviour
     public int currentLevel = 1;
     protected float maxHealth;
     HealthBarManager healthBar;
+    private float warningPercent = .2f;
+    private static bool warningIssued;
+    private static GameObject currentWarnedObject;
 
     public virtual void Awake()
     {
@@ -100,8 +103,30 @@ public class TowerSegment : MonoBehaviour
         {
             Kill();
         }
+        CheckForWarning();
         towerUIManager.UpdateHealth(currentHealth, maxHealth);
         healthBar.UpdateHealth(currentHealth/maxHealth);
+    }
+
+    private void CheckForWarning()
+    {
+        if (currentHealth / maxHealth < warningPercent){
+            if(!warningIssued){
+                warningIssued = true;
+                currentWarnedObject = gameObject;
+                WarningUIManager.instance.ShowWarning(gameObject);
+            }
+            
+        }
+    }
+
+    void OnBecameVisible()
+    {
+        if(gameObject == currentWarnedObject){
+            warningIssued = false;
+            currentWarnedObject = null;
+            WarningUIManager.instance.ClearWarning();
+        }
     }
 
     public virtual void Kill()
