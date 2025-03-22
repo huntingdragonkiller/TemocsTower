@@ -285,26 +285,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a30c0ba0015964d820c10bdb9bcd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileVisual: {fileID: 0}
   trajectoryAnimationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.26729327
-      outSlope: 0.26729327
-      tangentMode: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.13883378
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.000066843815
-      inSlope: -0.2787487
-      outSlope: -0.2787487
-      tangentMode: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.09546691
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

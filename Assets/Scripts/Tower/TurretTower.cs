@@ -83,7 +83,7 @@ public class TurretTower : TowerSegment
             //     yield return new WaitForFixedUpdate();
             // }
 
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime * localTimeScale);
             //If there are enemies present if our FOV, attack them
             if (enemies.Count > 0)
             {

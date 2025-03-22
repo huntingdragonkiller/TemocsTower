@@ -15,7 +15,7 @@ public class RefactoredProjectile : MonoBehaviour
     Rigidbody2D _rb;
 
     /********************/
-    private Transform target;
+    public Transform target;
 
     [HideInInspector]
     public float projectileSpeed;
@@ -30,6 +30,9 @@ public class RefactoredProjectile : MonoBehaviour
     private AnimationCurve projectileSpeedAnimationCurve;
 
     private Vector3 trajectoryStartPoint;
+    private Vector3 moveDir;
+
+    private Vector3 initialTargetPosition;
 
 
     void Awake()
@@ -44,6 +47,8 @@ public class RefactoredProjectile : MonoBehaviour
     public void InitializeProjectile(Transform target, float maxMoveSpeed, float trajectoryMaxHeight) {
         this.target = target;
         this.maxMoveSpeed = maxMoveSpeed;
+        
+        initialTargetPosition = target.position;
         
         float xDistanceToTarget = target.position.x - transform.position.x;
         this.trajectoryMaxRelativeHeight = Mathf.Abs(xDistanceToTarget) * trajectoryMaxHeight;
@@ -81,7 +86,7 @@ public class RefactoredProjectile : MonoBehaviour
 
         // if target dies while projectile is heading over there
         // using target as a transform allows for tracking
-        if (target == null) {
+        if (target == null || transform.position == initialTargetPosition) {
             KillRefactored();
         } else {
 
@@ -105,7 +110,7 @@ public class RefactoredProjectile : MonoBehaviour
             Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
             
             calculateProjectileSpeed(nextPositionXNormalized);
-            
+            moveDir = newPosition - transform.position;
             transform.position = newPosition;
 
         }
@@ -117,6 +122,10 @@ public class RefactoredProjectile : MonoBehaviour
         float nextMoveSpeedNormalized = projectileSpeedAnimationCurve.Evaluate(nextPositionXNormalized);
 
         moveSpeed = nextMoveSpeedNormalized * maxMoveSpeed;
+    }
+
+    public Vector3 getProjectileMoveDir() {
+        return moveDir;
     }
 
     public void KillRefactored()

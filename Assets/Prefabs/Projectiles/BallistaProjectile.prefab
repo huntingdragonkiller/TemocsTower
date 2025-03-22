@@ -178,4 +178,5 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: 5fcc3fd6c39140342bab903f39153a84, type: 2}
   damage: 0
   isGroundEnemy: 0
+  target: {fileID: 0}
   projectileSpeed: 0

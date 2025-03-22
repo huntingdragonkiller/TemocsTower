@@ -33,7 +33,7 @@ public class EnemyAI : MonoBehaviour
     protected virtual void Start() {
         // Debug.Log("Enemy Start");
         canAttack = false;
-        attackCoroutine = AttackSubRoutine(enemyData.attackSpeed);
+        attackCoroutine = AttackSubRoutine();
         StartCoroutine(attackCoroutine);
     }
 
@@ -51,12 +51,12 @@ public class EnemyAI : MonoBehaviour
     }
 
     // attacks at an interval given by the attack speed stat
-    protected virtual IEnumerator AttackSubRoutine(float waitTime)
+    protected virtual IEnumerator AttackSubRoutine()
     {
         Debug.Log("In attack routine");
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(enemyData.attackSpeed);
             if (canAttack){
                 attackTarget = GetTarget();
                 Attack();
@@ -88,12 +88,12 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(potentialTargets.Count);
+        // Debug.Log(potentialTargets.Count);
         if(potentialTargets.Count > 0){
-            Debug.Log("AttackTime");
+            // Debug.Log("AttackTime");
             canAttack = true;
         } else if(attackTarget == null){
-            Debug.Log("Can't attack, going to move");
+            // Debug.Log("Can't attack, going to move");
             canAttack = false;
             MoveToTarget();
         }
@@ -204,5 +204,14 @@ public class EnemyAI : MonoBehaviour
         }
         // Debug.Log("Moving by " + movementVector);
         transform.position += movementVector;
+    }
+    
+    public void TakeKnockback(float knockback)
+    {
+        //TODO: Make the target go backwards from current facing direction in an arc
+        // thx emilio although this might work for now
+        float xScale = transform.localScale.x;//should be -1 if on left side of tower, 1 on right side of tower
+        //ABOVE DOES NOT WORK FOR BALLISTAS CURRENTLY LOL!!!!
+        transform.position = transform.position + new Vector3(xScale * knockback, 0, 0);
     }
 }

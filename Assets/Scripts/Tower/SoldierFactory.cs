@@ -48,7 +48,7 @@ public class SoldierFactory : TowerSegment
             //     Debug.Log("Waiting for wave");
             //     yield return new WaitForFixedUpdate();
             // }
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime * localTimeScale);
             if (friends.Count < maxSoldiers)
             {
                 int index = Random.Range(0, spawnLocations.Length);

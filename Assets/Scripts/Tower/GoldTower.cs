@@ -50,7 +50,7 @@ public class GoldTower : TowerSegment
              while(!FindAnyObjectByType<EnemyManager>().GetActiveWave()){
                 yield return new WaitForFixedUpdate();
             }
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(waitTime * localTimeScale);
             coinManager.AddCoins((generateAmount));
             Debug.Log("Generated " + generateAmount + " gold");
             

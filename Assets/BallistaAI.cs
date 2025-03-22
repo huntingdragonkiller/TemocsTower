@@ -51,12 +51,12 @@ public class BallistaAI : EnemyAI
         return potentialTowers[Random.Range(0, potentialTowers.Count)];
     }
 
-    protected override IEnumerator AttackSubRoutine(float waitTime)
+    protected override IEnumerator AttackSubRoutine()
     {
         //Debug.Log("Ballista attack routine, wait time: " + waitTime);
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(enemyData.attackSpeed);
             if (canAttack) {
                 // //Debug.Log(potentialTargets.Count);
                 try{

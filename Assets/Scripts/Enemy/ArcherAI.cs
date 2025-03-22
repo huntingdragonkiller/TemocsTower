@@ -19,12 +19,12 @@ public class ArcherAI : EnemyAI
     }
 
     // baller
-    protected override IEnumerator AttackSubRoutine(float waitTime)
+    protected override IEnumerator AttackSubRoutine()
     {
-        Debug.Log("Archer attack routine, wait time: " + waitTime);
+        Debug.Log("Archer attack routine, wait time: " + enemyData.attackSpeed);
         while (true)
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(enemyData.attackSpeed);
             if (canAttack) {
                 Debug.Log(potentialTargets.Count);
                 try{

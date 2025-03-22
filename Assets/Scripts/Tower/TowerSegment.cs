@@ -24,6 +24,7 @@ public class TowerSegment : MonoBehaviour
 
     public int currentLevel = 1;
     protected float maxHealth;
+    protected float localTimeScale = 1f;
     HealthBarManager healthBar;
     private float warningPercent = .2f;
     bool isVisible = false;
@@ -53,6 +54,10 @@ public class TowerSegment : MonoBehaviour
     void OnDestroy()
     {
         StopAllCoroutines();        
+    }
+
+    public void SetLocalTimeScale(float toSet = 1f){
+        localTimeScale = toSet;
     }
 
 
