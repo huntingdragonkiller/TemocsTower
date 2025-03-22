@@ -34,6 +34,7 @@ public class WarningUIManager : MonoBehaviour
     public void ClearWarning(){
         warningCamera.enabled = false;
         warningPanel.SetActive(false);
+        FindFirstObjectByType<TowerSegment>().ResetWarning();
     }
 
     public void MoveToWarning(){

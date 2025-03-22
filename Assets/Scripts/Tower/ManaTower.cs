@@ -45,6 +45,10 @@ public class ManaTower : TowerSegment
     {
         while (true)
         {
+            // Disables coroutine while there isn't a wave
+             while(!FindAnyObjectByType<EnemyManager>().GetActiveWave()){
+                yield return new WaitForFixedUpdate();
+            }
             yield return new WaitForSeconds(waitTime);
             Debug.Log("Generated " + generateAmount + " mana");
             SoundFXManager.instance.PlaySoundFXClip(manaGenSound, transform, 1);

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Ballista
   m_EditorClassIdentifier: 
   moveSpeed: 0.5
-  attackSpeed: 10
-  maxHealth: 150
+  attackSpeed: 15
+  maxHealth: 30
   damage: 50
   isGroundEnemy: 1
   spawnCost: 20

@@ -26,6 +26,7 @@ public class TowerSegment : MonoBehaviour
     protected float maxHealth;
     HealthBarManager healthBar;
     private float warningPercent = .2f;
+    bool isVisible = false;
     private static bool warningIssued;
     private static GameObject currentWarnedObject;
 
@@ -110,7 +111,7 @@ public class TowerSegment : MonoBehaviour
 
     private void CheckForWarning()
     {
-        if (currentHealth / maxHealth < warningPercent){
+        if (currentHealth / maxHealth < warningPercent && !isVisible){
             if(!warningIssued){
                 warningIssued = true;
                 currentWarnedObject = gameObject;
@@ -120,15 +121,21 @@ public class TowerSegment : MonoBehaviour
         }
     }
 
-    void OnBecameVisible()
+    public void ResetWarning()
     {
-        if(gameObject == currentWarnedObject){
-            warningIssued = false;
-            currentWarnedObject = null;
-            WarningUIManager.instance.ClearWarning();
-        }
+        warningIssued = false;
+        currentWarnedObject = null;
     }
 
+    void OnBecameVisible()
+    {
+        isVisible = true;
+    }
+
+    void OnBecameInvisible()
+    {
+        isVisible = false;
+    }
     public virtual void Kill()
     {
         towerManager.SendMessage("DestroySegment", this);

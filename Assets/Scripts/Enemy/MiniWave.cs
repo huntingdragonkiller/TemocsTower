@@ -1,12 +1,17 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MiniWave : MonoBehaviour
 {
+    [SerializeField]
+    public AudioResource miniWaveStart;
+    [SerializeField]
+    public AudioResource miniWaveOver;
     bool childrenAdded = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        SoundFXManager.instance.PlaySoundFXClip(miniWaveStart, transform, 1f);
     }
 
     // Update is called once per frame
@@ -15,6 +20,7 @@ public class MiniWave : MonoBehaviour
         if(transform.childCount > 0)
             childrenAdded = true;//just incase fixed update is called before we get to add the children
         if(transform.childCount <= 0 && childrenAdded){
+        SoundFXManager.instance.PlaySoundFXClip(miniWaveOver, transform, 1f);
             Destroy(gameObject);
         }
     }

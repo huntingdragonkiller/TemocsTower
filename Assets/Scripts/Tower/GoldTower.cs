@@ -46,6 +46,10 @@ public class GoldTower : TowerSegment
     {
         while (true)
         {
+            // Disables coroutine while there isn't a wave
+             while(!FindAnyObjectByType<EnemyManager>().GetActiveWave()){
+                yield return new WaitForFixedUpdate();
+            }
             yield return new WaitForSeconds(waitTime);
             coinManager.AddCoins((generateAmount));
             Debug.Log("Generated " + generateAmount + " gold");

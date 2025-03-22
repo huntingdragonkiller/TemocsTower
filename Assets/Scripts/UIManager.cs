@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!paused)
+            if(!pauseMenu.activeSelf && !settingsMenu.activeSelf)
                 OpenPauseMenu();
             else{
                 ClosePauseMenu();
@@ -36,12 +36,14 @@ public class UIManager : MonoBehaviour
     public void OpenPauseMenu()
     {
         pauseMenu.SetActive(true);
-        Pause();
+        if(!paused)
+            Pause();
     }
 
     public void ClosePauseMenu()
     {
-        Unpause();
+        if(paused && !settingsMenu.activeSelf)
+            Unpause();
         pauseMenu.SetActive(false);
     }
 

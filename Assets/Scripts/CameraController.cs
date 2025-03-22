@@ -36,9 +36,9 @@ public class CameraController : MonoBehaviour
         _zoomCamera.orthographicSize = zoomLevels[currentZoomIndex];
         targetZoom = zoomLevels[currentZoomIndex];
         targetPosition = gameObject.transform.position;
-        Transform testTransform = gameObject.transform;
-        testTransform.position = new Vector3(targetPosition.x, targetPosition.y + 10, targetPosition.z);
-        CameraFocus(testTransform);
+        // Transform testTransform = gameObject.transform;
+        // testTransform.position = new Vector3(targetPosition.x, targetPosition.y + 10, targetPosition.z);
+        // CameraFocus(testTransform);
     }
     
     protected virtual void Update()

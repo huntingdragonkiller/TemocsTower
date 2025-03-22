@@ -30,6 +30,10 @@ public class BatteryTower : TowerSegment
     private IEnumerator SelfHeal()
     {
         while(true){
+            // Disables coroutine while there isn't a wave
+             while(!FindAnyObjectByType<EnemyManager>().GetActiveWave()){
+                yield return new WaitForFixedUpdate();
+            }
             Debug.Log("Healing for: " + maxHealth / 100f);
             HealDamage(maxHealth/100f);
             yield return new WaitForSeconds(1f);

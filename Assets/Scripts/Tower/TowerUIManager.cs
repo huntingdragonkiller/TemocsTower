@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class TowerUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    [SerializeField]
+    GameObject enlargePanel;
     public TextMeshProUGUI level;
     public TextMeshProUGUI upgradeCost;
     public TextMeshProUGUI health;
@@ -26,7 +28,7 @@ public class TowerUIManager : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         towerRect = GetComponent<RectTransform>();
         initialHeight = towerRect.rect.height;
         initialWidth = towerRect.rect.width;
-        RectTransform maximizedRect = GameObject.Find("Panel").GetComponent<RectTransform>();
+        RectTransform maximizedRect = enlargePanel.GetComponent<RectTransform>();
         enlargedHeight = maximizedRect.rect.height;
         enlargedWidth = maximizedRect.rect.width;
     }

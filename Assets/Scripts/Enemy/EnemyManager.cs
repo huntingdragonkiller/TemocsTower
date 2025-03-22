@@ -4,20 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class EnemyManager : MonoBehaviour
 {
+    [SerializeField]
+    AudioResource waveStart;
+    [SerializeField]
+    AudioResource waveOver;
     public float xSpawnOffset = 10f;
     public float xSpawnVariation = 0.25f;
     public float ySpawnVariation = 2f;
     public List<EnemyAI> availableEnemies;
     public Dictionary<EnemyAI, int> enemyCost = new Dictionary<EnemyAI, int>();
     public float waveDuration;
-    public float spawnIntervals;
+    public float numSpawnTimes = 5;
+    float spawnIntervals;
     public float waveStartDelay;
     public int[] levelPoints;
     int currentLevel = 0;
-    int numSpawnTimes;
     int currentSpawnTime;
     public MiniWave miniWave;
     GameObject currentFocus;
@@ -25,9 +30,22 @@ public class EnemyManager : MonoBehaviour
     GameObject[] towerSegments;
     int cheapestEnemyCost = int.MaxValue;
     int highestEnemyCost = int.MinValue;
+    public bool activeWave = false;
+    
+    public static EnemyManager instance;
 
     
     private IEnumerator wave;
+    
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
+    public bool GetActiveWave(){
+        return activeWave;
+    }
 
     //Grabs all the enemies, spawns them in so we can access their cost
     //then obliterates them after they've served their purpose
@@ -50,7 +68,10 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void StartWave(){
-        numSpawnTimes = (int) (waveDuration / spawnIntervals);
+        if(activeWave){return;}
+        activeWave = true;
+        SoundFXManager.instance.PlaySoundFXClip(waveStart, transform, 1f);
+        spawnIntervals =  waveDuration / numSpawnTimes;
         currentSpawnTime = 1;
         currentFocus = FocusSegment();
         Debug.Log("Starting wave " + currentLevel + 
@@ -67,25 +88,34 @@ public class EnemyManager : MonoBehaviour
         Debug.Log("in spawn routine");
         do{
             yield return new WaitForSeconds(waveStartDelay);
-            if((currentSpawnTime == numSpawnTimes / 2 && remainingPoints / 4 >= cheapestEnemyCost)|| currentSpawnTime == numSpawnTimes)
-            {
-                int miniWavePoints = remainingPoints / 4;
-                //if its the last wave we use the rest of the points
-                if(currentSpawnTime == numSpawnTimes)
-                    miniWavePoints = remainingPoints;
-                remainingPoints -= miniWavePoints;
-                Debug.Log("Miniwave time, points allocated: " + miniWavePoints);
-                MiniWave newMiniWave = StartMiniWave(miniWavePoints);
-                // while(newMiniWave != null){//waiting until the miniwave is over
-                //     yield return new WaitForFixedUpdate();
-                // }
-
-            } else {
-                EnemyAI choice = PickEnemy(remainingPoints);
-                Debug.Log("Spawning " + choice );
-                SpawnEnemy(choice);
-                remainingPoints -= enemyCost[choice];
+            //Makes it to where the last wave has a lot more points to work with
+            int miniWavePoints = (int) (remainingPoints / Math.Floor(numSpawnTimes * 1.5));
+            
+            //Skip miniwaves until we have enough points to spawn something
+            while(miniWavePoints < cheapestEnemyCost || currentSpawnTime == numSpawnTimes){
+                miniWavePoints += (int) (remainingPoints / Math.Floor(numSpawnTimes * 1.5));
+                currentSpawnTime++;
             }
+            //if its the last wave we use the rest of the points
+            if(currentSpawnTime >= numSpawnTimes){
+
+                miniWavePoints = remainingPoints;  
+                Debug.Log("Creating miniwave " + currentSpawnTime + " with points: " + miniWavePoints);
+                MiniWave finalMiniWave = StartMiniWave(miniWavePoints);
+                miniWave.miniWaveOver = waveOver;
+
+                while(finalMiniWave != null){//waiting until the miniwave is over
+                    yield return new WaitForFixedUpdate();
+                }
+                break;
+            }
+            
+            Debug.Log("Creating miniwave " + currentSpawnTime + " with points: " + miniWavePoints);
+            MiniWave newMiniWave = StartMiniWave(miniWavePoints);
+            // while(newMiniWave != null){//waiting until the miniwave is over
+            //     yield return new WaitForFixedUpdate();
+            // }
+
             currentSpawnTime++;
             yield return new WaitForSeconds(waitTime);
         } while (remainingPoints >= cheapestEnemyCost && currentSpawnTime <= numSpawnTimes);
@@ -97,6 +127,7 @@ public class EnemyManager : MonoBehaviour
     //Tells the tower manager to full heal all the segments
     private void FinishWave()
     {
+        activeWave = false;
         FindAnyObjectByType<SelectionManager>().NewSelections();
         FindAnyObjectByType<TowerManager>().HealAllSegments();
         FindAnyObjectByType<ShopManager>().InitializeShop();

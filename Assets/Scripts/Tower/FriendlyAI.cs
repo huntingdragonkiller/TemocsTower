@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class FriendlyAI : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class FriendlyAI : MonoBehaviour
     public float detectEnemiesDistance = 10f;
     private bool _movingRight;
     private bool enemiesPresent = false;
+    float currentMoveSpeed;
+    float moveSpeedVariation = 0.05f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -33,10 +36,12 @@ public class FriendlyAI : MonoBehaviour
         hitbox = GetComponent<Collider2D>();
         hitboxMask = hitbox.includeLayers;
         attackHitboxMask = attackHitbox.includeLayers;
-
+       
     }
     void Start()
-    {
+    { 
+        currentMoveSpeed = friendlyData.currentMoveSpeed * (1f + UnityEngine.Random.Range(-moveSpeedVariation, moveSpeedVariation));
+
         attackCoroutine = AttackSubRoutine(friendlyData.attackSpeed);
         StartCoroutine(attackCoroutine);
     }
@@ -99,8 +104,14 @@ public class FriendlyAI : MonoBehaviour
         //if its left the collider we cant attack it
         if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox"){
             enemies.Remove(collision.collider.gameObject.GetComponent<EnemyAI>());
-            if(enemies.Count <= 0)
+            if(enemies.Count <= 0){
+                //adds a small chance to randomly change directions, just to spice up movement
+                if(UnityEngine.Random.Range(0,3) == 0)
+                {
+                    _movingRight = !_movingRight;
+                }
                 enemiesPresent = CheckForEnemies();
+            }
         }
     }
 
@@ -124,7 +135,7 @@ public class FriendlyAI : MonoBehaviour
     //If there are enemies move in the direction we last spotted them at
     private Vector3 MoveToEnemy()
     {
-        Vector3 movementVector = Vector3.right * friendlyData.currentMoveSpeed;
+        Vector3 movementVector = Vector3.right * currentMoveSpeed;
         float moveDirection = _movingRight ? 1f : -1f;
         // enemiesPresent = CheckForEnemies();
         return movementVector * moveDirection;
@@ -132,7 +143,7 @@ public class FriendlyAI : MonoBehaviour
 
     Vector3 Patrol()
     {
-        Vector3 movementVector = Vector3.right * friendlyData.currentMoveSpeed;
+        Vector3 movementVector = Vector3.right * currentMoveSpeed;
         float moveDirection = _movingRight ? 1f : -1f;
 
         // Check if the enemy reached a patrol point
@@ -147,17 +158,33 @@ public class FriendlyAI : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);
         }
         // enemiesPresent = CheckForEnemies();
+        
         return movementVector * moveDirection;
         
     }
 
     bool CheckForEnemies(){
         Vector3 direction = _movingRight ? Vector3.right : Vector3.left;
+        
+        
         // Debug.DrawLine(transform.position, direction * detectEnemiesDistance, Color.red, 0.2f);
         // Debug.Log(attackHitboxMask.value);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, detectEnemiesDistance, attackHitboxMask);
         if (hit)
         {
+            // Debug.Log("Enemy Detected! " + hit.collider.gameObject.name + "at: " + hit.collider.gameObject.transform.position);
+            enemiesPresent = true;
+            return true;
+        }
+        hit = Physics2D.Raycast(transform.position, direction * -1, detectEnemiesDistance, attackHitboxMask);
+        if (hit)
+        {
+            if(!enemiesPresent){
+                _movingRight = !_movingRight;
+            } else if (UnityEngine.Random.Range(0,2) == 0){
+                // 50/50 to pick a direction
+                _movingRight = !_movingRight;
+            }
             // Debug.Log("Enemy Detected! " + hit.collider.gameObject.name + "at: " + hit.collider.gameObject.transform.position);
             enemiesPresent = true;
             return true;
@@ -171,11 +198,11 @@ public class FriendlyAI : MonoBehaviour
             return 0;
         if (!_movingRight)
         {
-            return -1 * friendlyData.currentMoveSpeed;
+            return -1 * currentMoveSpeed;
         } else
         {
 
-            return 1 * friendlyData.currentMoveSpeed;
+            return 1 * currentMoveSpeed;
         }
     }
 }

@@ -1312,6 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce7fea61deba5cf46ab06bdbbb6df409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enlargePanel: {fileID: 4343494458419163331}
   level: {fileID: 8435171977430485433}
   upgradeCost: {fileID: 534193144667960134}
   health: {fileID: 8934312707801445435}

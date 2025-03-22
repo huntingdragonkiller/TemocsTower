@@ -78,6 +78,11 @@ public class TurretTower : TowerSegment
     {
         while (true)
         {
+            // Disables coroutine while there isn't a wave
+            // while(!FindAnyObjectByType<EnemyManager>().GetActiveWave()){
+            //     yield return new WaitForFixedUpdate();
+            // }
+
             yield return new WaitForSeconds(waitTime);
             //If there are enemies present if our FOV, attack them
             if (enemies.Count > 0)

@@ -44,3 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec785648e3eb266469115168af69d18f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  miniWaveStart: {fileID: 8300000, guid: 672791eddf603b64b86bb264d7451599, type: 3}
+  miniWaveOver: {fileID: 8300000, guid: e5d8ce3ef93f38a45958650774d602b3, type: 3}

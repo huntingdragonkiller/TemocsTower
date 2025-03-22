@@ -12,6 +12,7 @@ public class SelectionManager : MonoBehaviour
 
     List<SelectionScriptableObject> currentSelections;
     public TowerManager towerManager; // Reference to the tower
+    bool shouldBePaused = false;
      
 
 
@@ -21,11 +22,17 @@ public class SelectionManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             NewSelections();
             // ShowSegmentChoices();
+        if(shouldBePaused && Time.timeScale != 0)
+        {
+            //Repause
+            FindAnyObjectByType<UIManager>().Pause();
+        }
     }
 
     public void NewSelections(){
 
         FindAnyObjectByType<UIManager>().Pause();
+        shouldBePaused = true;
         foreach (SelectionButton s in selections){
             s.gameObject.SetActive(true);
         }
@@ -51,6 +58,7 @@ public class SelectionManager : MonoBehaviour
     }
 
     public void HandleChosenSelection(SelectionScriptableObject chosen){
+        shouldBePaused = false;
         GameObject chosenObject = chosen.Selection;
         TowerSegment segment = chosenObject.GetComponent<TowerSegment>();
         if (segment != null){

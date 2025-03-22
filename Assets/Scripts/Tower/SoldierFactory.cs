@@ -43,6 +43,11 @@ public class SoldierFactory : TowerSegment
     {
         while (true)
         {
+            // Disables coroutine while there isn't a wave
+            //  while(!FindAnyObjectByType<EnemyManager>().GetActiveWave()){
+            //     Debug.Log("Waiting for wave");
+            //     yield return new WaitForFixedUpdate();
+            // }
             yield return new WaitForSeconds(waitTime);
             if (friends.Count < maxSoldiers)
             {
