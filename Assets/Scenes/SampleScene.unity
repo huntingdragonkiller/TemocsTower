@@ -9284,6 +9284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellPrefabs: []
   manaAmount: 0
+  maxMana: 0
 --- !u!1 &1218976046
 GameObject:
   m_ObjectHideFlags: 0
@@ -11807,7 +11808,7 @@ MonoBehaviour:
   ySpawnVariation: 2
   availableEnemies:
   - {fileID: 8996631404203410908, guid: 02c8feec6146442c69146c7b573bb555, type: 3}
-  - {fileID: 1591805941512096400, guid: f20756f1739e6324d8325007ecbc167a, type: 3}
+  - {fileID: 8476054331313644121, guid: 57d2a5f7e10bf4f35a632397da5de33f, type: 3}
   waveDuration: 60
   spawnIntervals: 15
   waveStartDelay: 0

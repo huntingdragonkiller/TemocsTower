@@ -7,12 +7,15 @@ public class SpellScriptableObject : ScriptableObject
     // [SerializeField] GameObject spellPrefab;
     // public GameObject SpellPrefab {get => spellPrefab; set => spellPrefab = value; } 
 
-    [SerializeField] int damage;
-    public int Damage {get => damage; set => damage = value; }
+    [SerializeField] public float duration;
+    public float Duration {get => duration; set => duration = value; }
 
-    [SerializeField] float cooldownTime;
+    [SerializeField] public float damage; // can be null due to buffs and shield and the sort
+    public float Damage {get => damage; set => damage = value; }
+
+    [SerializeField] public float cooldownTime;
     public float CooldownTime {get => cooldownTime; set => cooldownTime = value; }
 
-    [SerializeField] int manaCost;
+    [SerializeField] public int manaCost;
     public int ManaCost { get => manaCost; set => manaCost = value; }
 }

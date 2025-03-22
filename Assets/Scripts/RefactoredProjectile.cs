@@ -30,6 +30,7 @@ public class RefactoredProjectile : MonoBehaviour
     private AnimationCurve projectileSpeedAnimationCurve;
 
     private Vector3 trajectoryStartPoint;
+    private Vector3 moveDir;
 
 
     void Awake()
@@ -105,7 +106,7 @@ public class RefactoredProjectile : MonoBehaviour
             Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
             
             calculateProjectileSpeed(nextPositionXNormalized);
-            
+            projectileMoveDir = mewPosition - transform.position;
             transform.position = newPosition;
 
         }
@@ -117,6 +118,10 @@ public class RefactoredProjectile : MonoBehaviour
         float nextMoveSpeedNormalized = projectileSpeedAnimationCurve.Evaluate(nextPositionXNormalized);
 
         moveSpeed = nextMoveSpeedNormalized * maxMoveSpeed;
+    }
+
+    public Vector3 getProjectileMoveDir() {
+        return projectileMoveDir;
     }
 
     public void KillRefactored()
