@@ -1,31 +1,49 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
-public class Fireball : MonoBehaviour
+public class Fireball : Spell
 {
-
-    public SpellScriptableObject spellData;
-    private float damage;
-    private float cooldownTime;
-    private int manaCost;
     
     [SerializeField] CircleCollider2D explosion;
-    [SerializeField] float explosionDamage;
+    [SerializeField]
+    Rigidbody2D _rb;
+    [SerializeField]
+    float initialVelocity = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected override void Start()
     {
-        explosion = GetComponent<CircleCollider2D>();
-        damage = spellData.damage;
-        cooldownTime = spellData.cooldownTime;
-        manaCost = spellData.manaCost;
-        explosionDamage = 5f;
+        base.Start();
+        // _rb = GetComponent<Rigidbody2D>();
+        // explosion = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha0)) {
+            Explode();
+        }
+    }
+
+    public override void CastSpellAt(Vector3 position){
+        base.CastSpellAt(position);
+        Debug.Log(""+ position + " Compared to"  + transform.position);
+
+        Vector2 directionVector = position - transform.position; 
+        directionVector.Normalize();
+        _rb.linearVelocity = directionVector * initialVelocity;
+        
+        Debug.Log("" + directionVector);
+        Debug.Log("" + _rb.linearVelocity);
+
+    }
+
+    void FixedUpdate()
+    {
+        if(Vector3.Distance(transform.position, targetPosition) < .1f)
+        {
             Explode();
         }
     }
@@ -37,6 +55,13 @@ public class Fireball : MonoBehaviour
         // explosion.Overlap(contacts) fills contacts 
         Debug.Log("Exploding " + explosion.Overlap(contacts) + " GameObjects");
         Debug.Log("explosion collisions: " + contacts);
+        foreach(Collider2D collision in contacts){
+            GameObject collidedObject = collision.gameObject;
+            //Deal the damage
+            if (collidedObject.tag == "Enemy"){
+                collidedObject.GetComponent<EnemyStats>().SendMessage("TakeDamage", damage);
+            }
+        }
         Destroy(gameObject);
 
     }

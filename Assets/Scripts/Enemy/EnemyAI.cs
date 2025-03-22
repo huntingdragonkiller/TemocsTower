@@ -88,12 +88,12 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Debug.Log(potentialTargets.Count);
+        // Debug.Log(potentialTargets.Count);
         if(potentialTargets.Count > 0){
-            Debug.Log("AttackTime");
+            // Debug.Log("AttackTime");
             canAttack = true;
         } else if(attackTarget == null){
-            Debug.Log("Can't attack, going to move");
+            // Debug.Log("Can't attack, going to move");
             canAttack = false;
             MoveToTarget();
         }

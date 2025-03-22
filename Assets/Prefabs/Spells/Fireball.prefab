@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 4520569115852519774}
   - component: {fileID: 8396277694662013073}
   - component: {fileID: 8236623310622263583}
-  m_Layer: 0
+  - component: {fileID: 2965452176006592407}
+  m_Layer: 6
   m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellData: {fileID: 11400000, guid: 354e1adebfe07324fae9a1aab8d5d869, type: 2}
-  explosionDamage: 0
+  spawnPosition: {x: -2, y: 15, z: 0}
+  manaCost: 0
+  explosion: {fileID: 8236623310622263583}
+  _rb: {fileID: 2965452176006592407}
+  initialVelocity: 20
 --- !u!212 &8396277694662013073
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -139,3 +144,30 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 1.5039062
+--- !u!50 &2965452176006592407
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8152724003844344901}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

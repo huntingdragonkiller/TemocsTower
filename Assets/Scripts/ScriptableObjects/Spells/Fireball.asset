@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3643282410121641ad70e45956394e0, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
+  duration: 0
+  damage: 20
   cooldownTime: 15
-  manaCost: 20
+  manaCost: 1

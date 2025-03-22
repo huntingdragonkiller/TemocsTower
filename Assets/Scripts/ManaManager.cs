@@ -4,19 +4,22 @@ using UnityEngine;
 public class ManaManager : MonoBehaviour
 {
 
-    public List<GameObject> spellPrefabs;
+    public List<Spell> spellPrefabs;
     public int manaAmount;
     public int maxMana;
 
     [HideInInspector]
     public bool spellReady;
+    Spell preparedSpell;
 
     //public SpellScriptableGameObject currentSpell;
 
     public static ManaManager instance;
 
-    void Awake() {
-        if (instance == null) {
+    void Awake()
+    {
+        if (instance == null)
+        {
             instance = this;
         }
     }
@@ -34,7 +37,8 @@ public class ManaManager : MonoBehaviour
         checkIfSpellSelected();
 
         // if 
-        if (spellReady && Input.GetMouseButtonDown(0)) {
+        if (spellReady && Input.GetMouseButtonDown(0))
+        {
             // call get mouse click coordinates  ?
             // on Mouse Click:
             //  get mouse click coordinates
@@ -50,34 +54,87 @@ public class ManaManager : MonoBehaviour
             // Convert the screen position to world position
             Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
 
+            mouseWorldPosition.z = 0;// need this to see the spell + have it actually work
+
             // Output the world position (x, y)
             Debug.Log("Mouse World Position: " + new Vector2(mouseWorldPosition.x, mouseWorldPosition.y));
+            
+            Spell castedSpell = Instantiate(preparedSpell);
+            if(decreaseMana(castedSpell.manaCost)){
+                castedSpell.CastSpellAt(mouseWorldPosition);
+            } else {
+                Destroy(castedSpell);
+            }
 
+            spellReady = false;
         }
     }
 
-    public void checkIfSpellSelected() {
-        if (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || 
-            Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) || 
-            Input.GetKeyDown(KeyCode.Alpha5)) {
-
-            spellReady = true;
+    public void checkIfSpellSelected()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            try{preparedSpell = spellPrefabs[0];
+            spellReady = true;}
+            catch{}
+            
         }
-    }
-
-    public void addToMana(int manaToAdd) {
-        if (manaAmount + manaToAdd >= maxMana) {
-            manaAmount = maxMana;
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            try{preparedSpell = spellPrefabs[1];
+            spellReady = true;}
+            catch{}
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            try{preparedSpell = spellPrefabs[2];
+            spellReady = true;}
+            catch{}
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            try{preparedSpell = spellPrefabs[3];
+            spellReady = true;}
+            catch{}
+            
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            try{preparedSpell = spellPrefabs[4];
+            spellReady = true;}
+            catch{}
+            
+            
         } else {
+        }
+    }
+
+    public void addToMana(int manaToAdd)
+    {
+        if (manaAmount + manaToAdd >= maxMana)
+        {
+            manaAmount = maxMana;
+        }
+        else
+        {
             manaAmount += manaToAdd;
         }
     }
 
-    public void decreaseMana(int manaCost) {
-        if (manaAmount - manaCost <= 0) {
-            manaAmount = 0;
-        } else {
+
+    //Returns true/false if it was able/unable to successfully spend the mana (ie. had enough mana) 
+    public bool decreaseMana(int manaCost)
+    {
+        if (manaAmount - manaCost < 0)
+        {
+            return false;
+        }
+        else
+        {
             manaAmount -= manaCost;
+            return true;
         }
     }
 
