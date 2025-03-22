@@ -24,10 +24,17 @@ public class ArcherAI : EnemyAI
         Debug.Log("Archer attack routine, wait time: " + waitTime);
         while (true)
         {
+            yield return new WaitForSeconds(waitTime);
             if (canAttack) {
+                Debug.Log(potentialTargets.Count);
+                try{
+                    attackTarget = GetTarget();
+                } catch{
+                    Debug.Log("Out of index for some reason");
+                }
+                
                 Attack();
             }
-            yield return new WaitForSeconds(waitTime);
         }
     }
 

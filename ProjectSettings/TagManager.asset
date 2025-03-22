@@ -20,7 +20,7 @@ TagManager:
   - UI
   - Friendlies
   - Enemies
-  - 
+  - Ground
   - 
   - 
   - 
@@ -47,6 +47,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Tower
+    uniqueID: 2729710351
+    locked: 0
+  - name: Furniture
+    uniqueID: 2959313901
+    locked: 0
+  - name: Npcs
+    uniqueID: 1076123093
+    locked: 0
+  - name: Enemies
+    uniqueID: 2865039171
     locked: 0
   m_RenderingLayers:
   - Default
