@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: Sky Tile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -6534231397091384992, guid: 91afd3aa0713a3a47a9cc98311c2d5ec, type: 3}
+    - {fileID: -5236055562495553615, guid: 9bc4f1199ef1ac540bfc39eb8412a70f, type: 3}
+    - {fileID: -4485631893407875550, guid: 817f6f210f0d7de418a4737a0d281e57, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    - {fileID: -5955717674025036016, guid: a4e50a089a153cb41a13ba782b29a7fd, type: 3}
+    m_GameObject: {fileID: 0}
+    m_MinAnimationSpeed: 1
+    m_MaxAnimationSpeed: 1
+    m_PerlinScale: 0.91
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 0
+    m_Neighbors: 
+    m_NeighborPositions: []
+    m_RuleTransform: 0

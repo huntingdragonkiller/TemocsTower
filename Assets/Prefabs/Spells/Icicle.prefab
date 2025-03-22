@@ -50,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitbox: {fileID: 1717923896656486610}
   _rb: {fileID: 2401675855510795887}
+  anim: {fileID: 4328281222553342006}
 --- !u!212 &1850558839066749293
 SpriteRenderer:
   m_ObjectHideFlags: 0
