@@ -56,7 +56,7 @@ public class RefactoredProjectile : MonoBehaviour
         this.projectileSpeedAnimationCurve = projectileSpeedAnimationCurve;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision");
         if (collision.collider.gameObject.tag == "Ground") {

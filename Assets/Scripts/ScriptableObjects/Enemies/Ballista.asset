@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc23aa7efe38d045bc5533721c52f16, type: 3}
+  m_Name: Ballista
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.5
+  attackSpeed: 10
+  maxHealth: 150
+  damage: 50
+  isGroundEnemy: 1
+  spawnCost: 20
+  killReward: 30
+  attackSoundClip: {fileID: 8300000, guid: 3052f2b3e02191e4d803e47541a2104c, type: 3}
+  damageSoundClip: {fileID: 6418180475301049370, guid: 15ee0e1833720d74391dd469bc13e0ad, type: 2}
+  deathSoundClip: {fileID: 8300000, guid: 599db79ed09de1c42b093ce172dbd87e, type: 3}

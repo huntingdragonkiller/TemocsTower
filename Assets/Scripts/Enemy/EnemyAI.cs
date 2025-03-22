@@ -80,7 +80,7 @@ public class EnemyAI : MonoBehaviour
         return potentialTargets[0];
     }
 
-    void RetargetTower()
+    protected void RetargetTower()
     {
         target = GameObject.FindAnyObjectByType<EnemyManager>().FocusSegment(0); //Default retargets base tower segment
     }
@@ -90,10 +90,10 @@ public class EnemyAI : MonoBehaviour
     {
         Debug.Log(potentialTargets.Count);
         if(potentialTargets.Count > 0){
-            // Debug.Log("AttackTime");
+            Debug.Log("AttackTime");
             canAttack = true;
         } else if(attackTarget == null){
-            // Debug.Log("Can't attack, going to move");
+            Debug.Log("Can't attack, going to move");
             canAttack = false;
             MoveToTarget();
         }
@@ -105,9 +105,11 @@ public class EnemyAI : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision.otherCollider);
-        Debug.Log(collision.collider.gameObject.tag);
+        // Debug.Log(collision.otherCollider);
+        // Debug.Log(collision.collider.gameObject.tag);
         if (collision.otherCollider == attackHitbox && collision.collider.gameObject.tag != "Hitbox"){
+            
+            Debug.Log(collision.collider.gameObject);
             // Debug.Break();
             potentialTargets.Add(collision.collider.gameObject);
             canAttack = true;
@@ -171,7 +173,7 @@ public class EnemyAI : MonoBehaviour
     }
 
 
-    void MoveToTarget()
+    protected virtual void MoveToTarget()
     {
 
         if(target == null)
@@ -200,7 +202,7 @@ public class EnemyAI : MonoBehaviour
             transform.localScale = new Vector3(-1, 1, 1);//flips the enemy around
             movementVector += Vector3.right * enemyData.currentMoveSpeed;
         }
-        Debug.Log("Moving by " + movementVector);
+        // Debug.Log("Moving by " + movementVector);
         transform.position += movementVector;
     }
 }
