@@ -12,9 +12,9 @@ public class Fireball : Spell
     float initialVelocity = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
         // _rb = GetComponent<Rigidbody2D>();
         // explosion = GetComponent<CircleCollider2D>();
     }

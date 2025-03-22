@@ -12,7 +12,7 @@ public class Spell : MonoBehaviour
     protected float cooldownTime;
     public int manaCost;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         damage = spellData.damage;
         duration = spellData.duration;

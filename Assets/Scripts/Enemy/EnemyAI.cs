@@ -205,4 +205,13 @@ public class EnemyAI : MonoBehaviour
         // Debug.Log("Moving by " + movementVector);
         transform.position += movementVector;
     }
+    
+    public void TakeKnockback(float knockback)
+    {
+        //TODO: Make the target go backwards from current facing direction in an arc
+        // thx emilio although this might work for now
+        float xScale = transform.localScale.x;//should be -1 if on left side of tower, 1 on right side of tower
+        //ABOVE DOES NOT WORK FOR BALLISTAS CURRENTLY LOL!!!!
+        transform.position = transform.position + new Vector3(xScale * knockback, 0, 0);
+    }
 }

@@ -9284,7 +9284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellPrefabs:
   - {fileID: 4520569115852519774, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
-  - {fileID: 4520569115852519774, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
+  - {fileID: 7437983627701472002, guid: 509ba5b5b6ec97644ae16b6d26b56e67, type: 3}
   - {fileID: 4520569115852519774, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
   - {fileID: 4520569115852519774, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
   - {fileID: 4520569115852519774, guid: 1b09ce32737067a4d8488b02d58361e8, type: 3}
@@ -13117,6 +13117,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1813335062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1813335064}
+  - component: {fileID: 1813335063}
+  m_Layer: 0
+  m_Name: Barrier
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1813335063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813335062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1fcac61acebccd4e8e7f834d97d1348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellData: {fileID: 11400000, guid: 0e9c54b7470647044a701296b0511fd3, type: 2}
+  spawnPosition: {x: 0, y: 0, z: 0}
+  manaCost: 0
+--- !u!4 &1813335064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813335062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.722135, y: 10.183988, z: -20.239407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1870513371
 GameObject:
   m_ObjectHideFlags: 0
@@ -15964,3 +16011,4 @@ SceneRoots:
   - {fileID: 3977188132404799220}
   - {fileID: 1789067623}
   - {fileID: 2013949874}
+  - {fileID: 1813335064}
