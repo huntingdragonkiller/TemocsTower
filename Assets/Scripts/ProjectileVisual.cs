@@ -4,8 +4,12 @@ using UnityEngine;
 /**UNDER CONSTRUCTION**/
 public class ProjectileVisual : MonoBehaviour
 {
-    private Transform projectileVisual;
-    private RefactoredProjectile projectile;
+    [SerializeField] Transform projectileVisual;
+    [SerializeField] RefactoredProjectile projectile;
+    
+    public void InitializeVisual(RefactoredProjectile projectile) {
+        this.projectile = projectile;
+    }
 
     void Update() {
         UpdateProjectileRotation();

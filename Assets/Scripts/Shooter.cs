@@ -8,6 +8,8 @@ public class Shooter : MonoBehaviour
 
     private Transform targetTransform;
 
+    public ProjectileVisual projectileVisual;
+
     private float projectileMaxMoveSpeed;
     private float projectileMaxHeight;
 
@@ -27,9 +29,14 @@ public class Shooter : MonoBehaviour
         } else {
             projectileSpawnPoint.x += 1f;
         }
+
+        
+
         RefactoredProjectile projectile = Instantiate(projectilePrefab, projectileSpawnPoint, Quaternion.identity, transform).GetComponent<RefactoredProjectile>();
         projectile.InitializeProjectile(targetTransform, projectileMaxMoveSpeed, projectileMaxHeight);
         projectile.InitializeAnimationCurves(trajectoryAnimationCurve, axisCorrectionAnimationCurve, speedAnimationCurve);
+        projectileVisual = projectile.GetComponent<ProjectileVisual>();
+        projectileVisual.InitializeVisual(projectile);
     }
 
     public void InitializeShooter(GameObject projectilePrefab, float projectileMaxMoveSpeed, float projectileMaxHeight) {

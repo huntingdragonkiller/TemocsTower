@@ -74,7 +74,6 @@ public class ManaManager : MonoBehaviour
         }
     }
 
-    // on '1' key press, spellReady = true;
 
 
 }

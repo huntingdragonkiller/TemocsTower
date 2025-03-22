@@ -106,7 +106,7 @@ public class RefactoredProjectile : MonoBehaviour
             Vector3 newPosition = new Vector3(nextPositionX, nextPositionY, 0);
             
             calculateProjectileSpeed(nextPositionXNormalized);
-            projectileMoveDir = mewPosition - transform.position;
+            moveDir = newPosition - transform.position;
             transform.position = newPosition;
 
         }
@@ -121,7 +121,7 @@ public class RefactoredProjectile : MonoBehaviour
     }
 
     public Vector3 getProjectileMoveDir() {
-        return projectileMoveDir;
+        return moveDir;
     }
 
     public void KillRefactored()

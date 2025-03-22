@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8034530912110594569}
   - component: {fileID: 6832204593283575558}
   - component: {fileID: 8090859402320350546}
+  - component: {fileID: 2797546238995705048}
   m_Layer: 7
   m_Name: RefactoredArcherProjectile
   m_TagString: Hitbox
@@ -178,4 +179,19 @@ MonoBehaviour:
   projectileData: {fileID: 11400000, guid: a126518a1dcaa4aff9f65c51b1f22e0c, type: 2}
   damage: 0
   isGroundEnemy: 0
+  target: {fileID: 0}
   projectileSpeed: 0
+--- !u!114 &2797546238995705048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593108204090646903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79bc9372f3c37ab44848e44dcdf2502e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileVisual: {fileID: 317241372229154303}
+  projectile: {fileID: 0}
