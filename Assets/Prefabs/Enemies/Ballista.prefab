@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1886492278854327383}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.091, y: 0.73, z: 0}
+  m_LocalPosition: {x: -0.07, y: 0.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingOrder: 1
   m_Sprite: {fileID: -733241818, guid: 1f595f9b8210d03439ef0bd627c46296, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.3125, y: 0.25}
@@ -195,12 +195,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7752983355236153075, guid: 9d4ccef09f408d441ad194d6a8366f22, type: 3}
+  m_Sprite: {fileID: -3886821178583835551, guid: f74382aa0bb422f46a3151a15d515ff5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.96875, y: 0.53125}
+  m_Size: {x: 1.9375, y: 1.0625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -244,6 +244,7 @@ MonoBehaviour:
   currentMoveSpeed: 0
   attackSpeed: 0
   currentHealth: 0
+  maxHealth: 0
   currentDamage: 0
   spawnCost: 0
   isGroundEnemy: 0
@@ -395,9 +396,9 @@ BoxCollider2D:
   m_Offset: {x: -0.09375, y: 0.27914226}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5483871, y: 0.47058824}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.9375, y: 1.0625}
-    newSize: {x: 0.96875, y: 0.53125}
+    newSize: {x: 1.9375, y: 1.0625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -497,7 +498,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 5.0458593, y: 2.5627632}
+  m_Offset: {x: -8.893999, y: 10.179875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -507,7 +508,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 11.091715, y: 5.313676}
+  m_Size: {x: 17.841797, y: 20.5479}
   m_EdgeRadius: 0
 --- !u!1001 &3773679013610587563
 PrefabInstance:

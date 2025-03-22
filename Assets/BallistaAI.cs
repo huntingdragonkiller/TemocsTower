@@ -81,34 +81,4 @@ public class BallistaAI : EnemyAI
         }
 
     }
-    protected override void MoveToTarget(){
-        if(target == null)
-        {
-            RetargetTower();
-        }
-
-        Vector3 movementVector = Vector3.zero;
-
-        if (target.transform.position.y > transform.position.y && !enemyData.isGroundEnemy)
-        {
-            movementVector += Vector3.up * enemyData.currentMoveSpeed;
-        } else if (target.transform.position.y < transform.position.y && !enemyData.isGroundEnemy)
-        {
-            movementVector += Vector3.down * enemyData.currentMoveSpeed;
-        }
-
-        //transform.position = new Vector3(Vector3.Lerp(transform.position, target.transform.position, enemyData.currentMoveSpeed).x, transform.position.y, 0);
-        if (transform.position.x > 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-            movementVector += Vector3.left * enemyData.currentMoveSpeed;
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);//flips the enemy around
-            movementVector += Vector3.right * enemyData.currentMoveSpeed;
-        }
-        // //Debug.Log("Moving by " + movementVector);
-        transform.position += movementVector;
-    }
 }
