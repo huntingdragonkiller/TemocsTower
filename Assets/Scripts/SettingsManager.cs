@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class SettingsManager : MonoBehaviour
@@ -32,9 +33,15 @@ public class SettingsManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    public void Open()
+    {
+        currentScreen = mainSettingsScreen;
+        currentScreen.SetActive(true);
+    }
     public void OpenAudioSettings(){
         audioSettingsScreen.SetActive(true);
         mainSettingsScreen.SetActive(false);
         currentScreen = audioSettingsScreen;
     }
+
 }

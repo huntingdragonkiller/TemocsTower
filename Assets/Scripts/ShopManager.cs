@@ -11,6 +11,8 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public int rerollCost = 20;
     [SerializeField]
     public float rerollIncrease = 1.5f;
+    public GameObject backgroundPanel;
+    public Image backgroundPanelImage;
     public RectTransform shopRect;
     float initialWidth;
     float initialHeight;
@@ -18,6 +20,8 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     float enlargedHeight;
     int animationFrames;
     int elapsedFrames = 0;
+    float maxBackgroundOpacity;
+    float currentBackgroundOpacity = 0f;
     bool hovering = false;
     bool shopLocked = true;
     List<SelectionScriptableObject> availableSelections = new List<SelectionScriptableObject>();
@@ -33,7 +37,15 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         initialWidth =  shopRect.rect.width;
         initialHeight =  shopRect.rect.height;
         initialSizeDelta = shopRect.sizeDelta;
-        RectTransform enlargedRect = GameObject.Find("BackgroundPanel").GetComponent<RectTransform>();
+        backgroundPanel = GameObject.Find("BackgroundPanel");
+        RectTransform enlargedRect = backgroundPanel.GetComponent<RectTransform>();
+        
+        backgroundPanelImage = backgroundPanel.GetComponent<Image>();
+        var color = backgroundPanelImage.color;
+        maxBackgroundOpacity = color.a;
+        color.a = 0f;
+        backgroundPanelImage.color = color;
+        
         //Debug.Log("" + enlargedRect.sizeDelta);
         enlargedHeight = enlargedRect.rect.height;
         enlargedWidth = enlargedRect.rect.width;
@@ -56,14 +68,20 @@ public class ShopManager : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             // Debug.Log("Expanding");
             float interpolationRatio = (float)elapsedFrames / (float)animationFrames;
             shopRect.sizeDelta = Vector2.Lerp(shopRect.sizeDelta, enlargedSizeDelta, interpolationRatio);
+            currentBackgroundOpacity = Mathf.Lerp(currentBackgroundOpacity, maxBackgroundOpacity, interpolationRatio);
             elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
         } else {
             float interpolationRatio = (float)elapsedFrames / (float)animationFrames;
             shopRect.sizeDelta = Vector2.Lerp(shopRect.sizeDelta, initialSizeDelta, interpolationRatio);
+            currentBackgroundOpacity = Mathf.Lerp(currentBackgroundOpacity, 0f, interpolationRatio);
             
             // Debug.Log("Shrinking");
             elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
         }
+
+        
+        var color = backgroundPanelImage.color; color.a = currentBackgroundOpacity;
+        backgroundPanelImage.color = color;
         // Debug.Log(shopRect.sizeDelta);
     }
     public void InitializeShop(){

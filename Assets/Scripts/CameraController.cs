@@ -27,8 +27,10 @@ public class CameraController : MonoBehaviour
     private int snapAnimationFrames;
     int elapsedSnapFrames = 0;
     bool verticalKeyHeld = false;
+    public bool atPosition = true;
+    public bool blockInput = false;
 
-    private void Start()
+    private void Awake()
     {
         zoomAnimationFrames = (int) (zoomTime / Time.fixedDeltaTime); 
         snapAnimationFrames = (int) (snapTime / Time.fixedDeltaTime); 
@@ -43,7 +45,8 @@ public class CameraController : MonoBehaviour
     
     protected virtual void Update()
     {
-
+        if(blockInput)
+            return;
         if (Input.GetKey(KeyCode.W))
         {
             CameraMoveUp();
@@ -97,6 +100,8 @@ public class CameraController : MonoBehaviour
 
         } else {
             transform.position = targetPosition;//snap to the targetPos
+            atPosition = true;
+            blockInput = false;
 
         }
 
@@ -120,6 +125,14 @@ public class CameraController : MonoBehaviour
         if (zoomIn){
             SetZoom(zoom);
         }
+    }
+
+    public void CameraControl(Transform transform){
+        elapsedSnapFrames = 0;
+        targetPosition.x = transform.position.x;
+        targetPosition.y = transform.position.y;
+        atPosition = false;
+        blockInput = true;
     }
 
     public void CameraMoveUp(){
@@ -153,5 +166,11 @@ public class CameraController : MonoBehaviour
 
     public void SetZoom(float zoom){
         targetZoom = zoom;
+    }
+
+    internal void ImmediateSetZoom(float cameraZoom)
+    {
+        _zoomCamera.orthographicSize = cameraZoom;
+        targetZoom = cameraZoom;
     }
 }

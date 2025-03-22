@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Security.Cryptography.X509Certificates;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,6 +12,8 @@ public class UIManager : MonoBehaviour
     GameObject pauseMenu;
     [SerializeField]
     GameObject settingsMenu;
+    [SerializeField]
+    CameraController mainCamera;
     bool paused = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,7 +68,17 @@ public class UIManager : MonoBehaviour
     }
 
     public void Quit(){
-        Debug.Log("Quitting");
+        Debug.Log("Going back to main menu");
+        StartCoroutine(GoBackToMainMenu());
         Application.Quit();
+    }
+
+    private IEnumerator GoBackToMainMenu()
+    {
+        MainMenuManager mainMenu = FindAnyObjectByType<MainMenuManager>();
+        Transform mainMenuTransform = mainMenu.GetComponent<Transform>();
+        mainCamera.CameraControl(mainMenuTransform);
+        while(!mainCamera.atPosition){yield return new WaitForFixedUpdate();}
+        mainMenu.gameObject.SetActive(true);
     }
 }
