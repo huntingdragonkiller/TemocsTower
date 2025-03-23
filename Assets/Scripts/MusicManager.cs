@@ -25,13 +25,22 @@ public class MusicManager : MonoBehaviour
     AudioSource currentMusic;
     AudioSource toSwap;
     IEnumerator swapRoutine;
+    public static MusicManager instance;
+    bool loadin = true;
+    bool canSwap = true;
 
     void Awake()
     {
-        currentMusic = Instantiate(musicSoundObject, transform);
-        currentMusic.clip = menuMusic;
-        currentMusic.Play();
-        animationFrames = (int) (transitionTime / Time.fixedDeltaTime);
+        if (instance == null){
+            instance = this;
+        }
+        if (loadin){
+            currentMusic = Instantiate(musicSoundObject, transform);
+            currentMusic.clip = menuMusic;
+            currentMusic.Play();
+            // animationFrames = (int) (transitionTime / Time.fixedDeltaTime);
+            loadin  =   false;
+        }
 
     }
 
@@ -40,53 +49,63 @@ public class MusicManager : MonoBehaviour
     {
         
     }
-    public void PlayMenuMusic(){
-        StopCoroutine(swapRoutine);
-        swapRoutine = SwapToMusic(menuMusic);
+    public void PlayMenuMusic(bool waitTillDone = false){
+        if(swapRoutine != null)
+            StopCoroutine(swapRoutine);
+        swapRoutine = SwapToMusic(menuMusic, waitTillDone);
         StartCoroutine(swapRoutine);
     }
-    public void PlayNormalMusic(){
-        StopCoroutine(swapRoutine);
-        swapRoutine = SwapToMusic(normalMusic);
+    public void PlayNormalMusic(bool waitTillDone = false){
+        if(swapRoutine != null)
+            StopCoroutine(swapRoutine);
+        swapRoutine = SwapToMusic(normalMusic, waitTillDone);
         StartCoroutine(swapRoutine);
     }
-    public void PlayBossMusic(){
-        StopCoroutine(swapRoutine);
-        swapRoutine = SwapToMusic(bossMusic);
+    public void PlayBossMusic(bool waitTillDone = false){
+        if(swapRoutine != null)
+            StopCoroutine(swapRoutine);
+        swapRoutine = SwapToMusic(bossMusic, waitTillDone);
         StartCoroutine(swapRoutine);
     }
-    public void PlayDefeatMusic(){
-        StopCoroutine(swapRoutine);
-        swapRoutine = SwapToMusic(defeatMusic);
-        StartCoroutine(swapRoutine);
-    }
-    public void PlayVictoryMusic(){
-        StopCoroutine(swapRoutine);
-        swapRoutine = SwapToMusic(victoryMusic);
+    public void PlayWaveMusic(AudioClip song, bool waitTillDone = false){
+        if(swapRoutine != null)
+            StopCoroutine(swapRoutine);
+        swapRoutine = SwapToMusic(song, waitTillDone);
         StartCoroutine(swapRoutine);
     }
 
     //Slowly fades out the current music, and fades in the new music
-    private IEnumerator SwapToMusic(AudioClip swappingTo, bool looping = true)
+    private IEnumerator SwapToMusic(AudioClip swappingTo, bool waitTillDone = false)
     {
-        elapsedFrames = 0;
-        if(toSwap == null){
-            toSwap = Instantiate(musicSoundObject, transform);
+        if(canSwap){
+            currentMusic.Stop();
+            currentMusic.clip = swappingTo;
+            currentMusic.Play();
+            yield return null; 
+        } else {
+            while(currentMusic.isPlaying){yield return new WaitForFixedUpdate();}
+            currentMusic.clip = swappingTo;
+            canSwap = !waitTillDone;
+            currentMusic.Play();
         }
-        toSwap.clip = swappingTo;
-        toSwap.loop = looping;
-        toSwap.volume = 0f;
-        toSwap.Play();
-        while (elapsedFrames <= animationFrames){
-            float interpolationRatio = (float)elapsedFrames / (float)animationFrames;
-            toSwap.volume = Mathf.Lerp(toSwap.volume, 1f, interpolationRatio);
-            currentMusic.volume = Mathf.Lerp(currentMusic.volume, 0f, interpolationRatio);
-            elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
-            yield return new WaitForFixedUpdate();
-        }
-        toSwap.volume = 1f;
-        Destroy(currentMusic);
-        currentMusic = toSwap;
-        toSwap = null;
+        // elapsedFrames = 0;
+        // if(toSwap == null){
+        //     toSwap = Instantiate(musicSoundObject, transform);
+        // }
+        // toSwap.clip = swappingTo;
+        // toSwap.loop = looping;
+        // toSwap.volume = 0f;
+        // toSwap.Play();
+        // while (elapsedFrames <= animationFrames){
+        //     float interpolationRatio = (float)elapsedFrames / (float)animationFrames;
+        //     toSwap.volume = Mathf.Lerp(toSwap.volume, 1f, interpolationRatio);
+        //     currentMusic.volume = Mathf.Lerp(currentMusic.volume, 0f, interpolationRatio);
+        //     elapsedFrames = (elapsedFrames + 1) % (animationFrames + 1);
+        //     yield return new WaitForFixedUpdate();
+        // }
+        // toSwap.volume = 1f;
+        // Destroy(currentMusic);
+        // currentMusic = toSwap;
+        // toSwap = null;
     }
 }

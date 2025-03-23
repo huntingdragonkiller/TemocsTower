@@ -44,14 +44,14 @@ public class Fireball : Spell
     {
         if(Vector3.Distance(transform.position, targetPosition) < .1f)
         {
-            Explode();
+            StartCoroutine(Explode());
         }
     }
 
-    void Explode() {
+    IEnumerator Explode() {
         explosion.enabled = true;
         List<Collider2D> contacts = new List<Collider2D>();
-
+        transform.localScale = transform.localScale * 3 ;
         // explosion.Overlap(contacts) fills contacts 
         Debug.Log("Exploding " + explosion.Overlap(contacts) + " GameObjects");
         Debug.Log("explosion collisions: " + contacts);
@@ -62,8 +62,16 @@ public class Fireball : Spell
                 collidedObject.GetComponent<EnemyStats>().SendMessage("TakeDamage", damage);
             }
         }
+        yield return new WaitForSeconds(.1f); 
         Destroy(gameObject);
 
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.gameObject.tag == "Ground"){
+            StartCoroutine(Explode());
+        }
     }
 
     public void OnDestroy()

@@ -20,10 +20,10 @@ public class TowerManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            DestroyRandomSegment();
-        }
+        // if (Input.GetKeyDown(KeyCode.Q))
+        // {
+        //     DestroyRandomSegment();
+        // }
 
         
     }
@@ -75,7 +75,7 @@ public class TowerManager : MonoBehaviour
         if(towerSegments.Count > 0){
             StartCoroutine(ShiftSegmentsDown());
         } else {
-            //Implement Loss
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         }
     }
 

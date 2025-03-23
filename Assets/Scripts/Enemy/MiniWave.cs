@@ -11,7 +11,8 @@ public class MiniWave : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SoundFXManager.instance.PlaySoundFXClip(miniWaveStart, transform, 1f);
+        MusicManager.instance.PlayWaveMusic(miniWaveStart as AudioClip, true);
+        MusicManager.instance.PlayNormalMusic();
     }
 
     // Update is called once per frame
@@ -20,7 +21,7 @@ public class MiniWave : MonoBehaviour
         if(transform.childCount > 0)
             childrenAdded = true;//just incase fixed update is called before we get to add the children
         if(transform.childCount <= 0 && childrenAdded){
-        SoundFXManager.instance.PlaySoundFXClip(miniWaveOver, transform, 1f);
+        MusicManager.instance.PlayWaveMusic(miniWaveOver as AudioClip, true);
             Destroy(gameObject);
         }
     }

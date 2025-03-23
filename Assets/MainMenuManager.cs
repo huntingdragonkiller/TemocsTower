@@ -11,6 +11,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     GameObject MainMenu;
     [SerializeField]
+    GameObject GameUI;
+    [SerializeField]
     SettingsManager settingsManager;
     public bool inMainMenu;
 
@@ -33,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
         mainCamera.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
         mainCamera.ImmediateSetZoom(cameraStartingZoom);
         MainMenu.SetActive(true);
+        GameUI.SetActive(false);
     }
     public void ReEnable(){
         // if(mainCamera.enabled)
@@ -58,6 +61,8 @@ public class MainMenuManager : MonoBehaviour
         mainCamera.CameraFocus(cameraStartingPosition);
         mainCamera.SetZoomLevel(0);
         gameObject.SetActive(false);
+        MusicManager.instance.PlayNormalMusic();
+        GameUI.SetActive(true);
     }
 
     public void OpenSettings(){

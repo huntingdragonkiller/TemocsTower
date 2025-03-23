@@ -98,17 +98,22 @@ public class EnemyManager : MonoBehaviour
             }
             //if its the last wave we use the rest of the points
             if(currentSpawnTime >= numSpawnTimes){
-
+                MusicManager.instance.PlayBossMusic();
                 miniWavePoints = remainingPoints;  
                 Debug.Log("Creating miniwave " + currentSpawnTime + " with points: " + miniWavePoints);
                 MiniWave finalMiniWave = StartMiniWave(miniWavePoints);
                 miniWave.miniWaveOver = waveOver;
 
+                MusicManager.instance.PlayBossMusic();
                 while(finalMiniWave != null){//waiting until the miniwave is over
                     yield return new WaitForFixedUpdate();
                 }
+                
+                MusicManager.instance.PlayNormalMusic();
                 break;
             }
+            
+        MusicManager.instance.PlayNormalMusic();
             
             Debug.Log("Creating miniwave " + currentSpawnTime + " with points: " + miniWavePoints);
             MiniWave newMiniWave = StartMiniWave(miniWavePoints);
