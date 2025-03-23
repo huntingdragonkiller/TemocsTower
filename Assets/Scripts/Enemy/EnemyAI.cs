@@ -17,7 +17,8 @@ public class EnemyAI : MonoBehaviour
     protected List<GameObject> potentialTargets  = new List<GameObject>();
     private IEnumerator attackCoroutine;
 
-
+private Animator anim;
+    bool isAttacking;
     
     void Awake()
     {
@@ -32,6 +33,7 @@ public class EnemyAI : MonoBehaviour
 
     protected virtual void Start() {
         // Debug.Log("Enemy Start");
+        anim = GetComponent<Animator>();
         canAttack = false;
         attackCoroutine = AttackSubRoutine();
         StartCoroutine(attackCoroutine);
@@ -69,10 +71,15 @@ public class EnemyAI : MonoBehaviour
         
         Debug.Log("Attack? " + attackTarget);
         if(attackTarget != null){
+            isAttacking = true;
             Debug.Log("Attacking: " + attackTarget);
             attackTarget.SendMessage("TakeDamage", enemyData.currentDamage);
             SoundFXManager.instance.PlaySoundFXClip(enemyData.attackSoundClip, transform, 1f);
         }
+    }
+
+    void AttackEnd() {
+        isAttacking = false;
     }
 
     protected virtual GameObject GetTarget()
