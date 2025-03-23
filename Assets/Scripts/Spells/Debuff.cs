@@ -12,7 +12,7 @@ public class Debuff : Spell
     protected override void Awake()
     {
         base.Awake();
-        targetFinder.radius = radius;
+        transform.localScale = transform.localScale * radius;
     }
     IEnumerator Hold(float duration, GameObject toBuff){
         Debug.Log("" + duration);
