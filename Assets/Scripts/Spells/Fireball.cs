@@ -22,9 +22,9 @@ public class Fireball : Spell
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0)) {
-            Explode();
-        }
+        // if (Input.GetKeyDown(KeyCode.Alpha0)) {
+        //     Explode();
+        // }
     }
 
     public override void CastSpellAt(Vector3 position){
