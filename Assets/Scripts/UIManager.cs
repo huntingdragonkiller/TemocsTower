@@ -36,7 +36,7 @@ public class UIManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(Time.timeScale > 0 && !settingsMenu.activeSelf )
+            if(Time.timeScale > 0 )
                 OpenPauseMenu();
             else{
                 ClosePauseMenu();
@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour
 
     public void ClosePauseMenu()
     {
-        if(paused && !settingsMenu.activeSelf)
+        if(paused)
             Unpause();
         pauseMenu.SetActive(false);
     }
