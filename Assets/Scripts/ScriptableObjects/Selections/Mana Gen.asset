@@ -16,3 +16,4 @@ MonoBehaviour:
   name: Mana Farm
   description: Generates Mana
   sprite: {fileID: 0}
+  cost: 15

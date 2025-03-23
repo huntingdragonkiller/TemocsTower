@@ -16,3 +16,4 @@ MonoBehaviour:
   name: Mine
   description: Creates coins. What, did you think there was supposed to be more here?
   sprite: {fileID: 0}
+  cost: 50

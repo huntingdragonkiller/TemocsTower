@@ -16,4 +16,4 @@ MonoBehaviour:
   name: Arcane Turret
   description: Shoots down enemies with bolts of arcane energy.
   sprite: {fileID: 0}
-  cost: 0
+  cost: 30
