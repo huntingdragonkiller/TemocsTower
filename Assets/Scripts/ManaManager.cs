@@ -1,13 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ManaManager : MonoBehaviour
 {
     [SerializeField]
     ManaUIManager manaUIManager;
-
+    [SerializeField]
+    TextMeshProUGUI manaAmountText;
     public List<Spell> spellPrefabs;
     List<bool> canCastSpell = new List<bool>();
     public int manaAmount;
@@ -141,10 +143,12 @@ public class ManaManager : MonoBehaviour
         if (manaAmount + manaToAdd >= maxMana)
         {
             manaAmount = maxMana;
+            manaAmountText.text = "Mana: " + manaAmount;
         }
         else
         {
             manaAmount += manaToAdd;
+            manaAmountText.text = "Mana: " + manaAmount;
         }
     }
 
@@ -159,6 +163,7 @@ public class ManaManager : MonoBehaviour
         else
         {
             manaAmount -= manaCost;
+            manaAmountText.text = "Mana: " + manaAmount;
             return true;
         }
     }

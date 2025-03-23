@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3643282410121641ad70e45956394e0, type: 3}
   m_Name: Barrier
   m_EditorClassIdentifier: 
-  duration: 10
+  duration: 5
   damage: 3
-  cooldownTime: 15
-  manaCost: 1
+  cooldownTime: 12
+  manaCost: 20
