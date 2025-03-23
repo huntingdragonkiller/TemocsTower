@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc23aa7efe38d045bc5533721c52f16, type: 3}
   m_Name: FriendlySoldier
   m_EditorClassIdentifier: 
-  moveSpeed: 2
+  moveSpeed: 3
   attackSpeed: 2
   maxHealth: 100
-  damage: 4
+  damage: 6
   isGroundEnemy: 1
   spawnCost: 0
   killReward: 0
