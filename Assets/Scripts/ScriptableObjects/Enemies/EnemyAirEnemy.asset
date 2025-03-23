@@ -12,10 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc23aa7efe38d045bc5533721c52f16, type: 3}
   m_Name: EnemyAirEnemy
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 10
   attackSpeed: 1
   maxHealth: 35
   damage: 5
   isGroundEnemy: 0
   spawnCost: 10
   killReward: 5
+  attackSoundClip: {fileID: 0}
+  damageSoundClip: {fileID: 0}
+  deathSoundClip: {fileID: 0}

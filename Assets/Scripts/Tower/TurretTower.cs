@@ -100,7 +100,6 @@ public class TurretTower : TowerSegment
         // newProjectile.TrackingLaunch(target);
 
         // Implement call to Shooter.shoot here
-        Debug.Log("1738 AY IM LIKE HEY WASSUP HELLO");
         shooterScript.Shoot(GetTarget().transform);
 
     }

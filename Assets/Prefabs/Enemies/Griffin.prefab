@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1743110743092801497}
-  - component: {fileID: 673850467231469448}
+  - component: {fileID: 2627012266226071069}
   m_Layer: 7
   m_Name: AttackHitbox
   m_TagString: Hitbox
@@ -32,8 +32,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3411296922954543802}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &673850467231469448
-CircleCollider2D:
+--- !u!60 &2627012266226071069
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -66,8 +66,24 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.15}
-  m_Radius: 1.2209759
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 1}
+      - {x: -8.433572, y: 0.57435495}
+      - {x: -8.600979, y: -0.27834213}
+      - {x: 0.004041314, y: -0.7028825}
+      - {x: -0.5879011, y: 0.2028827}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7357179300845184114
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +96,8 @@ GameObject:
   - component: {fileID: 4370984425284845665}
   - component: {fileID: 3516116594058667688}
   - component: {fileID: 6919039661734210343}
-  - component: {fileID: 8996631404203410908}
+  - component: {fileID: 2289327908064714210}
+  - component: {fileID: 4230786992253291926}
   - component: {fileID: 2198273592554467714}
   m_Layer: 7
   m_Name: Griffin
@@ -237,7 +254,7 @@ MonoBehaviour:
   damageSoundClip: {fileID: 0}
   deathSoundClip: {fileID: 0}
   healthBar: {fileID: 4186311068453111826}
---- !u!114 &8996631404203410908
+--- !u!114 &2289327908064714210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -246,13 +263,110 @@ MonoBehaviour:
   m_GameObject: {fileID: 7357179300845184114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c397e46cddc1bd4aaef86621c4891bf, type: 3}
+  m_Script: {fileID: 11500000, guid: e7d915845dbe5454c987baa2415b6c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackHitbox: {fileID: 673850467231469448}
+  attackHitbox: {fileID: 2627012266226071069}
   target: {fileID: 0}
   canAttack: 0
   attackTarget: {fileID: 0}
+  refactoredArcherProjectile: {fileID: 0}
+  projectileMaxMoveSpeed: 5
+  projectileMaxHeight: 4
+--- !u!114 &4230786992253291926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357179300845184114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a30c0ba0015964d820c10bdb9bcd2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectileVisual: {fileID: 0}
+  trajectoryAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.26729327
+      outSlope: 0.26729327
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.13883378
+    - serializedVersion: 3
+      time: 0.1
+      value: 0.15271842
+      inSlope: -0.0021488282
+      outSlope: -0.0021488282
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2
+      value: 0.000066843815
+      inSlope: -0.2787487
+      outSlope: -0.2787487
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.09546691
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 4
+  axisCorrectionAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  speedAnimationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!50 &2198273592554467714
 Rigidbody2D:
   serializedVersion: 5
