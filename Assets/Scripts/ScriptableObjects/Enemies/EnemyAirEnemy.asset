@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   attackSpeed: 1
-  maxHealth: 35
+  maxHealth: 45
   damage: 5
   isGroundEnemy: 0
   spawnCost: 10
   killReward: 5
+  attackSoundClip: {fileID: 0}
+  damageSoundClip: {fileID: 0}
+  deathSoundClip: {fileID: 0}

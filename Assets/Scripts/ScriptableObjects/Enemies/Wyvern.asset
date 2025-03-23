@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
   attackSpeed: 3
-  maxHealth: 25
+  maxHealth: 35
   damage: 10
   isGroundEnemy: 0
   spawnCost: 10
