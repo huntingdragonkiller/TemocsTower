@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ManaUIManager : TowerUIManager
+public class ManaTowerUIManager : TowerUIManager
 {
     public TextMeshProUGUI manaGenerated;
     public TextMeshProUGUI productionSpeed;

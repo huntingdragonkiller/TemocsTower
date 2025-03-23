@@ -9,7 +9,7 @@ public class ManaTower : TowerSegment
     public float generateAmount;
     public float generateInterval;
     private IEnumerator generateMana;
-    public ManaUIManager manaUIManager;
+    public ManaTowerUIManager manaUIManager;
 
     public override void Awake()
     {

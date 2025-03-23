@@ -1,16 +1,23 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ManaManager : MonoBehaviour
 {
+    [SerializeField]
+    ManaUIManager manaUIManager;
 
     public List<Spell> spellPrefabs;
+    List<bool> canCastSpell = new List<bool>();
     public int manaAmount;
     public int maxMana;
 
     [HideInInspector]
     public bool spellReady;
     Spell preparedSpell;
+    IEnumerator resetCastSpell;
+    int spellIndex = -1;
 
     //public SpellScriptableGameObject currentSpell;
 
@@ -27,6 +34,9 @@ public class ManaManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        foreach(Spell spell in spellPrefabs){
+            canCastSpell.Add(true);
+        }
         spellReady = false;
     }
 
@@ -36,8 +46,11 @@ public class ManaManager : MonoBehaviour
 
         checkIfSpellSelected();
 
-        // if 
-        if (spellReady && Input.GetMouseButtonDown(0))
+        if(spellIndex == -1)
+        {
+            return;
+        }
+        if (canCastSpell[spellIndex] && Input.GetMouseButtonDown(0))
         {
             // call get mouse click coordinates  ?
             // on Mouse Click:
@@ -62,6 +75,10 @@ public class ManaManager : MonoBehaviour
             Spell castedSpell = Instantiate(preparedSpell);
             if(decreaseMana(castedSpell.manaCost)){
                 castedSpell.CastSpellAt(mouseWorldPosition);
+                canCastSpell[spellIndex] = false;
+                resetCastSpell = WaitTillDone(manaUIManager.CastedSelectedSpell(), spellIndex);
+                spellIndex = -1;
+                preparedSpell = null;
             } else {
                 Destroy(castedSpell);
             }
@@ -70,45 +87,53 @@ public class ManaManager : MonoBehaviour
         }
     }
 
+    private IEnumerator WaitTillDone(SpellUIManager spellUIManager, int index)
+    {
+
+        while(spellUIManager.onCooldown){
+            yield return new WaitForFixedUpdate();
+        }
+        canCastSpell[index] = true;
+    }
+
     public void checkIfSpellSelected()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            try{preparedSpell = spellPrefabs[0];
-            spellReady = true;}
-            catch{}
+            spellIndex = 0;
             
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            try{preparedSpell = spellPrefabs[1];
-            spellReady = true;}
-            catch{}
+            
+            spellIndex = 1;
             
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            try{preparedSpell = spellPrefabs[2];
-            spellReady = true;}
-            catch{}
+            
+            spellIndex = 2;
             
         }
         else if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            try{preparedSpell = spellPrefabs[3];
-            spellReady = true;}
-            catch{}
+            
+            spellIndex = 3;
             
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            try{preparedSpell = spellPrefabs[4];
-            spellReady = true;}
-            catch{}
+        else if (Input.GetKeyDown(KeyCode.Alpha5)){
+    
+            spellIndex = 4;
+        
             
-            
-        } else {
         }
+
+        if(spellIndex != -1){
+            preparedSpell = spellPrefabs[spellIndex];
+            spellReady = true;
+            manaUIManager.SetActiveSpell(spellIndex);
+        }
+           
     }
 
     public void addToMana(int manaToAdd)
