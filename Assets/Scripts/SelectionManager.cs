@@ -19,8 +19,8 @@ public class SelectionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            NewSelections();
+        // if (Input.GetKeyDown(KeyCode.Space))
+        //     NewSelections();
             // ShowSegmentChoices();
         if(shouldBePaused && Time.timeScale != 0)
         {
