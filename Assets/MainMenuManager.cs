@@ -7,7 +7,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     Transform cameraStartingPosition;
     [SerializeField]
-    float cameraStartingZoom;
+    public float cameraStartingZoom;
     [SerializeField]
     GameObject MainMenu;
     [SerializeField]
@@ -29,7 +29,9 @@ public class MainMenuManager : MonoBehaviour
     }
     public void OnEnable(){
         inMainMenu = true;
-        ReEnable();
+
+        mainCamera.gameObject.transform.position = new Vector3(transform.position.x, transform.position.y, mainCamera.transform.position.z);
+        mainCamera.ImmediateSetZoom(cameraStartingZoom);
         MainMenu.SetActive(true);
     }
     public void ReEnable(){
@@ -59,7 +61,7 @@ public class MainMenuManager : MonoBehaviour
     }
 
     public void OpenSettings(){
-        settingsManager.Open();
+        settingsManager.Open(false);
     }
     public void Quit(){
         Debug.Log("Quitting");
