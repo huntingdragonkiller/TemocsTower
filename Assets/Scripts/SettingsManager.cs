@@ -8,8 +8,13 @@ public class SettingsManager : MonoBehaviour
 
     [SerializeField]
     GameObject audioSettingsScreen;
+    [SerializeField]
+    GameObject backButton;
+    [SerializeField]
+    GameObject doneButton;
 
     GameObject currentScreen;
+    public bool fromPause;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,14 +35,21 @@ public class SettingsManager : MonoBehaviour
         }
     }
     public void Close(){
-        gameObject.SetActive(false);
+        mainSettingsScreen.SetActive(false);
+        audioSettingsScreen.SetActive(false);
+        backButton.SetActive(false);
+        doneButton.SetActive(false);
     }
 
-    public void Open()
+    public void Open(bool fromPause)
     {
+        this.fromPause = fromPause;
         currentScreen = mainSettingsScreen;
         currentScreen.SetActive(true);
+        backButton.SetActive(true);
+        doneButton.SetActive(true);
     }
+
     public void OpenAudioSettings(){
         audioSettingsScreen.SetActive(true);
         mainSettingsScreen.SetActive(false);

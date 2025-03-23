@@ -13,9 +13,18 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     GameObject settingsMenu;
     [SerializeField]
+    SettingsManager settingsManager;
+    [SerializeField]
     CameraController mainCamera;
     bool paused = false;
+    private MainMenuManager mainMenu;
+    private Transform mainMenuTransform;
 
+    void Awake()
+    {
+        mainMenu = FindAnyObjectByType<MainMenuManager>();
+        mainMenuTransform = mainMenu.GetComponent<Transform>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,7 +36,7 @@ public class UIManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!pauseMenu.activeSelf && !settingsMenu.activeSelf)
+            if(Time.timeScale > 0 && !settingsMenu.activeSelf )
                 OpenPauseMenu();
             else{
                 ClosePauseMenu();
@@ -63,7 +72,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void OpenSettingsMenu(){
-        settingsMenu.SetActive(true);
+        settingsManager.Open(true);
         pauseMenu.SetActive(false);
     }
 
@@ -75,9 +84,10 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator GoBackToMainMenu()
     {
-        MainMenuManager mainMenu = FindAnyObjectByType<MainMenuManager>();
-        Transform mainMenuTransform = mainMenu.GetComponent<Transform>();
         mainCamera.CameraControl(mainMenuTransform);
+        mainCamera.SetZoom(mainMenu.cameraStartingZoom);
+        Unpause();
+        pauseMenu.SetActive(false);
         while(!mainCamera.atPosition){yield return new WaitForFixedUpdate();}
         mainMenu.gameObject.SetActive(true);
     }

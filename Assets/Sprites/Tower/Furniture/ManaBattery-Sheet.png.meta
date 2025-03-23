@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ManaBattery-Sheet_0: 4184451880337538676
+      ManaBattery-Sheet_1: 8776327717537778525
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
