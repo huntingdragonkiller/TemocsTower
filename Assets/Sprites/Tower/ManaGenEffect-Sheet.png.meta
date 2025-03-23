@@ -1572,65 +1572,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      ManaGenEffect-Sheet_0: -8442127913600793465
-      ManaGenEffect-Sheet_1: 3985500967399541364
-      ManaGenEffect-Sheet_10: 4998915220487852806
-      ManaGenEffect-Sheet_11: 8363620864962537825
-      ManaGenEffect-Sheet_12: -8024147489252258283
-      ManaGenEffect-Sheet_13: 6083855102767412695
-      ManaGenEffect-Sheet_14: -4048383639381845466
-      ManaGenEffect-Sheet_15: -6997277367571930259
-      ManaGenEffect-Sheet_16: 8533195156421876058
-      ManaGenEffect-Sheet_17: 2263965696581336047
-      ManaGenEffect-Sheet_18: 2784592124077144861
-      ManaGenEffect-Sheet_19: 2639089173410949415
-      ManaGenEffect-Sheet_2: 2219566745878179563
-      ManaGenEffect-Sheet_20: 7766778598342319772
-      ManaGenEffect-Sheet_21: -5616746679872556051
-      ManaGenEffect-Sheet_22: 3217332957513664854
-      ManaGenEffect-Sheet_23: -3298765156815798174
-      ManaGenEffect-Sheet_24: -51059828874289306
-      ManaGenEffect-Sheet_25: -8569619048248039137
-      ManaGenEffect-Sheet_26: 6390031712328131126
-      ManaGenEffect-Sheet_27: 7862885489189682026
-      ManaGenEffect-Sheet_28: 1211864004345255950
-      ManaGenEffect-Sheet_29: 5853914173599512102
-      ManaGenEffect-Sheet_3: 6850011845285734811
-      ManaGenEffect-Sheet_30: 291409520658826663
-      ManaGenEffect-Sheet_31: -1143995457356605129
-      ManaGenEffect-Sheet_32: -4657750255074371899
-      ManaGenEffect-Sheet_33: 5681544180243853350
-      ManaGenEffect-Sheet_34: 8663732178231356312
-      ManaGenEffect-Sheet_35: 5205510076106360389
-      ManaGenEffect-Sheet_36: -6278571508888292152
-      ManaGenEffect-Sheet_37: -211217604386672220
-      ManaGenEffect-Sheet_38: -3716746522741607222
-      ManaGenEffect-Sheet_39: 3808598255354121863
-      ManaGenEffect-Sheet_4: -461505651475036058
-      ManaGenEffect-Sheet_40: -8735197002268654987
-      ManaGenEffect-Sheet_41: 9176257346456322031
-      ManaGenEffect-Sheet_42: 3823504647361646570
-      ManaGenEffect-Sheet_43: -838986740887801736
-      ManaGenEffect-Sheet_44: 1478476090291203472
-      ManaGenEffect-Sheet_45: -3937032547066407391
-      ManaGenEffect-Sheet_46: 7452095597455787426
-      ManaGenEffect-Sheet_47: -4606374178675090189
-      ManaGenEffect-Sheet_48: -9203339740422448479
-      ManaGenEffect-Sheet_49: 3276074875438383150
-      ManaGenEffect-Sheet_5: -7184793017273260035
-      ManaGenEffect-Sheet_50: 8021526242439369577
-      ManaGenEffect-Sheet_51: 7479010721313385857
-      ManaGenEffect-Sheet_52: -6757687363252355781
-      ManaGenEffect-Sheet_53: 6157099021039158011
-      ManaGenEffect-Sheet_54: 2101317925209872748
-      ManaGenEffect-Sheet_55: 6444105328109401113
-      ManaGenEffect-Sheet_56: -8346768027089950014
-      ManaGenEffect-Sheet_57: 5299666688384704321
-      ManaGenEffect-Sheet_6: -5575771594682882998
-      ManaGenEffect-Sheet_7: -3562364113891293893
-      ManaGenEffect-Sheet_8: -3817788276857723366
-      ManaGenEffect-Sheet_9: 2218743557912346623
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

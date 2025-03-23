@@ -322,15 +322,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      TeleportPad-Sheet_0: 3731637517953611435
-      TeleportPad-Sheet_1: -6368827962465176967
-      TeleportPad-Sheet_2: -9076328528958235357
-      TeleportPad-Sheet_3: 8325733370871173738
-      TeleportPad-Sheet_4: 3623447261606387583
-      TeleportPad-Sheet_5: -2882580892619018863
-      TeleportPad-Sheet_6: 8054140309293598283
-      TeleportPad-Sheet_7: -8885163124562084611
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
