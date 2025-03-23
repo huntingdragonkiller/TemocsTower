@@ -17,3 +17,4 @@ MonoBehaviour:
   description: Increases maximum mana. Be careful! if this tower dies, the result
     will be explosive!
   sprite: {fileID: 0}
+  cost: 10

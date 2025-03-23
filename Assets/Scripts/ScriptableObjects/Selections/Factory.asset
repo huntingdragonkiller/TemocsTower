@@ -17,3 +17,4 @@ MonoBehaviour:
   description: Summons magical suits of armor that go out and attack enemies on the
     ground.
   sprite: {fileID: 0}
+  cost: 20
