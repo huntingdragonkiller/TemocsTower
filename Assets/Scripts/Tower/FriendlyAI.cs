@@ -26,6 +26,11 @@ public class FriendlyAI : MonoBehaviour
     float currentMoveSpeed;
     float moveSpeedVariation = 0.05f;
 
+
+    private Animator anim;
+    bool isAttacking;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -44,6 +49,8 @@ public class FriendlyAI : MonoBehaviour
 
         attackCoroutine = AttackSubRoutine(friendlyData.attackSpeed);
         StartCoroutine(attackCoroutine);
+
+        anim = GetComponent<Animator>();
     }
 
     // attacks at an interval given by the attack speed stat
@@ -64,10 +71,15 @@ public class FriendlyAI : MonoBehaviour
     {
         EnemyAI target = GetTarget();
         if(target != null){
+            isAttacking = true;
             target.SendMessage("TakeDamage", friendlyData.currentDamage);
             SoundFXManager.instance.PlaySoundFXClip(friendlyData.attackSoundClip, transform, 1f);
         }
         Debug.Log("Attacking: " + target);
+    }
+
+    void AttackEnd() {
+        isAttacking = false;
     }
 
     //Returns the target dependant on the towers target settings
