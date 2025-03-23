@@ -30,6 +30,11 @@ public class TowerSegment : MonoBehaviour
     bool isVisible = false;
     private static bool warningIssued;
     private static GameObject currentWarnedObject;
+    private static readonly int IsBuilding = Animator.StringToHash("isBuilding");
+
+    private Animator anim;
+    private bool isBuilding;
+    private float buildTime = 15 / 60f;
 
     public virtual void Awake()
     {
@@ -48,7 +53,19 @@ public class TowerSegment : MonoBehaviour
     // Changed this
     protected virtual void Start()
     {
+        anim = GetComponentInChildren<Animator>();
+        isBuilding = true;
         towerManager = GameObject.Find("TowerManager").GetComponent<TowerManager>();
+    }
+
+    void Update()
+    {
+        buildTime -= Time.deltaTime;
+        if (buildTime <= 0)
+        {
+            isBuilding = false;
+            anim.SetBool(IsBuilding, isBuilding);
+        }
     }
     
     void OnDestroy()

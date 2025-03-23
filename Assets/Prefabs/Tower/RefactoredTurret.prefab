@@ -1432,6 +1432,7 @@ GameObject:
   - component: {fileID: 4256750260318620334}
   - component: {fileID: 699146226286162935}
   - component: {fileID: 8969225079023870251}
+  - component: {fileID: -3580056255269350733}
   m_Layer: 3
   m_Name: RefactoredTurret
   m_TagString: Tower
@@ -1496,6 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a30c0ba0015964d820c10bdb9bcd2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileVisual: {fileID: 0}
   trajectoryAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -1696,6 +1698,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-3580056255269350733
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8975982602868462296}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e7317d2c92c8514d8b7ac3a237dcb36, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &4316159213681435573
 PrefabInstance:
   m_ObjectHideFlags: 0
