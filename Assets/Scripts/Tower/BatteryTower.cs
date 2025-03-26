@@ -24,6 +24,7 @@ public class BatteryTower : TowerSegment
         batteryUIManager.UpdateFriendlyDamage(friendlyDamage, baseDamage);
         selfHeal = SelfHeal();
         StartCoroutine(selfHeal);
+        ManaManager.instance.IncreaseMaxMana((int)manaStored);
     }
 
     //Self heals by 1 percent max health per second
@@ -48,6 +49,7 @@ public class BatteryTower : TowerSegment
         maxHealth += 50;
         friendlyDamage -= baseDamage * 0.1f;
         manaStored += 50;
+        ManaManager.instance.IncreaseMaxMana(50);
         batteryUIManager.UpdateHealth(currentHealth, maxHealth);
         batteryUIManager.UpdateStorage(manaStored);
         batteryUIManager.UpdateFriendlyDamage(friendlyDamage, baseDamage);
@@ -78,6 +80,7 @@ public class BatteryTower : TowerSegment
     // }
     public override void Kill()
     {
+        ManaManager.instance.IncreaseMaxMana((int)-manaStored);
         GetComponent<BoxCollider2D>().enabled = false;//disable our damage hitbox, just incase the explosion collides w/ itself
         explosion.enabled = true;
         List<Collider2D> contacts = new List<Collider2D>();

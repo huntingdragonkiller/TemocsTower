@@ -37,7 +37,7 @@ public class EnemyStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void InitializeValues(float percentChange = 1){
+    public void InitializeValues(float percentChange = 1f){
         currentMoveSpeed = enemyData.MoveSpeed * percentChange * Time.fixedDeltaTime;//Gives us the move speed in tiles per second
         maxHealth = enemyData.MaxHealth * percentChange;
         currentDamage = enemyData.Damage * percentChange;

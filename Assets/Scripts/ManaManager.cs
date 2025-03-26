@@ -10,6 +10,10 @@ public class ManaManager : MonoBehaviour
     ManaUIManager manaUIManager;
     [SerializeField]
     TextMeshProUGUI manaAmountText;
+    [SerializeField]
+    float passiveManaGenSpeed = 1f;
+    [SerializeField]
+    int passiveManaGenAmount = 1;
     public List<Spell> spellPrefabs;
     List<bool> canCastSpell = new List<bool>();
     public int manaAmount;
@@ -19,6 +23,7 @@ public class ManaManager : MonoBehaviour
     public bool spellReady;
     Spell preparedSpell;
     IEnumerator resetCastSpell;
+    IEnumerator passiveManaGen;
     int spellIndex = -1;
 
     //public SpellScriptableGameObject currentSpell;
@@ -40,6 +45,17 @@ public class ManaManager : MonoBehaviour
             canCastSpell.Add(true);
         }
         spellReady = false;
+        passiveManaGen = PassiveManaGeneration();
+        StartCoroutine(passiveManaGen);
+    }
+
+    private IEnumerator PassiveManaGeneration()
+    {
+        while (true)
+        {
+            addToMana(passiveManaGenAmount);
+            yield return new WaitForSeconds(passiveManaGenSpeed);
+        }
     }
 
     // Update is called once per frame
@@ -79,6 +95,7 @@ public class ManaManager : MonoBehaviour
                 castedSpell.CastSpellAt(mouseWorldPosition);
                 canCastSpell[spellIndex] = false;
                 resetCastSpell = WaitTillDone(manaUIManager.CastedSelectedSpell(), spellIndex);
+                StartCoroutine(resetCastSpell);
                 spellIndex = -1;
                 preparedSpell = null;
             } else {
@@ -94,8 +111,10 @@ public class ManaManager : MonoBehaviour
 
         while(spellUIManager.onCooldown){
             yield return new WaitForFixedUpdate();
+            Debug.Log("still waiting");
         }
         canCastSpell[index] = true;
+        Debug.Log("We're good");
     }
 
     public void checkIfSpellSelected()
@@ -150,6 +169,14 @@ public class ManaManager : MonoBehaviour
             manaAmount += manaToAdd;
             manaAmountText.text = "Mana: " + manaAmount;
         }
+    }
+
+    public void IncreaseMaxMana(int amountToIncrease)
+    {
+        maxMana += amountToIncrease;
+        if (manaAmount > maxMana)
+            manaAmount = maxMana;
+        manaAmountText.text = "Mana: " + manaAmount;
     }
 
 

@@ -194,12 +194,12 @@ public class EnemyAI : MonoBehaviour
         //transform.position = new Vector3(Vector3.Lerp(transform.position, target.transform.position, enemyData.currentMoveSpeed).x, transform.position.y, 0);
         if (transform.position.x > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             movementVector += Vector3.left * enemyData.currentMoveSpeed;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);//flips the enemy around
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z); //flips the enemy around
             movementVector += Vector3.right * enemyData.currentMoveSpeed;
         }
         // Debug.Log("Moving by " + movementVector);
@@ -210,7 +210,7 @@ public class EnemyAI : MonoBehaviour
     {
         //TODO: Make the target go backwards from current facing direction in an arc
         // thx emilio although this might work for now
-        float xScale = transform.localScale.x;//should be -1 if on left side of tower, 1 on right side of tower
+        float xScale = transform.localScale.x / Mathf.Abs(transform.localScale.x);//should be -1 if on left side of tower, 1 on right side of tower
         //ABOVE DOES NOT WORK FOR BALLISTAS CURRENTLY LOL!!!!
         transform.position = transform.position + new Vector3(xScale * knockback, 0, 0);
     }

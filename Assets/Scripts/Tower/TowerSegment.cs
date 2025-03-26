@@ -74,6 +74,7 @@ public class TowerSegment : MonoBehaviour
     }
 
     public void SetLocalTimeScale(float toSet = 1f){
+        Debug.Log(gameObject.name + " got buffed");
         localTimeScale = toSet;
     }
 

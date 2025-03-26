@@ -31,7 +31,9 @@ public class TowerManager : MonoBehaviour
     void InitializeFirstTowerSegment(){
         towerSegments.Add(baseSegment);
         numTowerTracker.Add(baseSegment.towerData, 1);
-        FindFirstObjectByType<ShopManager>().AddNewSelection(baseSelection);
+        ShopManager shop = FindAnyObjectByType<ShopManager>(FindObjectsInactive.Include);
+        shop.AddNewSelection(baseSelection);
+
     }
 
     public void AddSegment(TowerSegment toAdd)

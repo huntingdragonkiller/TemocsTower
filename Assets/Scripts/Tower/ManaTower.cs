@@ -27,7 +27,7 @@ public class ManaTower : TowerSegment
             return false;
         
         generateAmount += 5;
-        generateInterval -= 0.1f;
+        //generateInterval -= 0.1f;
         RestartManaCoroutine();
         manaUIManager.UpdateManaGenerated((int)generateAmount);
         manaUIManager.UpdateProdSpeed(generateInterval);
@@ -51,6 +51,7 @@ public class ManaTower : TowerSegment
             }
             yield return new WaitForSeconds(waitTime * localTimeScale);
             Debug.Log("Generated " + generateAmount + " mana");
+            ManaManager.instance.addToMana((int)generateAmount);
             SoundFXManager.instance.PlaySoundFXClip(manaGenSound, transform, 1);
             
         }

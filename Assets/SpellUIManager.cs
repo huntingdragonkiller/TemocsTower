@@ -33,8 +33,9 @@ public class SpellUIManager : MonoBehaviour
             yield return new WaitForFixedUpdate();
             
             cooldownBar.anchorMax += offset;
-            Debug.Log(cooldownBar.anchorMax);
+            //Debug.Log(cooldownBar.anchorMax);
         }
+        Debug.Log("DONE");
         onCooldown = false;
     }
 
