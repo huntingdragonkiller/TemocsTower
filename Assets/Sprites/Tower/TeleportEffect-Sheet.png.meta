@@ -272,7 +272,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      TeleportEffect-Sheet_0: -2726015566462370716
+      TeleportEffect-Sheet_1: 508683540378956396
+      TeleportEffect-Sheet_2: 638545173964596534
+      TeleportEffect-Sheet_3: -7764403880081046672
+      TeleportEffect-Sheet_4: 6603625792845295839
+      TeleportEffect-Sheet_5: -2130117846712429721
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

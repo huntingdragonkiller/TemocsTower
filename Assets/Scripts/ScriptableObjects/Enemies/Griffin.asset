@@ -17,8 +17,8 @@ MonoBehaviour:
   maxHealth: 60
   damage: 10
   isGroundEnemy: 0
-  spawnCost: 10
-  killReward: 5
+  spawnCost: 40
+  killReward: 20
   attackSoundClip: {fileID: 0}
   damageSoundClip: {fileID: 0}
   deathSoundClip: {fileID: 0}

@@ -222,7 +222,11 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      arcaneturret-idle_0: 652870117472764084
+      arcaneturret-idle_1: -7673921384417953623
+      arcaneturret-idle_2: 4155779354210607734
+      arcaneturret-idle_3: -1987342911025574669
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
