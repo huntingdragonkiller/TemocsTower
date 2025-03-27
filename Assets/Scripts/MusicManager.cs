@@ -70,8 +70,7 @@ public class MusicManager : MonoBehaviour
     public void PlayWaveMusic(AudioClip song, bool waitTillDone = false){
         if(swapRoutine != null)
             StopCoroutine(swapRoutine);
-        swapRoutine = SwapToMusic(song, waitTillDone);
-        StartCoroutine(swapRoutine);
+        StartCoroutine(Interrupt(song));
     }
 
     //Slowly fades out the current music, and fades in the new music
@@ -108,4 +107,60 @@ public class MusicManager : MonoBehaviour
         // currentMusic = toSwap;
         // toSwap = null;
     }
+
+    private IEnumerator Interrupt(AudioClip toPlay)
+    {
+        AudioSource interrupter = Instantiate(musicSoundObject);
+
+        interrupter.clip = toPlay;
+        currentMusic.Pause();
+        interrupter.loop = false;
+        interrupter.Play();
+        while (interrupter.isPlaying)
+        {
+            Debug.Log("Waiting");
+            yield return new WaitForFixedUpdate();
+        }
+        Destroy(interrupter.gameObject);
+        currentMusic.Play();
+    }
+
+    private IEnumerator FadeOut(AudioSource toFade, float duration, float threshold = 0f)
+    {
+        float percentPerFrame = (1f / duration) * Time.deltaTime;
+        while (toFade.volume > threshold) {
+            toFade.volume -= percentPerFrame;
+            yield return new WaitForFixedUpdate();
+        }
+
+    }
+    private IEnumerator FadeIn(AudioSource toFade, float duration, float threshold = 0f)
+    {
+        float percentPerFrame = (1f / duration) * Time.deltaTime;
+        while (toFade.volume < threshold)
+        {
+            toFade.volume += percentPerFrame;
+            yield return new WaitForFixedUpdate();
+        }
+
+    }
+
+    public void FadeOutCurrentMusic(float duration, float threshold)
+    {
+        StartCoroutine(FadeOut(currentMusic, duration, threshold));
+    }
+    public void FadeInCurrentMusic(float duration, float threshold)
+    {
+        StartCoroutine(FadeIn(currentMusic, duration, threshold));
+    }
+
+    public void PauseMusic()
+    {
+        currentMusic.Pause();
+    }
+    public void UnPause()
+    {
+        currentMusic.Play();
+    }
+
 }
