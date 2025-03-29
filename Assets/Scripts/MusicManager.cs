@@ -25,6 +25,10 @@ public class MusicManager : MonoBehaviour
     AudioSource currentMusic;
     AudioSource toSwap;
     IEnumerator swapRoutine;
+    IEnumerator fadeInRoutine;
+    bool fadingIn = false;
+    IEnumerator fadeOutRoutine;
+    bool fadingOut = false;
     public static MusicManager instance;
     bool loadin = true;
     bool canSwap = true;
@@ -77,10 +81,32 @@ public class MusicManager : MonoBehaviour
     private IEnumerator SwapToMusic(AudioClip swappingTo, bool waitTillDone = false)
     {
         if(canSwap){
-            currentMusic.Stop();
-            currentMusic.clip = swappingTo;
-            currentMusic.Play();
-            yield return null; 
+            //currentMusic.Stop();
+            //currentMusic.clip = swappingTo;
+            //currentMusic.Play();
+            //yield return null;
+            FadeOutCurrentMusic(3f, .2f);
+            if (toSwap == null)
+                toSwap = Instantiate(musicSoundObject, transform);
+
+            toSwap.clip = swappingTo;
+            toSwap.loop = true;
+            toSwap.volume = 0f;
+            toSwap.Play();
+
+            if (fadeInRoutine != null)
+                StopCoroutine(fadeInRoutine);
+            fadeInRoutine = FadeIn(toSwap, 4f, 1f);
+            StartCoroutine(fadeInRoutine);
+
+            while(fadingIn && fadingOut) { yield return new WaitForFixedUpdate(); }
+
+            Destroy(currentMusic.gameObject);
+            currentMusic = toSwap;
+            toSwap = null;
+
+
+
         } else {
             while(currentMusic.isPlaying){yield return new WaitForFixedUpdate();}
             currentMusic.clip = swappingTo;
@@ -114,6 +140,8 @@ public class MusicManager : MonoBehaviour
 
         interrupter.clip = toPlay;
         currentMusic.Pause();
+        if(toSwap != null)
+            toSwap.Pause();
         interrupter.loop = false;
         interrupter.Play();
         while (interrupter.isPlaying)
@@ -123,35 +151,67 @@ public class MusicManager : MonoBehaviour
         }
         Destroy(interrupter.gameObject);
         currentMusic.Play();
+        if (toSwap != null)
+            toSwap.Play();
     }
 
     private IEnumerator FadeOut(AudioSource toFade, float duration, float threshold = 0f)
     {
-        float percentPerFrame = (1f / duration) * Time.deltaTime;
-        while (toFade.volume > threshold) {
-            toFade.volume -= percentPerFrame;
+        fadingOut = true;
+        float currentTime = 0;
+        float start = toFade.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            toFade.volume = Mathf.Lerp(start, threshold, currentTime / duration);
             yield return new WaitForFixedUpdate();
         }
+        fadingOut = false;
+        yield break;
+
+        //float percentPerFrame = (1f * duration) * Time.deltaTime;
+        //while (toFade.volume > threshold) {
+        //    toFade.volume -= percentPerFrame;
+        //    yield return new WaitForFixedUpdate();
+        //}
+
 
     }
     private IEnumerator FadeIn(AudioSource toFade, float duration, float threshold = 0f)
     {
-        float percentPerFrame = (1f / duration) * Time.deltaTime;
-        while (toFade.volume < threshold)
+        fadingIn = true;
+        float currentTime = 0;
+        float start = toFade.volume;
+        while (currentTime < duration)
         {
-            toFade.volume += percentPerFrame;
+            currentTime += Time.deltaTime;
+            toFade.volume = Mathf.Lerp(start, threshold, currentTime / duration);
             yield return new WaitForFixedUpdate();
         }
+        fadingIn = false;
+        yield break;
+        //float percentPerFrame = (1f * duration) * Time.deltaTime;
+        //while (toFade.volume < threshold)
+        //{
+        //    toFade.volume += percentPerFrame;
+        //    yield return new WaitForFixedUpdate();
+        //}
 
     }
 
     public void FadeOutCurrentMusic(float duration, float threshold)
     {
-        StartCoroutine(FadeOut(currentMusic, duration, threshold));
+        if (fadeOutRoutine != null)
+            StopCoroutine(fadeOutRoutine);
+        fadeOutRoutine = FadeOut(currentMusic, duration, threshold);
+        StartCoroutine(fadeOutRoutine);
     }
     public void FadeInCurrentMusic(float duration, float threshold)
     {
-        StartCoroutine(FadeIn(currentMusic, duration, threshold));
+        if (fadeInRoutine != null)
+            StopCoroutine(fadeInRoutine);
+        fadeInRoutine = FadeIn(currentMusic, duration, threshold);
+        StartCoroutine(fadeInRoutine);
     }
 
     public void PauseMusic()
