@@ -5855,7 +5855,10 @@ MonoBehaviour:
   - 50
   cameraSpeed: 20
   atPosition: 1
-  blockInput: 0
+  blockUpInput: 0
+  blockDownInput: 0
+  blockLeftInput: 0
+  blockRightInput: 0
 --- !u!1 &520082053
 GameObject:
   m_ObjectHideFlags: 0
@@ -15166,7 +15169,10 @@ MonoBehaviour:
   - 10
   cameraSpeed: 20
   atPosition: 1
-  blockInput: 0
+  blockUpInput: 0
+  blockDownInput: 0
+  blockLeftInput: 0
+  blockRightInput: 0
   warningZoom: 5
 --- !u!114 &1117807574
 MonoBehaviour:
@@ -42736,8 +42742,8 @@ SceneRoots:
   - {fileID: 634469393}
   - {fileID: 1008626109}
   - {fileID: 519420032}
+  - {fileID: 693913702}
   - {fileID: 619394802}
   - {fileID: 3977188132404799220}
   - {fileID: 1789067623}
   - {fileID: 2013949874}
-  - {fileID: 693913702}

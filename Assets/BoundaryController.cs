@@ -28,30 +28,37 @@ public class BoundaryController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+
+    //Not where I want it yet, needs to be smoother with the zoom and not "stick" when it hits the bounds
+    private void Update()
     {
         float camHeight = mainCamera.orthographicSize;
         float camWidth = camHeight * mainCamera.aspect;
         if (mainCamera.transform.position.x + camWidth > right)
         {
-            cameraController.CameraMoveLeft();
-            cameraController.CameraLock();
+            cameraController.CameraRightLock();
+            //need to put this outside the if?? maybe the problems in the cam controller
+            if (!Input.GetKey(KeyCode.D))
+                cameraController.CameraMoveLeft();
         }
         else if (mainCamera.transform.position.x - camWidth < left)
         {
-            cameraController.CameraMoveRight();
-            cameraController.CameraLock();
+            cameraController.CameraLeftLock();
+            if (!Input.GetKey(KeyCode.A))
+                cameraController.CameraMoveRight();
         }
 
         if (mainCamera.transform.position.y + camHeight > top)
         {
-            cameraController.CameraMoveDown();
-            cameraController.CameraLock();
+            cameraController.CameraUpLock();
+            if (!Input.GetKey(KeyCode.W))
+                cameraController.CameraMoveDown();
         }
         else if (mainCamera.transform.position.y - camHeight < bottom)
         {
-            cameraController.CameraMoveUp();
-            cameraController.CameraLock();
+            cameraController.CameraDownLock();
+            if (!Input.GetKey(KeyCode.S))
+                cameraController.CameraMoveUp();
         }
 
     }

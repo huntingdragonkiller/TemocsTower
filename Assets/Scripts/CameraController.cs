@@ -28,7 +28,10 @@ public class CameraController : MonoBehaviour
     int elapsedSnapFrames = 0;
     bool keyHeld = false;
     public bool atPosition = true;
-    public bool blockInput = false;
+    public bool blockUpInput = false;
+    public bool blockDownInput = false;
+    public bool blockLeftInput = false;
+    public bool blockRightInput = false;
 
     private void Awake()
     {
@@ -45,31 +48,35 @@ public class CameraController : MonoBehaviour
     
     protected virtual void Update()
     {
-        if(blockInput)
-            return;
-        if (Input.GetKey(KeyCode.W))
+        
+        if (Input.GetKey(KeyCode.W) && !blockUpInput)
         {
             CameraMoveUp();
             keyHeld = true;
             // targetPosition.y += cameraSpeed * Time.deltaTime;
             // gameObject.transform.position = targetPosition;
-        } else if (Input.GetKey(KeyCode.S))
+        }
+        if (Input.GetKey(KeyCode.S) && !blockDownInput)
         {
             CameraMoveDown();
             keyHeld = true;
             // targetPosition.y -= cameraSpeed * Time.deltaTime;
             // gameObject.transform.position = targetPosition;
         }
-
-        if (Input.GetKey(KeyCode.A))
+        
+        
+        if (Input.GetKey(KeyCode.A) && !blockLeftInput)
         {
             keyHeld = true;
             CameraMoveLeft();
-        } else if (Input.GetKey(KeyCode.D))
+        }
+
+        if (Input.GetKey(KeyCode.D) && !blockRightInput)
         {
             keyHeld = true;
             CameraMoveRight();
         }
+        
 
         //If absolutely no keys are down set the elapsed frames to zero
         if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
@@ -80,6 +87,19 @@ public class CameraController : MonoBehaviour
         {
             elapsedSnapFrames = 0;
             keyHeld = false;
+        }
+
+        if (atPosition)
+        {
+            if (!Input.GetKey(KeyCode.W))
+                blockUpInput = false;
+            if (!Input.GetKey(KeyCode.S))
+                blockDownInput = false;
+            if (!Input.GetKey(KeyCode.A))
+                blockLeftInput = false;
+            if (!Input.GetKey(KeyCode.D))
+                blockRightInput = false;
+
         }
 
 
@@ -96,6 +116,8 @@ public class CameraController : MonoBehaviour
             // Debug.Break();
             SetZoomLevel(currentZoomIndex + 1);
         }
+
+
 
     }
 
@@ -118,9 +140,7 @@ public class CameraController : MonoBehaviour
         } else {
             transform.position = targetPosition;//snap to the targetPos
             atPosition = true;
-            if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
-                blockInput = false;
-
+            
         }
 
         //Zoom Lerp
@@ -150,7 +170,10 @@ public class CameraController : MonoBehaviour
         targetPosition.x = transform.position.x;
         targetPosition.y = transform.position.y;
         atPosition = false;
-        blockInput = true;
+        blockLeftInput = true;
+        blockRightInput = true;
+        blockUpInput = true;
+        blockDownInput = true;
     }
 
     public void CameraMoveUp(){
@@ -185,9 +208,21 @@ public class CameraController : MonoBehaviour
         float moveFactor = zoomLevels[currentZoomIndex] / zoomLevels[0];
         targetPosition.x -= cameraSpeed * Time.deltaTime * moveFactor;
     }
-    public void CameraLock()
+    public void CameraUpLock()
     {
-        blockInput = true;
+        blockUpInput = true;
+    }
+    public void CameraDownLock()
+    {
+        blockDownInput = true;
+    }
+    public void CameraLeftLock()
+    {
+        blockLeftInput = true;
+    }
+    public void CameraRightLock()
+    {
+        blockRightInput = true;
     }
 
     public void SetZoomLevel(int zoomLevel){
