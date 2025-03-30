@@ -26,7 +26,7 @@ public class CameraController : MonoBehaviour
     int elapsedZoomFrames = 0;
     private int snapAnimationFrames;
     int elapsedSnapFrames = 0;
-    bool verticalKeyHeld = false;
+    bool keyHeld = false;
     public bool atPosition = true;
     public bool blockInput = false;
 
@@ -50,22 +50,38 @@ public class CameraController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             CameraMoveUp();
-            verticalKeyHeld = true;
+            keyHeld = true;
             // targetPosition.y += cameraSpeed * Time.deltaTime;
             // gameObject.transform.position = targetPosition;
         } else if (Input.GetKey(KeyCode.S))
         {
             CameraMoveDown();
-            verticalKeyHeld = true;
+            keyHeld = true;
             // targetPosition.y -= cameraSpeed * Time.deltaTime;
             // gameObject.transform.position = targetPosition;
         }
-            
-        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            keyHeld = true;
+            CameraMoveLeft();
+        } else if (Input.GetKey(KeyCode.D))
+        {
+            keyHeld = true;
+            CameraMoveRight();
+        }
+
+        //If absolutely no keys are down set the elapsed frames to zero
+        if ((Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)) && (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D)))
         {
             elapsedSnapFrames = 0;
-            verticalKeyHeld = false;
+            keyHeld = false;
+        } else if ((Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D)) && (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S)))
+        {
+            elapsedSnapFrames = 0;
+            keyHeld = false;
         }
+
 
         // Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
         // if (Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -83,6 +99,7 @@ public class CameraController : MonoBehaviour
 
     }
 
+
     void FixedUpdate()
     {
 
@@ -95,13 +112,14 @@ public class CameraController : MonoBehaviour
             float interpolationRatio = (float)elapsedSnapFrames / (float)snapAnimationFrames;
             transform.position = Vector3.Lerp(transform.position, targetPosition, interpolationRatio);
             elapsedSnapFrames = (elapsedSnapFrames + 1) % (snapAnimationFrames + 1);
-            elapsedSnapFrames = !verticalKeyHeld ? (elapsedSnapFrames + 1) % (snapAnimationFrames + 1) : snapAnimationFrames / 2;
+            elapsedSnapFrames = !keyHeld ? (elapsedSnapFrames + 1) % (snapAnimationFrames + 1) : snapAnimationFrames / 2;
             Debug.Log("" + elapsedSnapFrames);
 
         } else {
             transform.position = targetPosition;//snap to the targetPos
             atPosition = true;
-            blockInput = false;
+            if(!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+                blockInput = false;
 
         }
 
@@ -153,6 +171,23 @@ public class CameraController : MonoBehaviour
 
         targetPosition.y -= cameraSpeed * Time.deltaTime * moveFactor;
         // gameObject.transform.position = Vector3.Lerp(transform.position, targetPosition, .05f);
+    }
+
+    public void CameraMoveRight()
+    {
+
+        float moveFactor = zoomLevels[currentZoomIndex] / zoomLevels[0];
+        targetPosition.x += cameraSpeed * Time.deltaTime * moveFactor;
+    }
+
+    public void CameraMoveLeft()
+    {
+        float moveFactor = zoomLevels[currentZoomIndex] / zoomLevels[0];
+        targetPosition.x -= cameraSpeed * Time.deltaTime * moveFactor;
+    }
+    public void CameraLock()
+    {
+        blockInput = true;
     }
 
     public void SetZoomLevel(int zoomLevel){
