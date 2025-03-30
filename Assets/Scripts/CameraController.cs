@@ -243,4 +243,7 @@ public class CameraController : MonoBehaviour
         _zoomCamera.orthographicSize = cameraZoom;
         targetZoom = cameraZoom;
     }
+    public float GetTargetZoom(){
+        return targetZoom;
+    }
 }

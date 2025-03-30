@@ -32,7 +32,7 @@ public class BoundaryController : MonoBehaviour
     //Not where I want it yet, needs to be smoother with the zoom and not "stick" when it hits the bounds
     private void Update()
     {
-        float camHeight = mainCamera.orthographicSize;
+        float camHeight = cameraController.GetTargetZoom();// we do this instead of mainCamera.orthographicSize to account for zooming out near the boundaries
         float camWidth = camHeight * mainCamera.aspect;
         if (mainCamera.transform.position.x + camWidth > right)
         {
