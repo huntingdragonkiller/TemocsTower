@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using Random = UnityEngine.Random;
 
 public class FriendlyAI : MonoBehaviour
 {
@@ -20,15 +21,20 @@ public class FriendlyAI : MonoBehaviour
     bool inAir = true;
     float fallSpeed;
     public float patrolRadiusFromOrigin = 5f;
+    public float minIdlingInterval = 3.5f;
     public float detectEnemiesDistance = 10f;
     private bool _movingRight;
     private bool enemiesPresent = false;
     float currentMoveSpeed;
     float moveSpeedVariation = 0.05f;
-
+    private static readonly int IsAttacking = Animator.StringToHash("isAttacking");
+    private static readonly int IsMoving = Animator.StringToHash("isMoving");
 
     private Animator anim;
+    private float attackAnimationLength;
     bool isAttacking;
+    private bool notIdling = true;
+    private bool tryIdling = true;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +47,7 @@ public class FriendlyAI : MonoBehaviour
         hitbox = GetComponent<Collider2D>();
         hitboxMask = hitbox.includeLayers;
         attackHitboxMask = attackHitbox.includeLayers;
+        anim = GetComponent<Animator>();
        
     }
     void Start()
@@ -49,8 +56,14 @@ public class FriendlyAI : MonoBehaviour
 
         attackCoroutine = AttackSubRoutine(friendlyData.attackSpeed);
         StartCoroutine(attackCoroutine);
-
-        anim = GetComponent<Animator>();
+        AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+        foreach(AnimationClip clip in clips){
+            switch(clip.name){
+                case "FriendlySoldierAttack":
+                    attackAnimationLength = clip.length;
+                    break;
+            }
+        }
     }
 
     // attacks at an interval given by the attack speed stat
@@ -61,6 +74,9 @@ public class FriendlyAI : MonoBehaviour
         {
             if (enemies.Count > 0)
             {
+                anim.SetBool(IsAttacking, true);
+                yield return new WaitForSeconds(attackAnimationLength);
+                anim.SetBool(IsAttacking, false);
                 Attack();
             }
             yield return new WaitForSeconds(waitTime);
@@ -85,7 +101,9 @@ public class FriendlyAI : MonoBehaviour
     //Returns the target dependant on the towers target settings
     //Currently this only returns the enemy that first appeared
     EnemyAI GetTarget(){
-        return enemies[0];
+        if(enemies.Count > 0)
+            return enemies[0];
+        return null;
     }
 
     // Update is called once per frame
@@ -97,10 +115,29 @@ public class FriendlyAI : MonoBehaviour
             transform.position = new Vector3(transform.position.x, 0, transform.position.z); //snap to y = 0
         }
         //if(attackHitbox.IsTouchingLayers())
-        if (enemies.Count <= 0)
+        if(!enemiesPresent && notIdling)
+        {
+            if(tryIdling && Random.Range(0, 100) == 0){
+                StartCoroutine(Idling());
+            } else {
+                Move();
+            }
+        } else if (notIdling){
             Move();
+        }
         enemiesPresent = CheckForEnemies();
         //transform.position.x;
+    }
+
+    private IEnumerator Idling()
+    {
+        notIdling = false;
+        tryIdling = false;
+        anim.SetBool(IsMoving, false);
+        yield return new WaitForSeconds(Random.Range(0.3f, 2f));
+        notIdling = true;
+        yield return new WaitForSeconds(minIdlingInterval);
+        tryIdling = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -139,6 +176,16 @@ public class FriendlyAI : MonoBehaviour
             movementVector = Patrol();
         } else {
              movementVector = MoveToEnemy();
+        }
+        
+        //Reset the movement to zero if there are enemies to attack
+        if (enemies.Count > 0)
+            movementVector = Vector3.zero;
+        
+        if(movementVector.x != 0){
+            anim.SetBool(IsMoving, true);
+        } else {
+            anim.SetBool(IsMoving, false);
         }
 
         transform.position += movementVector;

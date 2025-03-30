@@ -30,7 +30,7 @@ public class TowerSegment : MonoBehaviour
     bool isVisible = false;
     private static bool warningIssued;
     private static GameObject currentWarnedObject;
-    private static readonly int IsBuilding = Animator.StringToHash("isBuilding");
+    private static readonly int IsBuilding = Animator.StringToHash("IsBuilding");
 
     private Animator anim;
     private bool isBuilding;
