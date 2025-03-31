@@ -264,6 +264,11 @@ public class FriendlyAI : MonoBehaviour
             return 1 * currentMoveSpeed;
         }
     }
+
+    void OnDestroy()
+    {
+        GetComponentInParent<SoldierFactory>().RemoveSoldier(this);
+    }
 }
 
 

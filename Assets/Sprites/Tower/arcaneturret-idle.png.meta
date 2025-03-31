@@ -125,10 +125,10 @@ TextureImporter:
       name: arcaneturret-idle_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 3
-        width: 29
-        height: 22
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: arcaneturret-idle_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 3
-        width: 29
-        height: 21
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,10 +169,10 @@ TextureImporter:
       name: arcaneturret-idle_2
       rect:
         serializedVersion: 2
-        x: 68
-        y: 3
-        width: 29
-        height: 20
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -191,10 +191,10 @@ TextureImporter:
       name: arcaneturret-idle_3
       rect:
         serializedVersion: 2
-        x: 100
-        y: 3
-        width: 28
-        height: 21
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3e1774933ac17004fad368a6f372a321
     internalID: 0
     vertices: []
     indices: 

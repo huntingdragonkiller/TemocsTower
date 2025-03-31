@@ -52,7 +52,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -66,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -131,10 +131,10 @@ TextureImporter:
       name: TeleportEffect-Sheet_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 8
-        width: 25
-        height: 6
+        x: 0
+        y: 0
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,10 +153,10 @@ TextureImporter:
       name: TeleportEffect-Sheet_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 6
-        width: 9
-        height: 8
+        x: 19
+        y: 0
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: TeleportEffect-Sheet_2
       rect:
         serializedVersion: 2
-        x: 61
-        y: 4
-        width: 11
-        height: 12
+        x: 38
+        y: 0
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,10 +197,10 @@ TextureImporter:
       name: TeleportEffect-Sheet_3
       rect:
         serializedVersion: 2
-        x: 78
-        y: 3
-        width: 15
-        height: 15
+        x: 57
+        y: 0
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,10 +219,10 @@ TextureImporter:
       name: TeleportEffect-Sheet_4
       rect:
         serializedVersion: 2
-        x: 96
-        y: 1
-        width: 17
-        height: 18
+        x: 76
+        y: 0
+        width: 19
+        height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -241,9 +241,9 @@ TextureImporter:
       name: TeleportEffect-Sheet_5
       rect:
         serializedVersion: 2
-        x: 114
+        x: 95
         y: 0
-        width: 119
+        width: 19
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -259,11 +259,165 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17484c86ce4865547aee29fcaf3d774c
+      internalID: -1953091960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4a28a6c23c80394a88266296bd8f03b
+      internalID: -291939900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eec393684d7605b43964e49a207b4217
+      internalID: 1875508791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27edf12cbebba7b47aee55598318c511
+      internalID: -622714566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57f31dc6ece97004f8195285f133f5fc
+      internalID: 1404198291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73482ab45fddd7446ab89725f4ddb01e
+      internalID: 1539027023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TeleportEffect-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 0
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22b1f3c3d07c3c14e9137bd8cd16e79a
+      internalID: -1057490931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: a3b376351b0b0c54980b75966bc7f500
     internalID: 0
     vertices: []
     indices: 
@@ -275,10 +429,17 @@ TextureImporter:
     nameFileIdTable:
       TeleportEffect-Sheet_0: -2726015566462370716
       TeleportEffect-Sheet_1: 508683540378956396
+      TeleportEffect-Sheet_10: 1404198291
+      TeleportEffect-Sheet_11: 1539027023
+      TeleportEffect-Sheet_12: -1057490931
       TeleportEffect-Sheet_2: 638545173964596534
       TeleportEffect-Sheet_3: -7764403880081046672
       TeleportEffect-Sheet_4: 6603625792845295839
       TeleportEffect-Sheet_5: -2130117846712429721
+      TeleportEffect-Sheet_6: -1953091960
+      TeleportEffect-Sheet_7: -291939900
+      TeleportEffect-Sheet_8: 1875508791
+      TeleportEffect-Sheet_9: -622714566
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

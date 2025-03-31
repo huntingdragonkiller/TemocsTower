@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1206,8 +1206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90dcaae2fb27abf4e9b64531e69a5927
-      internalID: -570663230
+      spriteID: 01805e649d54f50479b012ee4d6cbe56
+      internalID: 1997217326
       vertices: []
       indices: 
       edges: []
@@ -1228,8 +1228,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4262bfbf167d34149a31f4e5a579e31a
-      internalID: 1982330210
+      spriteID: f538dc1e58f671c429e07b5216e9f0a8
+      internalID: 1724662205
       vertices: []
       indices: 
       edges: []
@@ -1250,8 +1250,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5acc3c0ed403d1d4c8f268767ec0e387
-      internalID: 1665868951
+      spriteID: beb53ce85f857e3499a564a8bb78e2f0
+      internalID: -1853366028
       vertices: []
       indices: 
       edges: []
@@ -1272,8 +1272,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: baec751a16d802a48833450ee8129656
-      internalID: 222929384
+      spriteID: c50bb7304709ded42a2638404f60b328
+      internalID: 1674239846
       vertices: []
       indices: 
       edges: []
@@ -1294,8 +1294,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef0c450352bf2dd4493192e1644740cd
-      internalID: 1763398545
+      spriteID: f7aba4c1d64a20d4aa88c067a43c0026
+      internalID: -1317357834
       vertices: []
       indices: 
       edges: []
@@ -1316,8 +1316,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4ee2359e19578748b2ae1ae03e37396
-      internalID: 651209511
+      spriteID: 9c0e0f0ea81376741b4d67a652758fc8
+      internalID: -1366313665
       vertices: []
       indices: 
       edges: []
@@ -1338,8 +1338,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2323a847675e804a947c4d206cb3a39
-      internalID: 1557024731
+      spriteID: 349a72f6bcd7e7843b9620e30a09c03a
+      internalID: -1575967389
       vertices: []
       indices: 
       edges: []
@@ -1360,8 +1360,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 82f7d73d78c3eb149a5668291008e017
-      internalID: 1606396771
+      spriteID: 3f71d0f03dbcba741998f66604e26050
+      internalID: -1783876447
       vertices: []
       indices: 
       edges: []
@@ -1382,8 +1382,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 883f1bdb04a78964887ad98bbb455896
-      internalID: 1885190331
+      spriteID: 9105b6349adc939448c6b37a1a300a97
+      internalID: 1694204217
       vertices: []
       indices: 
       edges: []
@@ -1404,8 +1404,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a30052559bda58d48aed8ccb16a0d521
-      internalID: 524664410
+      spriteID: 0eea379625ed38e438a9f3346e5fc35e
+      internalID: -312698349
       vertices: []
       indices: 
       edges: []
@@ -1468,17 +1468,17 @@ TextureImporter:
       SummoningCircle-Sheet_46: 1822341681
       SummoningCircle-Sheet_47: 83859289
       SummoningCircle-Sheet_48: -1734149737
-      SummoningCircle-Sheet_49: -570663230
+      SummoningCircle-Sheet_49: 1997217326
       SummoningCircle-Sheet_5: -1930594285
-      SummoningCircle-Sheet_50: 1982330210
-      SummoningCircle-Sheet_51: 1665868951
-      SummoningCircle-Sheet_52: 222929384
-      SummoningCircle-Sheet_53: 1763398545
-      SummoningCircle-Sheet_54: 651209511
-      SummoningCircle-Sheet_55: 1557024731
-      SummoningCircle-Sheet_56: 1606396771
-      SummoningCircle-Sheet_57: 1885190331
-      SummoningCircle-Sheet_58: 524664410
+      SummoningCircle-Sheet_50: 1724662205
+      SummoningCircle-Sheet_51: -1853366028
+      SummoningCircle-Sheet_52: 1674239846
+      SummoningCircle-Sheet_53: -1317357834
+      SummoningCircle-Sheet_54: -1366313665
+      SummoningCircle-Sheet_55: -1575967389
+      SummoningCircle-Sheet_56: -1783876447
+      SummoningCircle-Sheet_57: 1694204217
+      SummoningCircle-Sheet_58: -312698349
       SummoningCircle-Sheet_6: -544093025
       SummoningCircle-Sheet_7: 1074832094
       SummoningCircle-Sheet_8: -395330394

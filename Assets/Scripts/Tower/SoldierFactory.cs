@@ -16,11 +16,13 @@ public class SoldierFactory : TowerSegment
     List<FriendlyAI> friends = new List<FriendlyAI>();
     [SerializeField]
     private int maxSoldiers;
+    SummoningCircle summoningCircle;
 
     public override void Awake()
     {
         base.Awake();
-        createSoldier = CreateSoldier(generateSpeed);
+        summoningCircle = GetComponentInChildren<SummoningCircle>();
+        createSoldier = CreateSoldier();
         StartCoroutine(createSoldier);
         factoryUIManager.UpdateMaxSoldiers(maxSoldiers);
         factoryUIManager.UpdateProdSpeed(generateSpeed);
@@ -39,7 +41,7 @@ public class SoldierFactory : TowerSegment
     }
 
     // attacks at an interval given by the attack speed stat
-    protected virtual IEnumerator CreateSoldier(float waitTime)
+    protected virtual IEnumerator CreateSoldier()
     {
         while (true)
         {
@@ -48,14 +50,25 @@ public class SoldierFactory : TowerSegment
             //     Debug.Log("Waiting for wave");
             //     yield return new WaitForFixedUpdate();
             // }
-            yield return new WaitForSeconds(waitTime * localTimeScale);
+            yield return new WaitForFixedUpdate();
             if (friends.Count < maxSoldiers)
             {
-                int index = Random.Range(0, spawnLocations.Length);
-                FriendlyAI newSoldier = Instantiate(soldier, spawnLocations[index].transform.position, Quaternion.identity, gameObject.transform);
-                friends.Add(newSoldier);
-                SoundFXManager.instance.PlaySoundFXClip(creationSound, transform, 1);
+                summoningCircle.StartSummon(generateSpeed);
+                yield return new WaitForSeconds(generateSpeed * localTimeScale);
+                SpawnSoldier();
             }
         }
+    }
+
+    void SpawnSoldier(){
+        int index = Random.Range(0, spawnLocations.Length);
+        FriendlyAI newSoldier = Instantiate(soldier, spawnLocations[index].transform.position, Quaternion.identity, gameObject.transform);
+        friends.Add(newSoldier);
+        SoundFXManager.instance.PlaySoundFXClip(creationSound, transform, 1);
+    }
+
+    public void RemoveSoldier(FriendlyAI toRemove){
+        Debug.Log("Removing a fella");
+        friends.Remove(toRemove);
     }
 }
