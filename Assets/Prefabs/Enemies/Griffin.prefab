@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 6919039661734210343}
   - component: {fileID: 6194153825324038020}
   - component: {fileID: 2198273592554467714}
+  - component: {fileID: 6092762128040801748}
   m_Layer: 7
   m_Name: Griffin
   m_TagString: Enemy
@@ -152,11 +153,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.0995371, y: 0.9635795}
-      - {x: 0.34046364, y: 1.0773817}
-      - {x: 0.28962588, y: -1.1777651}
-      - {x: 1.0028038, y: -1.0132666}
-      - {x: 1.002804, y: -1.0132664}
+    - - {x: 1.022698, y: 0.89992666}
+      - {x: -1.0027912, y: 0.86488956}
+      - {x: -1.0080948, y: -0.9804509}
+      - {x: 1.0149069, y: -1.0102408}
   m_UseDelaunayMesh: 0
 --- !u!212 &3516116594058667688
 SpriteRenderer:
@@ -281,6 +281,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &6092762128040801748
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7357179300845184114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 868adc910e4036b499082f64bc287410, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2480384592924546111
 PrefabInstance:
   m_ObjectHideFlags: 0

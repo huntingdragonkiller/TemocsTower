@@ -17,6 +17,9 @@ public class BallistaAI : EnemyAI
     public float projectileMaxHeight;
     [SerializeField]
     AudioResource reloadingAudio;
+    
+    public Animator headAnim;
+    private float attackAnimationLength;
 
     private Shooter shooterScript;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,6 +28,14 @@ public class BallistaAI : EnemyAI
         base.Start();
         shooterScript = GetComponent<Shooter>();
         shooterScript.InitializeShooter(ballistaProjectile, projectileMaxMoveSpeed, projectileMaxHeight);
+        AnimationClip[] clips = headAnim.runtimeAnimatorController.animationClips;
+        foreach(AnimationClip clip in clips){
+            switch(clip.name){
+                case "BallistaAttack":
+                    attackAnimationLength = clip.length;
+                    break;
+            }
+        }
     }
 
 
@@ -65,6 +76,8 @@ public class BallistaAI : EnemyAI
                     //Debug.Log("Out of index for some reason");
                 }
                 
+                headAnim.SetTrigger(AttackTrigger);
+                yield return new WaitForSeconds(attackAnimationLength);
                 Attack();
             }
         }
@@ -80,5 +93,6 @@ public class BallistaAI : EnemyAI
             SoundFXManager.instance.PlaySoundFXClip(reloadingAudio, transform, 1);
         }
 
+        headAnim.ResetTrigger(AttackTrigger);
     }
 }

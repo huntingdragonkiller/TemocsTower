@@ -77,7 +77,7 @@ public class FriendlyAI : MonoBehaviour
                 anim.SetBool(IsAttacking, true);
                 yield return new WaitForSeconds(attackAnimationLength);
                 anim.SetBool(IsAttacking, false);
-                Attack();
+                // Attack();
             }
             yield return new WaitForSeconds(waitTime);
         }

@@ -208,7 +208,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -222,7 +222,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -288,9 +288,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 38
-        width: 8
-        height: 6
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,10 +309,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_1
       rect:
         serializedVersion: 2
-        x: 8
-        y: 37
-        width: 14
-        height: 7
+        x: 48
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,10 +331,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_2
       rect:
         serializedVersion: 2
-        x: 21
-        y: 31
-        width: 8
-        height: 8
+        x: 96
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,10 +353,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_3
       rect:
         serializedVersion: 2
-        x: 28
-        y: 22
-        width: 8
-        height: 16
+        x: 144
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -375,10 +375,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_4
       rect:
         serializedVersion: 2
-        x: 52
-        y: 37
-        width: 21
-        height: 7
+        x: 192
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -397,10 +397,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_5
       rect:
         serializedVersion: 2
-        x: 72
-        y: 30
-        width: 7
-        height: 8
+        x: 240
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -419,10 +419,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_6
       rect:
         serializedVersion: 2
-        x: 106
-        y: 37
-        width: 8
-        height: 6
+        x: 288
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -441,10 +441,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_7
       rect:
         serializedVersion: 2
-        x: 113
-        y: 37
-        width: 11
-        height: 7
+        x: 336
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -463,10 +463,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_8
       rect:
         serializedVersion: 2
-        x: 322
-        y: 35
-        width: 6
-        height: 8
+        x: 384
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -485,10 +485,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_9
       rect:
         serializedVersion: 2
-        x: 324
-        y: 25
-        width: 7
-        height: 14
+        x: 432
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -507,10 +507,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_10
       rect:
         serializedVersion: 2
-        x: 368
-        y: 23
-        width: 7
-        height: 18
+        x: 480
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -529,10 +529,10 @@ TextureImporter:
       name: ManaGenEffect-Sheet_11
       rect:
         serializedVersion: 2
-        x: 446
-        y: 29
-        width: 10
-        height: 9
+        x: 528
+        y: 0
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -547,1023 +547,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_12
-      rect:
-        serializedVersion: 2
-        x: 489
-        y: 27
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 51ec6cd4f5084a090800000000000000
-      internalID: -8024147489252258283
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_13
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 32
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d536697bf13e6450800000000000000
-      internalID: 6083855102767412695
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_14
-      rect:
-        serializedVersion: 2
-        x: 546
-        y: 33
-        width: 12
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 62a542c778041d7c0800000000000000
-      internalID: -4048383639381845466
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_15
-      rect:
-        serializedVersion: 2
-        x: 13
-        y: 15
-        width: 10
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d63aefeae4da4ee90800000000000000
-      internalID: -6997277367571930259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_16
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 15
-        width: 10
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a591c91b8cffb6670800000000000000
-      internalID: 8533195156421876058
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_17
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 9
-        width: 20
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: feb76685ec83b6f10800000000000000
-      internalID: 2263965696581336047
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_18
-      rect:
-        serializedVersion: 2
-        x: 114
-        y: 16
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d1bf7ff88cbd4a620800000000000000
-      internalID: 2784592124077144861
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_19
-      rect:
-        serializedVersion: 2
-        x: 122
-        y: 30
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7292db7ee9def9420800000000000000
-      internalID: 2639089173410949415
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_20
-      rect:
-        serializedVersion: 2
-        x: 156
-        y: 25
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c9edc4b2cf329cb60800000000000000
-      internalID: 7766778598342319772
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_21
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 30
-        width: 20
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: de377d847ae4d02b0800000000000000
-      internalID: -5616746679872556051
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_22
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 23
-        width: 6
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 65942c8574346ac20800000000000000
-      internalID: 3217332957513664854
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_23
-      rect:
-        serializedVersion: 2
-        x: 204
-        y: 14
-        width: 23
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2600f86419e6832d0800000000000000
-      internalID: -3298765156815798174
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_24
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 28
-        width: 12
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 66fd7ad2b599a4ff0800000000000000
-      internalID: -51059828874289306
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_25
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 17
-        width: 22
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f1921c021e8921980800000000000000
-      internalID: -8569619048248039137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_26
-      rect:
-        serializedVersion: 2
-        x: 259
-        y: 28
-        width: 10
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 632accc8cf3fda850800000000000000
-      internalID: 6390031712328131126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_27
-      rect:
-        serializedVersion: 2
-        x: 303
-        y: 17
-        width: 18
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a6b79bc61b49e1d60800000000000000
-      internalID: 7862885489189682026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_28
-      rect:
-        serializedVersion: 2
-        x: 343
-        y: 13
-        width: 10
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e08d41724e761d010800000000000000
-      internalID: 1211864004345255950
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_29
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 19
-        width: 17
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 626f50fece74d3150800000000000000
-      internalID: 5853914173599512102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_30
-      rect:
-        serializedVersion: 2
-        x: 391
-        y: 16
-        width: 6
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7a549034a6b4b0400800000000000000
-      internalID: 291409520658826663
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_31
-      rect:
-        serializedVersion: 2
-        x: 396
-        y: 24
-        width: 8
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 73959935136bf10f0800000000000000
-      internalID: -1143995457356605129
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_32
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 17
-        width: 14
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 5c69ec122d85c5fb0800000000000000
-      internalID: -4657750255074371899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_33
-      rect:
-        serializedVersion: 2
-        x: 416
-        y: 19
-        width: 9
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6207f1f6456e8de40800000000000000
-      internalID: 5681544180243853350
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_34
-      rect:
-        serializedVersion: 2
-        x: 440
-        y: 22
-        width: 8
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 89be9908382cb3870800000000000000
-      internalID: 8663732178231356312
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_35
-      rect:
-        serializedVersion: 2
-        x: 450
-        y: 15
-        width: 11
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 546490195dfad3840800000000000000
-      internalID: 5205510076106360389
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_36
-      rect:
-        serializedVersion: 2
-        x: 466
-        y: 18
-        width: 6
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c433db5a780ed8a0800000000000000
-      internalID: -6278571508888292152
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_37
-      rect:
-        serializedVersion: 2
-        x: 497
-        y: 17
-        width: 12
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4a1393835ba911df0800000000000000
-      internalID: -211217604386672220
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_38
-      rect:
-        serializedVersion: 2
-        x: 545
-        y: 10
-        width: 13
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ac471dfcab67b6cc0800000000000000
-      internalID: -3716746522741607222
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_39
-      rect:
-        serializedVersion: 2
-        x: 555
-        y: 26
-        width: 9
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 78e0e863febdad430800000000000000
-      internalID: 3808598255354121863
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_40
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 7
-        width: 18
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 57248b48b9856c680800000000000000
-      internalID: -8735197002268654987
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_41
-      rect:
-        serializedVersion: 2
-        x: 157
-        y: 11
-        width: 10
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: feff81f407d985f70800000000000000
-      internalID: 9176257346456322031
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_42
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 18
-        width: 17
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: aefcb0f0831df0530800000000000000
-      internalID: 3823504647361646570
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_43
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 14
-        width: 9
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 870be1a11025b54f0800000000000000
-      internalID: -838986740887801736
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_44
-      rect:
-        serializedVersion: 2
-        x: 213
-        y: 13
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 09d27babb2a948410800000000000000
-      internalID: 1478476090291203472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_45
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 12
-        width: 7
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 12694faf1c9dc59c0800000000000000
-      internalID: -3937032547066407391
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_46
-      rect:
-        serializedVersion: 2
-        x: 261
-        y: 12
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a5ca9686792b6760800000000000000
-      internalID: 7452095597455787426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_47
-      rect:
-        serializedVersion: 2
-        x: 295
-        y: 7
-        width: 9
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3fc1a81171fd210c0800000000000000
-      internalID: -4606374178675090189
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_48
-      rect:
-        serializedVersion: 2
-        x: 318
-        y: 18
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1aa52e8744b274080800000000000000
-      internalID: -9203339740422448479
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_49
-      rect:
-        serializedVersion: 2
-        x: 366
-        y: 17
-        width: 8
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e204618edb4f67d20800000000000000
-      internalID: 3276074875438383150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_50
-      rect:
-        serializedVersion: 2
-        x: 411
-        y: 14
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 963921d1e9f225f60800000000000000
-      internalID: 8021526242439369577
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_51
-      rect:
-        serializedVersion: 2
-        x: 460
-        y: 15
-        width: 7
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 18de83320a8cac760800000000000000
-      internalID: 7479010721313385857
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_52
-      rect:
-        serializedVersion: 2
-        x: 497
-        y: 10
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b3d723a952fd732a0800000000000000
-      internalID: -6757687363252355781
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_53
-      rect:
-        serializedVersion: 2
-        x: 506
-        y: 11
-        width: 14
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bf2c1fb10f8627550800000000000000
-      internalID: 6157099021039158011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_54
-      rect:
-        serializedVersion: 2
-        x: 540
-        y: 12
-        width: 10
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c699b4c0581692d10800000000000000
-      internalID: 2101317925209872748
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_55
-      rect:
-        serializedVersion: 2
-        x: 19
-        y: 8
-        width: 21
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 914b92157af0e6950800000000000000
-      internalID: 6444105328109401113
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_56
-      rect:
-        serializedVersion: 2
-        x: 163
-        y: 10
-        width: 10
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ca27b2d3b25a2c80800000000000000
-      internalID: -8346768027089950014
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ManaGenEffect-Sheet_57
-      rect:
-        serializedVersion: 2
-        x: 454
-        y: 11
-        width: 9
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 14f142536c23c8940800000000000000
-      internalID: 5299666688384704321
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5c2bb2c13261e2b4abd7e11e5a5bcae0
     internalID: 0
     vertices: []
     indices: 
@@ -1577,56 +565,10 @@ TextureImporter:
       ManaGenEffect-Sheet_1: 3985500967399541364
       ManaGenEffect-Sheet_10: 4998915220487852806
       ManaGenEffect-Sheet_11: 8363620864962537825
-      ManaGenEffect-Sheet_12: -8024147489252258283
-      ManaGenEffect-Sheet_13: 6083855102767412695
-      ManaGenEffect-Sheet_14: -4048383639381845466
-      ManaGenEffect-Sheet_15: -6997277367571930259
-      ManaGenEffect-Sheet_16: 8533195156421876058
-      ManaGenEffect-Sheet_17: 2263965696581336047
-      ManaGenEffect-Sheet_18: 2784592124077144861
-      ManaGenEffect-Sheet_19: 2639089173410949415
       ManaGenEffect-Sheet_2: 2219566745878179563
-      ManaGenEffect-Sheet_20: 7766778598342319772
-      ManaGenEffect-Sheet_21: -5616746679872556051
-      ManaGenEffect-Sheet_22: 3217332957513664854
-      ManaGenEffect-Sheet_23: -3298765156815798174
-      ManaGenEffect-Sheet_24: -51059828874289306
-      ManaGenEffect-Sheet_25: -8569619048248039137
-      ManaGenEffect-Sheet_26: 6390031712328131126
-      ManaGenEffect-Sheet_27: 7862885489189682026
-      ManaGenEffect-Sheet_28: 1211864004345255950
-      ManaGenEffect-Sheet_29: 5853914173599512102
       ManaGenEffect-Sheet_3: 6850011845285734811
-      ManaGenEffect-Sheet_30: 291409520658826663
-      ManaGenEffect-Sheet_31: -1143995457356605129
-      ManaGenEffect-Sheet_32: -4657750255074371899
-      ManaGenEffect-Sheet_33: 5681544180243853350
-      ManaGenEffect-Sheet_34: 8663732178231356312
-      ManaGenEffect-Sheet_35: 5205510076106360389
-      ManaGenEffect-Sheet_36: -6278571508888292152
-      ManaGenEffect-Sheet_37: -211217604386672220
-      ManaGenEffect-Sheet_38: -3716746522741607222
-      ManaGenEffect-Sheet_39: 3808598255354121863
       ManaGenEffect-Sheet_4: -461505651475036058
-      ManaGenEffect-Sheet_40: -8735197002268654987
-      ManaGenEffect-Sheet_41: 9176257346456322031
-      ManaGenEffect-Sheet_42: 3823504647361646570
-      ManaGenEffect-Sheet_43: -838986740887801736
-      ManaGenEffect-Sheet_44: 1478476090291203472
-      ManaGenEffect-Sheet_45: -3937032547066407391
-      ManaGenEffect-Sheet_46: 7452095597455787426
-      ManaGenEffect-Sheet_47: -4606374178675090189
-      ManaGenEffect-Sheet_48: -9203339740422448479
-      ManaGenEffect-Sheet_49: 3276074875438383150
       ManaGenEffect-Sheet_5: -7184793017273260035
-      ManaGenEffect-Sheet_50: 8021526242439369577
-      ManaGenEffect-Sheet_51: 7479010721313385857
-      ManaGenEffect-Sheet_52: -6757687363252355781
-      ManaGenEffect-Sheet_53: 6157099021039158011
-      ManaGenEffect-Sheet_54: 2101317925209872748
-      ManaGenEffect-Sheet_55: 6444105328109401113
-      ManaGenEffect-Sheet_56: -8346768027089950014
-      ManaGenEffect-Sheet_57: 5299666688384704321
       ManaGenEffect-Sheet_6: -5575771594682882998
       ManaGenEffect-Sheet_7: -3562364113891293893
       ManaGenEffect-Sheet_8: -3817788276857723366

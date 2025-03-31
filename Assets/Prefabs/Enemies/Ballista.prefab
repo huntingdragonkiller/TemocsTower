@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1886492278854327383}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.07, y: 0.73, z: 0}
+  m_LocalPosition: {x: -0.07, y: 0.661, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 1886492278854327383}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f76c5d6c84ae2974eb7674311e0a3f16, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3084a71c09c72a745b9ac9b4c43f22dc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -216,7 +216,7 @@ Animator:
   m_GameObject: {fileID: 3463368510564242726}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f5fa9f50107cb9a459921b2f8d88aa5e, type: 2}
+  m_Controller: {fileID: 9100000, guid: cbe8c52ec9fd6a44880447839a4b89cc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -274,6 +274,7 @@ MonoBehaviour:
   projectileMaxMoveSpeed: 10
   projectileMaxHeight: 5
   reloadingAudio: {fileID: 8300000, guid: 4fd047c191baf2848b458ea335108e6c, type: 3}
+  headAnim: {fileID: 2244549707833771899}
 --- !u!114 &4285006783556307004
 MonoBehaviour:
   m_ObjectHideFlags: 0

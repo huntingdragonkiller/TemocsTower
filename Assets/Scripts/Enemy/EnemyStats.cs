@@ -29,12 +29,18 @@ public class EnemyStats : MonoBehaviour
     [HideInInspector]
     public AudioResource deathSoundClip;
     public HealthBarManager healthBar;
+    private bool dying = false;
+    private static readonly int TakeDamageTrigger = Animator.StringToHash("TakeDamage");
+    private static readonly int DieTrigger = Animator.StringToHash("Die");
+
+    private Animator anim;
 
     void Awake()
     {
         healthBar = GetComponentInChildren<HealthBarManager>();
         InitializeValues();
         currentHealth = maxHealth;
+        anim = GetComponent<Animator>();
     }
 
     public void InitializeValues(float percentChange = 1f){
@@ -52,21 +58,38 @@ public class EnemyStats : MonoBehaviour
     
     public void TakeDamage(float dmg)
     {
+        //This is to prevent a situation where something is getting attacked so often
+        //that the animation to die keeps resetting before it actually dies
+        if(dying)
+        {
+            return;
+        }
         currentHealth -= dmg;
         healthBar.UpdateHealth(currentHealth/enemyData.MaxHealth);
         if (currentHealth <= 0)
         {
-            Kill();
+            Die();
         } else {
             //play the damage sound instead of the death sound
             SoundFXManager.instance.PlaySoundFXClip(damageSoundClip, transform, 1f);
+            anim.SetTrigger(TakeDamageTrigger);
         }
     }
 
-    public void Kill()
+    public void ResetDamageTrigger(){
+        anim.ResetTrigger(TakeDamageTrigger);
+    }
+
+    public void Die()
     {
+        dying = true;
         SoundFXManager.instance.PlaySoundFXClip(deathSoundClip, transform, 1f);
         FindFirstObjectByType<CoinManager>().AddCoins(killReward);
+        anim.SetTrigger(DieTrigger);
+    }
+
+    //This is called within the animation clips for the enemies death
+    public void Kill(){
         Destroy(gameObject);
     }
 }

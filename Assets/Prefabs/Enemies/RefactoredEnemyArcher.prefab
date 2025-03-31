@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8476054331313644121}
   - component: {fileID: 9202063601825549311}
   - component: {fileID: 7095878409537180651}
+  - component: {fileID: 5071181218139429055}
   m_Layer: 7
   m_Name: RefactoredEnemyArcher
   m_TagString: Enemy
@@ -287,6 +288,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &5071181218139429055
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3289186279694427434}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1172f8215013fd4d9c490d1a08fc32c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3503011018234357232
 GameObject:
   m_ObjectHideFlags: 0

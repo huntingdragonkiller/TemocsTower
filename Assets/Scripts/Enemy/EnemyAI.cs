@@ -16,7 +16,12 @@ public class EnemyAI : MonoBehaviour
     public GameObject attackTarget;
     protected List<GameObject> potentialTargets  = new List<GameObject>();
     private IEnumerator attackCoroutine;
+    
+    protected static readonly int IsMoving = Animator.StringToHash("IsMoving");
+    
+    protected static readonly int AttackTrigger = Animator.StringToHash("Attack");
 
+    protected Animator anim;
 
     
     void Awake()
@@ -26,6 +31,7 @@ public class EnemyAI : MonoBehaviour
         hitboxMask = hitbox.callbackLayers;
         attackHitboxMask = attackHitbox.callbackLayers;
         canAttack = false;
+        anim = GetComponent<Animator>();
         
         // Debug.Log("Enemy Awake");
     }
@@ -59,7 +65,8 @@ public class EnemyAI : MonoBehaviour
             yield return new WaitForSeconds(enemyData.attackSpeed);
             if (canAttack){
                 attackTarget = GetTarget();
-                Attack();
+                anim.SetTrigger(AttackTrigger);
+                // Attack();
             }
         }
     }
@@ -73,6 +80,7 @@ public class EnemyAI : MonoBehaviour
             attackTarget.SendMessage("TakeDamage", enemyData.currentDamage);
             SoundFXManager.instance.PlaySoundFXClip(enemyData.attackSoundClip, transform, 1f);
         }
+        anim.ResetTrigger(AttackTrigger);
     }
 
     protected virtual GameObject GetTarget()
@@ -92,9 +100,11 @@ public class EnemyAI : MonoBehaviour
         if(potentialTargets.Count > 0){
             // Debug.Log("AttackTime");
             canAttack = true;
+            anim.SetBool(IsMoving, false);
         } else if(attackTarget == null){
             // Debug.Log("Can't attack, going to move");
             canAttack = false;
+            anim.SetBool(IsMoving, true);
             MoveToTarget();
         }
             

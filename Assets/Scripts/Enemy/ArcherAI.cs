@@ -33,8 +33,8 @@ public class ArcherAI : EnemyAI
                 } catch{
                     Debug.Log("Out of index for some reason");
                 }
-                
-                Attack();
+                anim.SetTrigger(AttackTrigger);
+                // Attack();
             }
         }
     }
@@ -60,6 +60,7 @@ public class ArcherAI : EnemyAI
             shooterScript.Shoot(attackTarget.transform);
 
         }
-
+        
+        anim.ResetTrigger(AttackTrigger);
     }
 }
