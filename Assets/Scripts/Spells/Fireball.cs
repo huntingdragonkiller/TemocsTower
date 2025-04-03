@@ -11,12 +11,25 @@ public class Fireball : Spell
     [SerializeField]
     float initialVelocity = 5f;
 
+    private static readonly int Done = Animator.StringToHash("Done");
+    private Animator anim;
+
+    IEnumerator exploding;
+    Vector2 targetVelocity;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Awake()
     {
         base.Awake();
+
+        anim = GetComponent<Animator>();
         // _rb = GetComponent<Rigidbody2D>();
         // explosion = GetComponent<CircleCollider2D>();
+    }
+
+    public void Kill()
+    {
+        Destroy(gameObject);
     }
 
     // Update is called once per frame
@@ -33,11 +46,17 @@ public class Fireball : Spell
 
         Vector2 directionVector = position - transform.position; 
         directionVector.Normalize();
-        _rb.linearVelocity = directionVector * initialVelocity;
+        targetVelocity = directionVector * initialVelocity;
         
         Debug.Log("" + directionVector);
+        Debug.Log("" + targetVelocity);
         Debug.Log("" + _rb.linearVelocity);
 
+    }
+
+    public void CastDone()
+    {
+        _rb.linearVelocity = targetVelocity;
     }
 
     void FixedUpdate()
@@ -49,9 +68,12 @@ public class Fireball : Spell
     }
 
     IEnumerator Explode() {
+        _rb.linearVelocity = Vector2.zero;
+        anim.SetTrigger(Done);
         explosion.enabled = true;
         List<Collider2D> contacts = new List<Collider2D>();
-        transform.localScale = transform.localScale * 3 ;
+        //transform.localScale = transform.localScale * 3 ;
+        explosion.radius *= 2;
         // explosion.Overlap(contacts) fills contacts 
         Debug.Log("Exploding " + explosion.Overlap(contacts) + " GameObjects");
         Debug.Log("explosion collisions: " + contacts);
@@ -62,15 +84,19 @@ public class Fireball : Spell
                 collidedObject.GetComponent<EnemyStats>().SendMessage("TakeDamage", damage);
             }
         }
-        yield return new WaitForSeconds(.1f); 
-        Destroy(gameObject);
+        yield return null;
 
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.gameObject.tag == "Ground"){
-            StartCoroutine(Explode());
+            if (exploding == null)
+            {
+                exploding = Explode();
+                StartCoroutine(exploding);
+
+            }
         }
     }
 
