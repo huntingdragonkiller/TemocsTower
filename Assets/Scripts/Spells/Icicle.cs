@@ -7,16 +7,17 @@ public class Icicle : MonoBehaviour
     Collider2D hitbox;
     [SerializeField]
     Rigidbody2D _rb;
-    [SerializeField]
-    Animation anim;
     float damage;
     Vector3 targetPosition;
 
+
+    public void EnableHitbox()
+    {
+        hitbox.enabled = true;
+    }
+
     void FixedUpdate()
     {
-        if(!anim.isPlaying){
-            hitbox.enabled = true;
-        }
         if(transform.position.y < targetPosition.y){
             Destroy(gameObject);
         }

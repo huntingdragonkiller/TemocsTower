@@ -15,10 +15,16 @@ public class IcicleStorm : Spell
     Icicle icicle;
     IEnumerator stormRoutine;
     List<Transform> chosenSpawns = new List<Transform>();
+    private static readonly int Done = Animator.StringToHash("Done");
+
+
+    private Animator anim;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected override void Awake()
     {
         base.Awake();
+        anim = GetComponent<Animator>();
     }
 
     public override void CastSpellAt(Vector3 position){
@@ -38,7 +44,12 @@ public class IcicleStorm : Spell
             SpawnIcicle();
             spawnedIcicles++;
             yield return new WaitForSeconds(delayTime);
-        } 
+        }
+        anim.SetTrigger(Done);
+    }
+
+    public void Kill()
+    {
         Destroy(gameObject);
     }
 

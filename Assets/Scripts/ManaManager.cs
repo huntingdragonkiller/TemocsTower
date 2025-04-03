@@ -68,7 +68,7 @@ public class ManaManager : MonoBehaviour
         {
             return;
         }
-        if (canCastSpell[spellIndex] && Input.GetMouseButtonDown(0))
+        if (canCastSpell[spellIndex] && Input.GetMouseButtonDown(0) && Time.timeScale > 0)
         {
             // call get mouse click coordinates  ?
             // on Mouse Click:

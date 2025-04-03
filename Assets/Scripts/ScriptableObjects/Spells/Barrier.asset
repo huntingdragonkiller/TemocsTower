@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 10
   damage: 3
-  cooldownTime: 30
+  cooldownTime: 1
   manaCost: 30

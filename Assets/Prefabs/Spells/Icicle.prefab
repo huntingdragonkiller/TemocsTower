@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1850558839066749293}
   - component: {fileID: 1717923896656486610}
   - component: {fileID: 2401675855510795887}
-  - component: {fileID: 4328281222553342006}
+  - component: {fileID: -8702165158876445875}
   m_Layer: 6
   m_Name: Icicle
   m_TagString: Hitbox
@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitbox: {fileID: 1717923896656486610}
   _rb: {fileID: 2401675855510795887}
-  anim: {fileID: 4328281222553342006}
+  anim: {fileID: 0}
 --- !u!212 &1850558839066749293
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -179,19 +179,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!111 &4328281222553342006
-Animation:
+--- !u!95 &-8702165158876445875
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36107581961602542}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 8926080e6dbdc5f4c8b4db687d8a5b9a, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58361340ae32b427982adb92d8f48826, type: 2}
+  m_CullingMode: 0
   m_UpdateMode: 0
-  m_CullingType: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
