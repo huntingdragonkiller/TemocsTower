@@ -70,7 +70,8 @@ public class EnemyManager : MonoBehaviour
     public void StartWave(){
         if(activeWave){return;}
         activeWave = true;
-        SoundFXManager.instance.PlaySoundFXClip(waveStart, transform, 1f);
+        //SoundFXManager.instance.PlaySoundFXClip(waveStart, transform, 1f);
+        MusicManager.instance.PlayWaveMusic(waveStart as AudioClip, true);
         spawnIntervals =  waveDuration / numSpawnTimes;
         currentSpawnTime = 1;
         currentFocus = FocusSegment();
@@ -104,12 +105,9 @@ public class EnemyManager : MonoBehaviour
                 MiniWave finalMiniWave = StartMiniWave(miniWavePoints);
                 miniWave.miniWaveOver = waveOver;
 
-                MusicManager.instance.PlayBossMusic();
                 while(finalMiniWave != null){//waiting until the miniwave is over
                     yield return new WaitForFixedUpdate();
                 }
-                
-                MusicManager.instance.PlayNormalMusic();
                 break;
             }
             
@@ -133,6 +131,7 @@ public class EnemyManager : MonoBehaviour
     private void FinishWave()
     {
         activeWave = false;
+        //MusicManager.instance.PlayWaveMusic(waveOver as AudioClip, true);
         FindAnyObjectByType<SelectionManager>().NewSelections();
         FindAnyObjectByType<TowerManager>().HealAllSegments();
         FindAnyObjectByType<ShopManager>().InitializeShop();

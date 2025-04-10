@@ -85,7 +85,7 @@ public class MusicManager : MonoBehaviour
             //currentMusic.clip = swappingTo;
             //currentMusic.Play();
             //yield return null;
-            FadeOutCurrentMusic(3f, .2f);
+            FadeOutCurrentMusic(transitionTime, .2f);
             if (toSwap == null)
                 toSwap = Instantiate(musicSoundObject, transform);
 
@@ -96,7 +96,7 @@ public class MusicManager : MonoBehaviour
 
             if (fadeInRoutine != null)
                 StopCoroutine(fadeInRoutine);
-            fadeInRoutine = FadeIn(toSwap, 4f, 1f);
+            fadeInRoutine = FadeIn(toSwap, transitionTime, 1f);
             StartCoroutine(fadeInRoutine);
 
             while(fadingIn && fadingOut) { yield return new WaitForFixedUpdate(); }
@@ -162,10 +162,13 @@ public class MusicManager : MonoBehaviour
         float start = toFade.volume;
         while (currentTime < duration)
         {
+
             currentTime += Time.deltaTime;
+            //toFade.volume -= start * Time.deltaTime / duration;
             toFade.volume = Mathf.Lerp(start, threshold, currentTime / duration);
             yield return new WaitForFixedUpdate();
         }
+        toFade.volume = 0f;
         fadingOut = false;
         yield break;
 
@@ -181,13 +184,17 @@ public class MusicManager : MonoBehaviour
     {
         fadingIn = true;
         float currentTime = 0;
+        toFade.volume = .2f;
         float start = toFade.volume;
         while (currentTime < duration)
         {
             currentTime += Time.deltaTime;
+            //toFade.volume += start * (Time.deltaTime / duration);
             toFade.volume = Mathf.Lerp(start, threshold, currentTime / duration);
             yield return new WaitForFixedUpdate();
         }
+
+        toFade.volume = 1f;
         fadingIn = false;
         yield break;
         //float percentPerFrame = (1f * duration) * Time.deltaTime;

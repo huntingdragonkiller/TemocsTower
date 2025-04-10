@@ -15304,7 +15304,7 @@ MonoBehaviour:
   menuMusic: {fileID: 8300000, guid: ebc47fcefc3bf8d4d9ef85e759e4c800, type: 3}
   defeatMusic: {fileID: 8300000, guid: a456fbed56bf5ef449985757558b184d, type: 3}
   victoryMusic: {fileID: 8300000, guid: a456fbed56bf5ef449985757558b184d, type: 3}
-  transitionTime: 1.5
+  transitionTime: 1
   musicSoundObject: {fileID: 7904568378582653365, guid: 26382b801683d4f4b9cd1a722640124b, type: 3}
 --- !u!82 &1123867490
 AudioSource:

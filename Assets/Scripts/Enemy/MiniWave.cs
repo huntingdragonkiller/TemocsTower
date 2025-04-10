@@ -12,7 +12,6 @@ public class MiniWave : MonoBehaviour
     void Start()
     {
         MusicManager.instance.PlayWaveMusic(miniWaveStart as AudioClip, true);
-        MusicManager.instance.PlayNormalMusic();
     }
 
     // Update is called once per frame

@@ -188,6 +188,14 @@ public class FriendlyAI : MonoBehaviour
             anim.SetBool(IsMoving, false);
         }
 
+        //Handling our direction that we need to face
+        if (movementVector.x > 0)
+        {
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        } else if (movementVector.x < 0)
+        {
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
         transform.position += movementVector;
     }
 
